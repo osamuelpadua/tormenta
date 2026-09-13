@@ -112,7 +112,14 @@ export function Resources({
               </button>
             </div>
           </div>
-          <div className="resource-track">
+          <div
+            className="resource-track"
+            role="progressbar"
+            aria-label={kind === "hp" ? "Pontos de vida" : "Pontos de mana"}
+            aria-valuemin={Math.min(0, c[kind])}
+            aria-valuemax={Math.max(d[kind].total, c[kind])}
+            aria-valuenow={c[kind]}
+          >
             <div
               style={{
                 width: `${Math.max(0, Math.min(100, (c[kind] / Math.max(1, d[kind].total)) * 100))}%`,
@@ -171,7 +178,7 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
   const { character: c, commit, openEntry } = useApp();
   const d = calculate(c);
   return (
-    <section className="panel">
+    <section className="panel effects-panel">
       <div className="panel-heading">
         <h3>
           <Activity size={17} />
@@ -194,10 +201,21 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
       {c.effects.length ? (
         <div className="effects-list">
           {c.effects.map((e) => (
-            <div className="effect-row" key={e.id}>
+            <div
+              className="effect-row"
+              data-negative={e.source === "condicao"}
+              data-active={e.active}
+              key={e.id}
+            >
               <div
                 className={`effect-dot ${e.source === "condicao" ? "negative" : ""}`}
-              />
+              >
+                {e.source === "condicao" ? (
+                  <Skull size={17} />
+                ) : (
+                  <Sparkles size={17} />
+                )}
+              </div>
               <div>
                 <button
                   className="inline-name"
@@ -217,7 +235,38 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
                   {e.target ? ` · ${e.target}` : ""}
                   {e.maintenance ? ` · ${e.maintenance} PM/turno` : ""}
                 </small>
+                {e.description && (
+                  <p className="effect-description">{e.description}</p>
+                )}
+                <small className="effect-source">
+                  Origem:{" "}
+                  {e.source === "condicao"
+                    ? "condição"
+                    : e.source === "pericia"
+                      ? "perícia"
+                      : e.source}
+                </small>
+                {e.modifiers.length > 0 && (
+                  <div className="effect-modifiers">
+                    {e.modifiers.map((modifier) => (
+                      <span key={modifier.id}>
+                        {modifier.label}{" "}
+                        {modifier.operation === "multiply"
+                          ? `×${modifier.value}`
+                          : modifier.operation === "set"
+                            ? `= ${modifier.value}`
+                            : sign(modifier.value)}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
+              {e.duration.unit === "round" && (
+                <span className="effect-rounds">
+                  <strong>{e.duration.remaining}</strong>
+                  <small>rodadas</small>
+                </span>
+              )}
               <button
                 className="icon-button"
                 aria-label={`Encerrar ${e.name}`}
@@ -268,6 +317,14 @@ export function Combat({
       <div className="combat-layout">
         <div className="stack">
           <section className="panel turn-panel">
+            <div className="battle-heading" aria-hidden="true">
+              <Swords size={26} strokeWidth={1.3} />
+              <span>
+                {c.combat.active
+                  ? "A BATALHA CONTINUA"
+                  : "PREPARE-SE PARA A BATALHA"}
+              </span>
+            </div>
             <div className="panel-heading">
               <h3>
                 <Clock3 size={17} />

@@ -1,6 +1,6 @@
 # Revisão de responsividade e uso no celular
 
-A interface mantém a identidade visual em papel, vinho e dourado, com hierarquia, espaçamento e controles adaptados ao toque. As telas compartilham os mesmos componentes e dados da versão desktop.
+A interface usa a identidade de fantasia medieval em carvão, ferro, vinho e dourado, com hierarquia, espaçamento e controles adaptados ao toque. As telas compartilham os mesmos componentes e dados da versão desktop. A direção visual está em [Identidade visual](IDENTIDADE_VISUAL.md).
 
 ## Navegação e leitura
 

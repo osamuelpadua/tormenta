@@ -73,6 +73,7 @@ import {
 } from "./ui/shared";
 import "./styles.css";
 import "./ui/mobile.css";
+import "./ui/fantasy.css";
 
 type Tab = "sheet" | "combat" | "powers" | "spells" | "inventory";
 type ModalState =
@@ -525,7 +526,11 @@ export default function App() {
     }
   };
   const body = (
-    <div className="app-shell">
+    <div
+      className="app-shell"
+      data-view={tab}
+      data-combat-active={c?.combat.active || undefined}
+    >
       <a className="skip-link" href="#main-content">
         Ir para o conteúdo
       </a>
@@ -738,10 +743,12 @@ export default function App() {
                 </div>
               </div>
               <section className="character-banner">
-                <div className="character-monogram">
-                  {c.name.slice(0, 1).toUpperCase()}
+                <div className="character-monogram" aria-hidden="true">
+                  <Shield className="character-crest" strokeWidth={1} />
+                  <span>{c.name.slice(0, 1).toUpperCase()}</span>
                 </div>
                 <div className="character-banner-title">
+                  <span className="character-caption">HERÓI DE ARTON</span>
                   <h2>{c.name}</h2>
                   <p>
                     {RACE_MAP.get(c.raceId)?.name}

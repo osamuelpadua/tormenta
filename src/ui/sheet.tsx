@@ -11,6 +11,12 @@ import {
   Star,
   Swords,
   Sparkles,
+  Dumbbell,
+  Footprints,
+  HeartPulse,
+  Brain,
+  Eye,
+  Crown,
 } from "lucide-react";
 import {
   ATTRIBUTES,
@@ -45,6 +51,15 @@ import {
   Toggle,
   useApp,
 } from "./shared";
+
+const attributeSymbols = {
+  for: Dumbbell,
+  des: Footprints,
+  con: HeartPulse,
+  int: Brain,
+  sab: Eye,
+  car: Crown,
+};
 
 export function Sheet({
   onResource,
@@ -84,15 +99,19 @@ export function Sheet({
     <>
       <Resources onResource={onResource} />
       <div className="attribute-grid">
-        {ATTRIBUTES.map((a) => (
-          <Calculation
-            key={a.id}
-            label={a.name}
-            value={d.attributes[a.id]}
-            signed
-            compact
-          />
-        ))}
+        {ATTRIBUTES.map((a) => {
+          const Icon = attributeSymbols[a.id];
+          return (
+            <Calculation
+              key={a.id}
+              label={a.name}
+              value={d.attributes[a.id]}
+              signed
+              compact
+              icon={<Icon size={20} strokeWidth={1.5} />}
+            />
+          );
+        })}
       </div>
       <nav className="sheet-shortcuts" aria-label="Atalhos da ficha">
         {[
@@ -631,7 +650,11 @@ export function Library({
             const usage = usageFor(c, e);
             const ac = c.acquisitions.find((a) => a.entryId === e.id);
             return (
-              <article className="power-card" key={e.id}>
+              <article
+                className="power-card"
+                data-magic={spells || undefined}
+                key={e.id}
+              >
                 <div className="row between">
                   <Pill tone={spells ? "blue" : "gold"}>
                     {spells
@@ -663,6 +686,15 @@ export function Library({
                   </button>
                 </div>
                 <button className="power-title" onClick={() => openEntry(e)}>
+                  <span className="power-emblem" aria-hidden="true">
+                    {spells ? (
+                      <Sparkles size={23} strokeWidth={1.4} />
+                    ) : usage.active ? (
+                      <Swords size={23} strokeWidth={1.4} />
+                    ) : (
+                      <Feather size={23} strokeWidth={1.4} />
+                    )}
+                  </span>
                   {e.name}
                 </button>
                 <p>

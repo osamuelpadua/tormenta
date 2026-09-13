@@ -617,6 +617,7 @@ export function Evolution({ onClose }: { onClose: () => void }) {
     <Modal
       title={`Um novo capítulo: nível ${c.levels.length + 1}`}
       subtitle="Evolução de personagem"
+      className="evolution-dialog"
       onClose={onClose}
       wide
       footer={

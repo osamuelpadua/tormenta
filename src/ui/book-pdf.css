@@ -1,5 +1,5 @@
 .book-reader-pdf .modal-body {
-  background: #e5e0d7;
+  background: var(--surface-inset);
   padding: 20px 28px 30px;
 }
 .book-reader-pdf .book-page {

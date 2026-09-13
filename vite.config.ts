@@ -13,8 +13,8 @@ export default defineConfig({
         description:
           "Sua ficha, sua história. Gerenciador offline de personagens de Tormenta20.",
         lang: "pt-BR",
-        theme_color: "#9c3434",
-        background_color: "#f6f4ee",
+        theme_color: "#111311",
+        background_color: "#111311",
         display: "standalone",
         start_url: "/",
         scope: "/",

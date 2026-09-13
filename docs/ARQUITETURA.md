@@ -16,7 +16,7 @@ O motor usa funções puras; a aleatoriedade é fornecida às operações por um
 
 ## Interface
 
-Cinco destinos principais. No desktop, navegação lateral e ficha em duas colunas. No mobile, navegação inferior e conteúdo em coluna única. Detalhamentos em diálogos acessíveis. Vermelho inspirado nas fontes identifica ações principais; PV, PM, sucesso e alerta têm tokens próprios, acompanhados de texto. Tipografia de títulos serifada e corpo sem serifa. Sem cópia da grade da ficha física.
+Cinco destinos principais. No desktop, navegação lateral e ficha em duas colunas. No mobile, navegação inferior e conteúdo em coluna única. Detalhamentos em diálogos acessíveis. O tema padrão de fantasia medieval usa superfícies escuras, bronze e dourado; PV, PM, sucesso e alerta têm tokens próprios, acompanhados de texto. Cinzel nos títulos e Source Sans 3 no corpo, distribuídas localmente pelo Fontsource. `src/ui/tokens.css` define cores e materiais; `styles.css` e `mobile.css` mantêm a estrutura e os controles; `src/ui/fantasy.css` aplica as molduras, hierarquia e acabamentos compartilhados. O inventário usa cartões de equipamento. O PDF mantém sua página original. Consulte [a identidade visual](IDENTIDADE_VISUAL.md).
 
 ## Consistência
 

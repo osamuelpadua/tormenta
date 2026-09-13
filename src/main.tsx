@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "@fontsource-variable/cinzel/wght.css";
+import "@fontsource-variable/source-sans-3/wght.css";
 import App, { ErrorBoundary } from "./App";
 import { db } from "./storage/database";
 

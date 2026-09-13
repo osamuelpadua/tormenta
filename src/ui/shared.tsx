@@ -232,16 +232,23 @@ export function Calculation({
   signed = false,
   unit = "",
   compact = false,
+  icon,
 }: {
   label: string;
   value: DerivedValue;
   signed?: boolean;
   unit?: string;
   compact?: boolean;
+  icon?: ReactNode;
 }) {
   return (
     <details className={`calculation ${compact ? "compact" : ""}`}>
       <summary>
+        {icon && (
+          <i className="attribute-symbol" aria-hidden="true">
+            {icon}
+          </i>
+        )}
         <span>{label}</span>
         <strong>
           {signed ? sign(value.total) : value.total}

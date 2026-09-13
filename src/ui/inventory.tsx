@@ -8,6 +8,8 @@ import {
   Plus,
   Swords,
   Trash2,
+  Shield,
+  Shirt,
 } from "lucide-react";
 import { CATALOG, DAMAGE_TYPES, ENTRY_MAP, newItem, slug } from "../data/rules";
 import { calculate, itemBenefits } from "../domain/calculate";
@@ -117,10 +119,22 @@ export function Inventory({
             <span />
           </div>
           {entries.map((i) => (
-            <div className="inventory-row" key={i.id}>
+            <div
+              className="inventory-row"
+              data-equipped={i.state === "wielded" || i.state === "worn"}
+              key={i.id}
+            >
               <button className="item-name" onClick={() => onItem(i)}>
                 <span className="item-icon">
-                  {i.damage ? <Swords size={19} /> : <Package size={19} />}
+                  {i.damage ? (
+                    <Swords size={24} strokeWidth={1.4} />
+                  ) : i.category === "Escudo" ? (
+                    <Shield size={24} strokeWidth={1.4} />
+                  ) : i.defense ? (
+                    <Shirt size={24} strokeWidth={1.4} />
+                  ) : (
+                    <Package size={24} strokeWidth={1.4} />
+                  )}
                 </span>
                 <span>
                   <strong>{i.name}</strong>

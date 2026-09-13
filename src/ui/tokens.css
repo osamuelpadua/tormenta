@@ -1,15 +1,39 @@
 :root {
-  --paper: #f7f4ed;
-  --surface: #fffdf9;
-  --ink: #433c32;
-  --muted: #766753;
-  --line: #e9e2d6;
-  --line-strong: #ddd3c3;
-  --sidebar: #252522;
-  --red: #923d46;
-  --red-light: #f7ebe5;
-  --focus: #be8a42;
-  --shadow: 0 12px 34px #60462918;
-  --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
-  --serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  color-scheme: dark;
+  --paper: #111311;
+  --surface: #1b1e1a;
+  --surface-raised: #232620;
+  --surface-inset: #131610;
+  --ink: #ebe5d8;
+  --muted: #b2af9f;
+  --faint: #8e9182;
+  --line: #363b31;
+  --line-strong: #555b48;
+  --sidebar: #10130f;
+  --gold: #c6a76b;
+  --gold-bright: #e0c58e;
+  --gold-soft: #312b1e;
+  --bronze: #806c46;
+  --red: #de9490;
+  --red-light: #382223;
+  --action: #813339;
+  --action-hover: #a34247;
+  --danger: #e49b95;
+  --danger-soft: #322020;
+  --danger-border: #72443e;
+  --success: #a2c694;
+  --success-soft: #222f20;
+  --success-border: #495f3c;
+  --mana: #9cbedf;
+  --mana-soft: #1e2933;
+  --mana-border: #41566b;
+  --focus: #e0c58e;
+  --shadow: 0 18px 45px #0008;
+  --sans: "Source Sans 3 Variable", "Segoe UI", system-ui, sans-serif;
+  --serif: "Cinzel Variable", "Palatino Linotype", Georgia, serif;
+  --reading: "Palatino Linotype", Georgia, serif;
+  --panel-finish:
+    linear-gradient(125deg, #ffffff03, transparent 45%),
+    linear-gradient(180deg, #20231e, #191c18);
+  --edge-light: inset 0 1px 0 #ddc58d0b;
 }

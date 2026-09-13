@@ -210,6 +210,11 @@ test("combate, dano, desfazer, evolução, backup e retorno offline", async ({
   expect(backupPath).toBeTruthy();
   await page.locator("input[type=file]").setInputFiles(backupPath!);
   await page.getByRole("button", { name: "Importar como cópias" }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  // The full backup includes Budrik; UUID order does not identify Aldren.
+  await page
+    .locator("#character-select")
+    .selectOption({ label: "Aldren (cópia)" });
   await expect(page.locator(".character-banner h2")).toHaveText(
     "Aldren (cópia)",
   );

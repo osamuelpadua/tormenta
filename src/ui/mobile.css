@@ -91,7 +91,7 @@
     height: var(--mobile-header-height);
     padding: env(safe-area-inset-top) max(12px, env(safe-area-inset-right)) 0
       max(12px, env(safe-area-inset-left));
-    background: #fffdf9f5;
+    background: #161913f5;
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
     gap: 6px;
@@ -125,9 +125,9 @@
     padding: 6px max(6px, env(safe-area-inset-right))
       calc(6px + env(safe-area-inset-bottom))
       max(6px, env(safe-area-inset-left));
-    background: #fffdf9f7;
+    background: #161913f5;
     border-top-color: var(--line-strong);
-    box-shadow: 0 -4px 18px #433c320a;
+    box-shadow: 0 -4px 18px #0006;
   }
   .mobile-nav > button {
     position: relative;
@@ -135,12 +135,12 @@
     gap: 5px;
     font-size: 11px;
     font-weight: 600;
-    color: #716555;
+    color: var(--muted);
     border-radius: 12px;
   }
   .mobile-nav > button.active {
     color: var(--red);
-    background: #f5e8e3;
+    background: var(--danger-soft);
   }
   .mobile-nav > button.active > svg {
     background: none;
@@ -186,7 +186,7 @@
     padding: 14px;
     gap: 12px;
     border-radius: 14px;
-    background: linear-gradient(115deg, #fffdf9, #f3ece1);
+    background: linear-gradient(115deg, var(--surface), var(--surface-raised));
   }
   .character-banner-title {
     min-width: 0;
@@ -197,7 +197,7 @@
   }
   .character-banner p {
     font-size: 12px;
-    color: #71604c;
+    color: var(--muted);
     flex-wrap: wrap;
   }
   .character-monogram {
@@ -228,16 +228,16 @@
   .resource-card {
     padding: 14px;
     border-radius: 14px;
-    box-shadow: 0 2px 8px #433c3204;
+    box-shadow: 0 2px 8px #0006;
     min-width: 0;
   }
   .resource-card .row > span {
     font-size: 13px;
     gap: 7px;
-    color: #6f4e4a;
+    color: var(--ink);
   }
   .resource-card.mp .row > span {
-    color: #635b83;
+    color: var(--mana);
   }
   .resource-value {
     flex-wrap: wrap;
@@ -317,7 +317,7 @@
     gap: 4px;
     margin: 0 0 18px;
     padding: 4px;
-    background: #eae3d7;
+    background: var(--surface-raised);
     border-radius: 12px;
   }
   .sheet-shortcuts button {
@@ -326,7 +326,7 @@
     font-weight: 600;
     border-radius: 8px;
     background: var(--surface);
-    color: #6c4d3c;
+    color: var(--ink);
   }
   .sheet-layout [id] {
     scroll-margin-top: 12px;
@@ -376,7 +376,7 @@
     font-size: 16px;
   }
   .skill-row:nth-child(even) {
-    background: #faf7f1;
+    background: var(--surface);
   }
   .table-legend {
     font-size: 11px;
@@ -566,7 +566,7 @@
     align-self: start;
     border-radius: 7px;
     padding: 4px;
-    background: #f3eee5;
+    background: var(--surface-raised);
     font-size: 13px;
   }
   .inventory-row > select {
@@ -579,7 +579,7 @@
     width: 44px;
     height: 46px;
     border: 1px solid var(--line);
-    background: #f7f3ec;
+    background: var(--surface-raised);
   }
   .inventory-help {
     font-size: 13px;
@@ -681,7 +681,7 @@
   }
   .wizard-nav > button.active {
     border-radius: 8px;
-    background: #f2e2db;
+    background: var(--danger-soft);
     color: var(--red);
   }
   .wizard-step-counter {
@@ -818,7 +818,7 @@
     height: auto;
     margin: 0 auto;
     border-radius: 20px 20px 0 0;
-    box-shadow: 0 -16px 60px #17131140;
+    box-shadow: 0 -16px 60px #0006;
   }
   .mobile-tools-dialog .modal-shell {
     height: auto;
