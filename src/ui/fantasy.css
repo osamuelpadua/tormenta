@@ -75,9 +75,8 @@ main {
   z-index: 1;
 }
 .brand > img {
-  width: 38px;
-  height: 43px;
-  filter: sepia(0.9) saturate(0.55) brightness(1.3);
+  width: 46px;
+  height: 46px;
 }
 .brand > span {
   font-family: var(--serif);
@@ -91,8 +90,8 @@ main {
 .brand small {
   font-family: var(--sans);
   color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 0.21em;
+  font-size: 11px;
+  letter-spacing: 0.3em;
 }
 .edition-label {
   color: var(--faint);
@@ -1524,7 +1523,7 @@ input[type="radio"] {
   color: var(--gold-bright);
 }
 .welcome-art img {
-  filter: sepia(0.75) saturate(0.6);
+  filter: none;
 }
 .welcome-kicker {
   color: var(--gold);

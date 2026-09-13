@@ -1,1 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#9c3434"/><path d="m64 16 40 25-8 49-32 22-32-22-8-49z" fill="none" stroke="#fff2db" stroke-width="5"/><path d="m64 16-22 59h44L64 16Zm-40 25 18 34-10 15m72-49L86 75l10 15M42 75l22 37 22-37" fill="none" stroke="#fff2db" stroke-width="3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="stone" x1="60" y1="20" x2="440" y2="512" gradientUnits="userSpaceOnUse"><stop stop-color="#303629"/><stop offset=".52" stop-color="#171d15"/><stop offset="1" stop-color="#0d110e"/></linearGradient>
+    <linearGradient id="gold" x1="145" y1="95" x2="365" y2="399" gradientUnits="userSpaceOnUse"><stop stop-color="#f0db9d"/><stop offset=".45" stop-color="#c6a76b"/><stop offset="1" stop-color="#89703d"/></linearGradient>
+    <linearGradient id="face" x1="200" y1="174" x2="300" y2="308" gradientUnits="userSpaceOnUse"><stop stop-color="#655537"/><stop offset="1" stop-color="#2b2d1e"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#stone)"/>
+  <rect x="18" y="18" width="476" height="476" rx="92" stroke="#c6a76b" stroke-opacity=".3" stroke-width="3"/>
+  <path d="M256 86 400 170 389 335 256 422 123 335 112 170Z" fill="#0c100d" opacity=".65" transform="translate(0 8)"/>
+  <path d="M256 86 400 170 389 335 256 422 123 335 112 170Z" fill="#232a1d"/>
+  <path d="m256 86-76 217-68-133Z" fill="#827046" fill-opacity=".28"/>
+  <path d="m256 86 76 217 68-133Z" fill="#aa8f51" fill-opacity=".12"/>
+  <path d="m112 170 68 133-57 32Z" fill="#151b13"/>
+  <path d="m400 170-68 133 57 32Z" fill="#4f432a"/>
+  <path d="m180 303 76 119-133-87Z" fill="#3c3825"/>
+  <path d="m332 303-76 119 133-87Z" fill="#151c14"/>
+  <path d="m256 165 76 138H180Z" fill="url(#face)"/>
+  <g stroke="url(#gold)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M256 86 400 170 389 335 256 422 123 335 112 170Z" stroke-width="9"/>
+    <path d="m256 86 0 79m-144 5 144-5 144 5M256 165l-76 138h152L256 165ZM112 170l68 133-57 32m277-165-68 133 57 32M180 303l76 119 76-119" stroke-width="5"/>
+  </g>
+  <g stroke="#f0db9d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M224 248c1-13 25-15 26-1 1 9-20 17-25 28h26"/>
+    <path d="M274 237c-17 0-17 39 0 39s17-39 0-39Z"/>
+  </g>
+  <path d="m256 50 5 10-5 10-5-10Zm0 392 5 10-5 10-5-10Z" fill="#c6a76b"/>
+</svg>

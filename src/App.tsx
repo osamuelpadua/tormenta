@@ -468,8 +468,8 @@ export default function App() {
         <a href="#sheet" className="brand" onClick={() => setTab("sheet")}>
           <img src="/icon.svg" alt="" />
           <span>
-            TORMENTA<span className="brand-number">20</span>
-            <small>DIÁRIO DE PERSONAGENS</small>
+            TORMENTA
+            <small>WIKI</small>
           </span>
         </a>
         <div className="edition-label">
@@ -642,7 +642,7 @@ export default function App() {
           {characters === undefined ? (
             <div className="loading-state">
               <img src="/icon.svg" alt="" />
-              <p>Abrindo seu diário…</p>
+              <p>Abrindo Tormenta Wiki…</p>
             </div>
           ) : !c ? (
             <Welcome

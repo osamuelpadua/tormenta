@@ -1,4 +1,4 @@
-# Tormenta — Diário de personagens
+# Tormenta Wiki
 
 Aplicativo em português para fichas de Tormenta20 — Jogo do Ano. React, TypeScript, Vite, Dexie/IndexedDB e PWA. Funciona localmente, sem cadastro, servidor de dados ou serviços externos.
 

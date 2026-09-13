@@ -6,12 +6,18 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "prompt",
-      includeAssets: ["icon.svg", "icon-192.png", "icon-512.png"],
+      includeAssets: [
+        "icon.svg",
+        "icon-32.png",
+        "icon-180.png",
+        "icon-192.png",
+        "icon-512.png",
+      ],
       manifest: {
-        name: "Tormenta — Seus personagens",
-        short_name: "Tormenta",
+        name: "Tormenta Wiki",
+        short_name: "Tormenta Wiki",
         description:
-          "Sua ficha, sua história. Gerenciador offline de personagens de Tormenta20.",
+          "Biblioteca de Tormenta20, livro de referência e personagens — inclusive offline.",
         lang: "pt-BR",
         theme_color: "#111311",
         background_color: "#111311",

@@ -1,6 +1,12 @@
-# Identidade visual — Diário de um aventureiro
+# Identidade visual — Tormenta Wiki
 
 A reformulação aplica fantasia medieval sombria à interface existente. A direção escolhida combina ferro escuro, carvão, bronze gasto e vinho, com uma cidadela discreta no cabeçalho. Molduras finas, luz nas bordas, divisores e símbolos dão profundidade sem colocar textura atrás de textos longos.
+
+## Marca do aplicativo
+
+O nome do aplicativo é **Tormenta Wiki**. O ícone original em [`public/icon.svg`](../public/icon.svg) representa um d20 com faces em bronze, arestas douradas e o número 20 sobre fundo verde-carvão. A mesma arte aparece na navegação, no navegador e na instalação do aplicativo.
+
+Execute `node scripts/generate-icons.mjs` após editar o SVG para atualizar os PNGs de 32 px (favicon), 180 px (Apple) e 192/512 px (manifesto de instalação). O dado permanece dentro da área central segura para recortes de ícones pelo sistema operacional.
 
 ## Linguagem compartilhada
 
