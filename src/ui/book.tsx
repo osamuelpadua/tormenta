@@ -1,12 +1,11 @@
 import {
+  useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
   lazy,
   Suspense,
-  type CSSProperties,
 } from "react";
 import {
   ChevronLeft,
@@ -14,84 +13,30 @@ import {
   Minus,
   Plus,
   ExternalLink,
+  Search,
+  X,
+  SlidersHorizontal,
+  Check,
+  ArrowRight,
 } from "lucide-react";
-import { Modal, SearchBox } from "./shared";
-import type { BookBlock, BookPage } from "./book-types";
+import { Modal } from "./shared";
 import { bookUrl, pdfPageNumber } from "./book-source";
+import {
+  bookMatches,
+  bookPageLabel,
+  FIRST_BOOK_PAGE,
+  LAST_BOOK_PAGE,
+  normalizeBookQuery,
+  parseBookPage,
+} from "./book-search";
 
 const BookPdf = lazy(() => import("./book-pdf"));
-
-const normalize = (text: string) =>
-  text.normalize("NFD").replace(/\p{M}/gu, "").toLocaleLowerCase("pt-BR");
-
-function BookContent({ block }: { block: BookBlock }) {
-  if (block.type === "heading") {
-    if (block.level === 1) return <h2 className="book-title">{block.text}</h2>;
-    if (block.level === 2) return <h3>{block.text}</h3>;
-    return <h4>{block.text}</h4>;
-  }
-  if (block.type === "table")
-    return (
-      <figure className="book-table">
-        <figcaption>{block.caption}</figcaption>
-        <p className="book-table-hint">
-          Deslize a tabela para consultar todas as colunas.
-        </p>
-        <div
-          className="book-table-scroll"
-          tabIndex={0}
-          role="region"
-          aria-label={block.caption}
-        >
-          <table aria-label={block.caption}>
-            <thead>
-              <tr>
-                {block.headers.map((header) => (
-                  <th key={header} scope="col">
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row) => (
-                <tr key={row[0]}>
-                  {row.map((cell, index) =>
-                    index === 0 ? (
-                      <th key={index} scope="row">
-                        {cell}
-                      </th>
-                    ) : (
-                      <td key={index}>{cell}</td>
-                    ),
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="book-table-notes">
-          {block.notes.map((note) => (
-            <p key={note}>{note}</p>
-          ))}
-        </div>
-      </figure>
-    );
-  if (block.type === "lines")
-    return <p className="book-extract">{block.text}</p>;
-  return (
-    <p>
-      {block.lead ? (
-        <>
-          <strong>{block.lead}</strong>
-          {block.text.slice(block.lead.length)}
-        </>
-      ) : (
-        block.text
-      )}
-    </p>
-  );
-}
+type SearchPage = {
+  page: number;
+  printed: number;
+  text: string;
+  normalized: string;
+};
 
 export function BookModal({
   page = 17,
@@ -100,264 +45,405 @@ export function BookModal({
   page?: number;
   onClose: () => void;
 }) {
-  const [pages, setPages] = useState<BookPage[]>([]);
-  const [error, setError] = useState(false);
-  const [current, setCurrent] = useState(page);
-  const [pageInput, setPageInput] = useState(String(page));
-  const [query, setQuery] = useState("");
-  const [view, setView] = useState("pdf");
+  const initialPage = parseBookPage(String(page)) ?? 17;
+  const [current, setCurrent] = useState(initialPage);
+  const [pageInput, setPageInput] = useState(String(initialPage));
+  const [pageError, setPageError] = useState("");
   const [zoom, setZoom] = useState(1);
-  const [fontSize, setFontSize] = useState(18);
-  const content = useRef<HTMLElement>(null);
+  const [controls, setControls] = useState(true);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [highlight, setHighlight] = useState("");
+  const [matchRequest, setMatchRequest] = useState(0);
+  const [pages, setPages] = useState<SearchPage[]>([]);
+  const [searchState, setSearchState] = useState<
+    "idle" | "loading" | "ready" | "error"
+  >("idle");
+  const [searchRetry, setSearchRetry] = useState(0);
+  const [shown, setShown] = useState(24);
+  const searchInput = useRef<HTMLInputElement>(null);
+  const searchButton = useRef<HTMLButtonElement>(null);
+  const viewport = useRef<HTMLDivElement>(null);
+  const term = normalizeBookQuery(query);
+
   useEffect(() => {
+    if (!searchOpen || pages.length) return;
     let cancelled = false;
-    void Promise.all([
-      import("../data/book-pages.json"),
-      import("../data/book-layout.json"),
-    ])
-      .then(([raw, layout]) => {
-        if (!cancelled)
-          setPages(
-            raw.default.map((p, index) => ({
-              ...p,
-              blocks: layout.default[index].blocks as BookBlock[],
-            })),
-          );
+    setSearchState("loading");
+    void import("../data/book-pages.json")
+      .then((data) => {
+        if (cancelled) return;
+        setPages(
+          data.default.map((p) => ({
+            ...p,
+            normalized: normalizeBookQuery(p.text),
+          })),
+        );
+        setSearchState("ready");
       })
       .catch(() => {
-        if (!cancelled) setError(true);
+        if (!cancelled) setSearchState("error");
       });
     return () => {
       cancelled = true;
     };
-  }, []);
-  useLayoutEffect(() => {
-    content.current
-      ?.closest(".modal-body")
-      ?.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [current, view]);
-  const searchPages = useMemo(
+  }, [searchOpen, searchRetry, pages.length]);
+  useEffect(() => {
+    if (searchOpen) searchInput.current?.focus();
+  }, [searchOpen]);
+  const results = useMemo(
     () =>
-      pages.map((p) => {
-        const text = p.text.replace(/\s+/g, " ");
-        return { ...p, text, normalized: normalize(text) };
-      }),
-    [pages],
+      term.length < 3 ? [] : pages.filter((p) => p.normalized.includes(term)),
+    [pages, term],
   );
-  const term = normalize(query.trim());
-  const results =
-    term.length >= 3
-      ? searchPages.filter((p) => p.normalized.includes(term))
-      : [];
-  const selected = pages.find((p) => p.printed === current);
-  const goTo = (number: number) => {
-    setCurrent(number);
-    setPageInput(String(number));
+  const goTo = useCallback((number: number, fromSearch = false) => {
+    const next = Math.max(FIRST_BOOK_PAGE, Math.min(LAST_BOOK_PAGE, number));
+    setCurrent(next);
+    setPageInput(String(next));
+    setPageError("");
+    if (!fromSearch) setHighlight("");
+  }, []);
+  const changeZoom = useCallback(
+    (value: number) => setZoom(Math.max(0.5, Math.min(4, value))),
+    [],
+  );
+  const closeSearch = () => {
+    setSearchOpen(false);
+    searchButton.current?.focus();
   };
+  const commitPage = () => {
+    const next = parseBookPage(pageInput);
+    if (next === undefined) {
+      setPageError(
+        `Informe uma página de ${FIRST_BOOK_PAGE} a ${LAST_BOOK_PAGE}.`,
+      );
+      return;
+    }
+    goTo(next);
+  };
+  useEffect(() => {
+    const keyboard = (event: KeyboardEvent) => {
+      // Search inputs consume Escape to clear their value before dialog cancel.
+      if (event.key === "Escape" && (searchOpen || toolsOpen)) {
+        event.preventDefault();
+        setSearchOpen(false);
+        setToolsOpen(false);
+        searchButton.current?.focus();
+        return;
+      }
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        setSearchOpen(true);
+        return;
+      }
+      if (
+        (event.target as HTMLElement).closest(
+          "input, textarea, select, [contenteditable=true]",
+        ) ||
+        searchOpen
+      )
+        return;
+      if (event.key === "PageDown" || event.key === "PageUp") {
+        event.preventDefault();
+        goTo(current + (event.key === "PageDown" ? 1 : -1));
+      } else if (event.key === "+" || event.key === "=") {
+        event.preventDefault();
+        changeZoom(zoom + 0.25);
+      } else if (event.key === "-") {
+        event.preventDefault();
+        changeZoom(zoom - 0.25);
+      }
+    };
+    window.addEventListener("keydown", keyboard);
+    return () => window.removeEventListener("keydown", keyboard);
+  }, [current, zoom, goTo, changeZoom, searchOpen, toolsOpen]);
 
   return (
     <Modal
       title="Livro de referência"
-      subtitle="Tormenta20 · Jogo do Ano · 17/11/2023"
       wide
-      className={`book-reader ${view === "pdf" ? "book-reader-pdf" : ""}`}
       onClose={onClose}
-      toolbar={
-        <div className="book-toolbar">
-          <div className="book-search">
-            <SearchBox
-              value={query}
-              onChange={setQuery}
-              placeholder="Buscar no livro (ao menos 3 caracteres)…"
-            />
-            {term.length >= 3 && (
-              <div className="book-results">
-                <small role="status">
-                  {pages.length === 0
-                    ? "Carregando o livro…"
-                    : results.length === 0
-                      ? "Nenhuma página encontrada."
-                      : `${results.length} páginas encontradas${results.length > 30 ? " · exibindo as primeiras 30" : ""}`}
-                </small>
-                {results.slice(0, 30).map((p) => {
-                  const at = p.normalized.indexOf(term);
-                  const start = Math.max(0, at - 55);
-                  return (
-                    <button
-                      key={p.page}
-                      onClick={() => {
-                        goTo(p.printed);
-                        setQuery("");
-                      }}
-                    >
-                      <b>p. {p.printed}</b>
-                      <span>
-                        {start > 0 && "…"}
-                        {p.text.slice(start, at)}
-                        <mark>{p.text.slice(at, at + term.length)}</mark>
-                        {p.text.slice(at + term.length, at + term.length + 100)}
-                        …
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-          <div className="book-tools">
-            <select
-              className="book-view-select"
-              aria-label="Visualização do livro"
-              value={view}
-              onChange={(e) => setView(e.target.value)}
-            >
-              <option value="pdf">PDF original</option>
-              <option value="reading">Texto organizado</option>
-              <option value="raw">Texto extraído</option>
-            </select>
-            {view === "pdf" ? (
-              <>
-                <div
-                  className="book-pdf-zoom"
-                  role="group"
-                  aria-label="Zoom do PDF"
-                >
-                  <button
-                    aria-label="Diminuir zoom"
-                    disabled={zoom <= 0.75}
-                    onClick={() => setZoom((value) => value - 0.25)}
-                  >
-                    <Minus size={16} />
-                  </button>
-                  <button
-                    aria-label="Ajustar à largura"
-                    title="Ajustar à largura"
-                    onClick={() => setZoom(1)}
-                  >
-                    {Math.round(zoom * 100)}%
-                  </button>
-                  <button
-                    aria-label="Aumentar zoom"
-                    disabled={zoom >= 3}
-                    onClick={() => setZoom((value) => value + 0.25)}
-                  >
-                    <Plus size={16} />
-                  </button>
-                </div>
-                <a
-                  className="book-open-pdf"
-                  href={`${bookUrl}#page=${pdfPageNumber(current)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Abrir PDF em outra aba"
-                  title="Abrir PDF em outra aba"
-                >
-                  <ExternalLink size={16} />
-                </a>
-              </>
-            ) : (
-              <div
-                className="book-font-controls"
-                role="group"
-                aria-label="Tamanho do texto"
-              >
-                <button
-                  aria-label="Diminuir texto"
-                  disabled={fontSize <= 16}
-                  onClick={() => setFontSize((size) => size - 1)}
-                >
-                  <Minus size={13} />
-                  <span>A</span>
-                </button>
-                <button
-                  aria-label="Aumentar texto"
-                  disabled={fontSize >= 22}
-                  onClick={() => setFontSize((size) => size + 1)}
-                >
-                  <span>A</span>
-                  <Plus size={13} />
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      }
-      footer={
-        <>
-          <button
-            className="button"
-            disabled={current <= -5}
-            onClick={() => goTo(current - 1)}
-          >
-            <ChevronLeft size={16} />
-            Anterior
-          </button>
-          <div className="page-control">
-            <span>Página impressa</span>
-            <input
-              type="number"
-              aria-label="Página do livro"
-              value={pageInput}
-              min={-5}
-              max={401}
-              onChange={(e) => {
-                setPageInput(e.target.value);
-                const number = Number(e.target.value);
-                if (
-                  e.target.value &&
-                  Number.isInteger(number) &&
-                  number >= -5 &&
-                  number <= 401
-                )
-                  setCurrent(number);
-              }}
-              onBlur={() => setPageInput(String(current))}
-            />
-          </div>
-          <button
-            className="button"
-            disabled={current >= 401}
-            onClick={() => goTo(current + 1)}
-          >
-            Próxima
-            <ChevronRight size={16} />
-          </button>
-        </>
+      className={`book-reader book-reader-pdf ${controls ? "" : "reader-controls-hidden"}`}
+      onEscape={() =>
+        searchOpen ? closeSearch() : toolsOpen ? setToolsOpen(false) : onClose()
       }
     >
-      <article
-        ref={content}
-        className="book-page"
-        style={{ "--book-font-size": `${fontSize}px` } as CSSProperties}
-        aria-label={`Página ${current} do livro`}
-      >
-        <div className="book-page-meta">
-          <span className="eyebrow">Página {current}</span>
-          <span>PDF {current + 6}</span>
-        </div>
-        {view === "pdf" ? (
-          <Suspense fallback={<p role="status">Carregando leitor PDF…</p>}>
-            <BookPdf page={current} zoom={zoom} />
+      <div className="reader-stage" ref={viewport}>
+        <article
+          className="book-page"
+          aria-label={`${bookPageLabel(current)} do livro`}
+        >
+          <Suspense
+            fallback={
+              <div className="book-pdf-message" role="status">
+                Carregando leitor PDF…
+              </div>
+            }
+          >
+            <BookPdf
+              page={current}
+              zoom={zoom}
+              highlight={highlight}
+              matchRequest={matchRequest}
+              onZoomChange={changeZoom}
+              onPageChange={goTo}
+            />
           </Suspense>
-        ) : error ? (
-          <p role="alert">
-            Não foi possível carregar o livro. Feche e abra o leitor para tentar
-            novamente.
-          </p>
-        ) : !selected ? (
-          <p role="status">Carregando referência…</p>
-        ) : view === "raw" ? (
-          <p className="book-original">
-            {selected.text || "Esta página não contém texto extraível."}
-          </p>
-        ) : selected.blocks.length ? (
-          selected.blocks.map((block, index) => (
-            <BookContent key={index} block={block} />
-          ))
-        ) : (
-          <p>Esta página não contém texto extraível.</p>
+        </article>
+        <button
+          className="reader-search-toggle reader-float"
+          aria-label="Pesquisar no livro"
+          title="Pesquisar no livro (Ctrl+F)"
+          aria-expanded={searchOpen}
+          aria-controls="reader-search-panel"
+          ref={searchButton}
+          onClick={() => (searchOpen ? closeSearch() : setSearchOpen(true))}
+        >
+          <Search size={19} />
+          <span>Pesquisar</span>
+        </button>
+        <button
+          className="reader-controls-toggle reader-float"
+          aria-label={controls ? "Recolher controles" : "Mostrar controles"}
+          title={controls ? "Recolher controles" : "Mostrar controles"}
+          aria-expanded={controls}
+          aria-controls="reader-controls"
+          onClick={() => {
+            setControls((value) => !value);
+            setToolsOpen(false);
+          }}
+        >
+          <SlidersHorizontal size={18} />
+        </button>
+        <div className="reader-dock" id="reader-controls" hidden={!controls}>
+          {toolsOpen && (
+            <div
+              className="reader-tools"
+              role="group"
+              aria-label="Ferramentas de leitura"
+            >
+              <div
+                className="book-pdf-zoom"
+                role="group"
+                aria-label="Zoom do PDF"
+              >
+                <button
+                  aria-label="Diminuir zoom"
+                  disabled={zoom <= 0.5}
+                  onClick={() => changeZoom(zoom - 0.25)}
+                >
+                  <Minus size={17} />
+                </button>
+                <button
+                  aria-label="Ajustar à largura"
+                  title="Ajustar à largura"
+                  onClick={() => changeZoom(1)}
+                >
+                  {Math.round(zoom * 100)}%
+                </button>
+                <button
+                  aria-label="Aumentar zoom"
+                  disabled={zoom >= 4}
+                  onClick={() => changeZoom(zoom + 0.25)}
+                >
+                  <Plus size={17} />
+                </button>
+              </div>
+              <a
+                href={`${bookUrl}#page=${pdfPageNumber(current)}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Abrir PDF em outra aba"
+                title="Abrir PDF em outra aba"
+              >
+                <ExternalLink size={18} />
+              </a>
+              <p>
+                Dois dedos para ampliar. Arraste para ler.
+                <br />
+                PgUp/PgDn para mudar de página.
+              </p>
+            </div>
+          )}
+          <nav className="reader-pagination" aria-label="Navegação do livro">
+            <button
+              aria-label="Anterior"
+              title="Página anterior"
+              disabled={current <= FIRST_BOOK_PAGE}
+              onClick={() => goTo(current - 1)}
+            >
+              <ChevronLeft size={21} />
+            </button>
+            <form
+              className="reader-page-control"
+              onSubmit={(event) => {
+                event.preventDefault();
+                commitPage();
+              }}
+            >
+              <label className="sr-only" htmlFor="reader-page-input">
+                Página do livro
+              </label>
+              <input
+                id="reader-page-input"
+                inputMode="numeric"
+                type="text"
+                value={pageInput}
+                aria-invalid={!!pageError}
+                aria-describedby={
+                  pageError ? "reader-page-error" : "reader-page-help"
+                }
+                onChange={(event) => {
+                  setPageInput(event.target.value);
+                  setPageError("");
+                }}
+                onBlur={() => {
+                  if (pageInput !== String(current)) commitPage();
+                }}
+              />
+              <span aria-hidden="true">/ {LAST_BOOK_PAGE}</span>
+              <span className="sr-only" id="reader-page-help">
+                Página impressa. Enter para abrir. Capa e páginas iniciais: -5 a
+                0.
+              </span>
+              <button
+                type="submit"
+                aria-label="Ir para a página"
+                title="Ir para a página"
+              >
+                <Check size={15} />
+              </button>
+            </form>
+            <button
+              aria-label="Próxima"
+              title="Próxima página"
+              disabled={current >= LAST_BOOK_PAGE}
+              onClick={() => goTo(current + 1)}
+            >
+              <ChevronRight size={21} />
+            </button>
+            <button
+              aria-label="Zoom e opções"
+              title="Zoom e opções"
+              aria-expanded={toolsOpen}
+              onClick={() => setToolsOpen((value) => !value)}
+            >
+              <Plus size={17} />
+              <span className="reader-zoom-label">
+                {Math.round(zoom * 100)}%
+              </span>
+            </button>
+          </nav>
+          {pageError && (
+            <p
+              className="reader-page-error"
+              id="reader-page-error"
+              role="alert"
+            >
+              {pageError}
+            </p>
+          )}
+        </div>
+        <span className="sr-only" role="status">
+          {bookPageLabel(current)} · PDF {pdfPageNumber(current)} de{" "}
+          {LAST_BOOK_PAGE + 6}
+        </span>
+        {searchOpen && (
+          <section
+            className="reader-search-panel"
+            id="reader-search-panel"
+            aria-label="Pesquisa no livro"
+          >
+            <div className="reader-search-heading">
+              <h3>Pesquisar no livro</h3>
+              <button aria-label="Fechar pesquisa" onClick={closeSearch}>
+                <X size={19} />
+              </button>
+            </div>
+            <div className="reader-search-input">
+              <Search size={18} />
+              <input
+                ref={searchInput}
+                value={query}
+                aria-label="Buscar no livro"
+                placeholder="Nome, regra ou trecho…"
+                type="search"
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  setShown(24);
+                }}
+              />
+            </div>
+            <p className="reader-search-status" role="status">
+              {searchState === "error"
+                ? "Não foi possível carregar a pesquisa."
+                : searchState !== "ready"
+                  ? "Preparando pesquisa…"
+                  : term.length < 3
+                    ? "Digite ao menos 3 caracteres. Acentos são opcionais."
+                    : results.length
+                      ? `${results.length} páginas encontradas`
+                      : "Nenhuma página encontrada."}
+            </p>
+            {searchState === "error" && (
+              <button
+                className="button"
+                onClick={() => setSearchRetry((value) => value + 1)}
+              >
+                Tentar novamente
+              </button>
+            )}
+            <div className="book-results">
+              {results.slice(0, shown).map((p) => {
+                const match = bookMatches(p.text, query)[0];
+                if (!match) return null;
+                return (
+                  <button
+                    className="reader-result"
+                    key={p.page}
+                    onClick={() => {
+                      goTo(p.printed, true);
+                      setHighlight(query);
+                      setMatchRequest((value) => value + 1);
+                      setSearchOpen(false);
+                      viewport.current
+                        ?.querySelector<HTMLElement>(".book-pdf-scroll")
+                        ?.focus();
+                    }}
+                  >
+                    <b>
+                      {bookPageLabel(p.printed)} <ArrowRight size={15} />
+                    </b>
+                    <span>
+                      {match.start > 55 ? "…" : ""}
+                      {p.text.slice(Math.max(0, match.start - 55), match.start)}
+                      <mark>{p.text.slice(match.start, match.end)}</mark>
+                      {p.text.slice(match.end, match.end + 115)}…
+                    </span>
+                  </button>
+                );
+              })}
+              {results.length > shown && (
+                <button
+                  className="reader-more"
+                  onClick={() => setShown((value) => value + 24)}
+                >
+                  Ver mais resultados ({results.length - shown})
+                </button>
+              )}
+            </div>
+            {highlight && (
+              <button
+                className="text-button reader-clear"
+                onClick={() => setHighlight("")}
+              >
+                Limpar destaques da página
+              </button>
+            )}
+          </section>
         )}
-      </article>
+      </div>
     </Modal>
   );
 }

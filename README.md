@@ -44,7 +44,7 @@ No celular e em tablets de até 900 px, use as cinco áreas na barra inferior. O
 
 ## Fontes e organização
 
-As fontes são os dois PDFs fornecidos neste projeto. Páginas citadas na interface correspondem à numeração impressa do livro; a página do PDF é seis unidades maior. O leitor abre o **PDF original** com a diagramação, tabelas e ilustrações do livro, navegação por página impressa, texto selecionável, busca e zoom. O botão de porcentagem ajusta a página à largura; no celular, use o zoom e deslize para ler as colunas. Também é possível abrir o arquivo em outra aba ou selecionar os modos de texto.
+As fontes são os dois PDFs fornecidos neste projeto. Páginas citadas na interface correspondem à numeração impressa do livro; a página do PDF é seis unidades maior. O leitor abre o **PDF original** com a diagramação, tabelas e ilustrações do livro, navegação por página impressa, texto selecionável, busca e zoom. O botão de porcentagem ajusta a página à largura; no celular, use o zoom e deslize para ler as colunas. A busca abre em um painel recolhível, preserva o termo e destaca os trechos no PDF. Os controles flutuam sobre o leitor e podem ser ocultados. No celular, use dois dedos para ampliar e arraste a página; na largura padrão, um gesto horizontal troca a página. Também é possível abrir o arquivo em outra aba.
 
 O PDF tem aproximadamente 66 MB. Ele e os recursos locais do PDF.js são incluídos no cache após o primeiro carregamento completo, junto do aplicativo; aguarde o aviso de disponibilidade offline. O build precisa do PDF na raiz do projeto. `predev` e `prebuild` copiam as fontes e os decodificadores do PDF.js para `public/pdfjs`, sem servidores externos.
 
@@ -52,6 +52,7 @@ O PDF tem aproximadamente 66 MB. Ele e os recursos locais do PDF.js são incluí
 - [Arquitetura e contratos](docs/ARQUITETURA.md)
 - [Responsividade e experiência no celular](docs/RESPONSIVIDADE.md)
 - [Identidade visual de fantasia medieval](docs/IDENTIDADE_VISUAL.md)
+- [Auditoria do leitor e identidade dos ícones](docs/AUDITORIA_LEITOR.md)
 - [Cobertura por fase e limitações](docs/LIMITACOES.md)
 - [Proveniência e estado da revisão](docs/REVISAO_FONTES.md)
 - [Hashes dos PDFs](docs/sources.json) e [índice de extração](docs/catalog-audit.json)
@@ -68,7 +69,7 @@ node scripts/equipment-sources.mjs
 
 Os scripts de extração produzem candidatos a registros. Alterações no extrator exigem revisão dos registros, referências e compatibilidade dos identificadores antes de substituir uma versão distribuída.
 
-`npm.cmd run sources:format` regenera apenas a apresentação do leitor em `src/data/book-layout.json`, usando os itens posicionados de `.cache/pdf/book.json`. Esse passo já faz parte de `npm.cmd run sources`; os valores da tabela são extraídos do PDF, independentemente do catálogo do motor.
+`npm.cmd run sources:format` regenera o artefato de auditoria da extração em `src/data/book-layout.json`, usando os itens posicionados de `.cache/pdf/book.json`. Esse passo já faz parte de `npm.cmd run sources`; os valores da tabela são extraídos do PDF, independentemente do catálogo do motor.
 
 ## Verificar
 
@@ -83,6 +84,6 @@ Vitest verifica o motor, regras de combate e magia, integridade das referências
 
 O backup da ficha manuscrita de Budrik está em `src/data/budrik.json` e é embarcado no app para preparar o personagem de exemplo sem depender de uma requisição de rede. `predev` e `prebuild` também o copiam para `public/imports/budrik.json`, pronto para a tela Backups. Ele inclui as leituras provisórias em Anotações, os totais originais dos ataques e os recursos atuais escolhidos: 69/98 PV e 12/18 PM. O script `node scripts/import-budrik.mjs` regenera os dois arquivos a partir da transcrição registrada no projeto.
 
-Validação da reformulação visual: build de produção, 110 testes Vitest e 25 cenários Playwright aprovados. Inclui as cinco áreas em sete larguras, formulários com altura reduzida, criação, sessão, evolução, backups e PDF offline. A regressão da piscada no leitor verifica sumiços, substituições e mudanças de tamanho com barras de rolagem visíveis como no Windows. Os limites da emulação estão em `docs/RESPONSIVIDADE.md`; a revisão integral das regras permanece pendente conforme `docs/LIMITACOES.md`.
+Validação da reformulação visual: build de produção, 114 testes Vitest e 26 cenários Playwright aprovados. Inclui as cinco áreas em sete larguras, formulários com altura reduzida, criação, sessão, evolução, backups e PDF offline. A regressão da piscada no leitor verifica sumiços, substituições e mudanças de tamanho com barras de rolagem visíveis como no Windows. Os limites da emulação estão em `docs/RESPONSIVIDADE.md`; a revisão integral das regras permanece pendente conforme `docs/LIMITACOES.md`.
 
 O app está publicado em https://tormenta-osamuelpaduas-projects.vercel.app, com deploy automático da branch `main`. As fichas continuam locais ao navegador, sem sincronização em nuvem.

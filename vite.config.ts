@@ -41,7 +41,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: [
-          "**/*.{js,mjs,css,html,svg,png,json,woff2,pdf,wasm,bcmap,pfb,ttf,icc}",
+          "**/*.{js,mjs,css,html,svg,png,json,txt,woff2,pdf,wasm,bcmap,pfb,ttf,icc}",
         ],
         // The original local book is 65.7 MB; cache the full file so every page
         // and its illustrations remain available after the first complete load.

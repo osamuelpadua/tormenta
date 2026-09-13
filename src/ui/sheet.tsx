@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EntityIcon } from "./entity-icon";
 import {
   BookOpen,
   Check,
@@ -11,12 +12,6 @@ import {
   Star,
   Swords,
   Sparkles,
-  Dumbbell,
-  Footprints,
-  HeartPulse,
-  Brain,
-  Eye,
-  Crown,
 } from "lucide-react";
 import {
   ATTRIBUTES,
@@ -51,15 +46,6 @@ import {
   Toggle,
   useApp,
 } from "./shared";
-
-const attributeSymbols = {
-  for: Dumbbell,
-  des: Footprints,
-  con: HeartPulse,
-  int: Brain,
-  sab: Eye,
-  car: Crown,
-};
 
 export function Sheet({
   onResource,
@@ -100,7 +86,6 @@ export function Sheet({
       <Resources onResource={onResource} />
       <div className="attribute-grid">
         {ATTRIBUTES.map((a) => {
-          const Icon = attributeSymbols[a.id];
           return (
             <Calculation
               key={a.id}
@@ -108,7 +93,7 @@ export function Sheet({
               value={d.attributes[a.id]}
               signed
               compact
-              icon={<Icon size={20} strokeWidth={1.5} />}
+              icon={<EntityIcon name={a.name} size={24} />}
             />
           );
         })}
@@ -687,13 +672,7 @@ export function Library({
                 </div>
                 <button className="power-title" onClick={() => openEntry(e)}>
                   <span className="power-emblem" aria-hidden="true">
-                    {spells ? (
-                      <Sparkles size={23} strokeWidth={1.4} />
-                    ) : usage.active ? (
-                      <Swords size={23} strokeWidth={1.4} />
-                    ) : (
-                      <Feather size={23} strokeWidth={1.4} />
-                    )}
+                    <EntityIcon name={e.name} size={31} />
                   </span>
                   {e.name}
                 </button>

@@ -338,7 +338,7 @@ test("320px: ferramentas abrem o livro com navegação e zoom utilizáveis", asy
   await expect(page.locator(".book-pdf canvas")).toBeVisible();
   await dialogFits(page);
   const controls = await page
-    .locator(".book-toolbar button, .book-toolbar select, .book-toolbar a")
+    .locator(".reader-pagination button:visible, .reader-float:visible")
     .evaluateAll((els) =>
       els.map((el) => {
         const r = el.getBoundingClientRect();
@@ -350,12 +350,14 @@ test("320px: ferramentas abrem o livro com navegação e zoom utilizáveis", asy
         };
       }),
     );
+  expect(controls.length).toBeGreaterThan(0);
   for (const control of controls) {
     expect(control.left, String(control.name)).toBeGreaterThanOrEqual(0);
     expect(control.right, String(control.name)).toBeLessThanOrEqual(320);
     expect(control.height, String(control.name)).toBeGreaterThanOrEqual(44);
   }
   await page.getByLabel("Página do livro").fill("32");
+  await page.getByLabel("Página do livro").press("Enter");
   await expect(page.locator(".book-pdf-text")).toContainText("Classes");
   await page.getByRole("button", { name: "Próxima", exact: true }).tap();
   await expect(page.getByLabel("Página do livro")).toHaveValue("33");

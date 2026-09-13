@@ -1,0 +1,5095 @@
+{
+  "source": "https://github.com/game-icons/icons",
+  "revision": "82d948812bfe3f269ef8f731dcdb07b08160edc4",
+  "changes": "Combined as SVG symbols; transparent cutouts and inherited color via luminance masks. Original drawing geometry preserved.",
+  "icons": [
+    {
+      "icon": "abdominal-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/abdominal-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "acid",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/acid.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "acid-blob",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/acid-blob.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "acid-shield",
+      "author": "seregacthtuf",
+      "source": "https://game-icons.net/1x1/seregacthtuf/acid-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "acid-tube",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/acid-tube.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "acrobatic",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/acrobatic.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "air-balloon",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/air-balloon.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "alien-bug",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/alien-bug.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "all-seeing-eye",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/all-seeing-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "amber-mosquito",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/amber-mosquito.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "anatomy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/anatomy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "anchor",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/anchor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ancient-sword",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ancient-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "angel-outfit",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/angel-outfit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "angel-wings",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/angel-wings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "angry-eyes",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/angry-eyes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "animal-hide",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/animal-hide.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "animal-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/animal-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ankh",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ankh.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "anvil",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/anvil.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "anvil-impact",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/anvil-impact.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "archery-target",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/archery-target.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "archive-research",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/archive-research.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "arm-bandage",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/arm-bandage.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armor-blueprint",
+      "author": "seregacthtuf",
+      "source": "https://game-icons.net/1x1/seregacthtuf/armor-blueprint.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armor-downgrade",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/armor-downgrade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armor-punch",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/armor-punch.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armor-upgrade",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/armor-upgrade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armor-vest",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/armor-vest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "armored-boomerang",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/armored-boomerang.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "arrow-cluster",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/arrow-cluster.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "arrow-scope",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/arrow-scope.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "arrowhead",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/arrowhead.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "attached-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/attached-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "auto-repair",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/auto-repair.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "awareness",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/awareness.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "axe-in-stump",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/axe-in-stump.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "axe-swing",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/axe-swing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "axe-sword",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/axe-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "back-pain",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/back-pain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "backbone-shell",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/backbone-shell.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "backpack",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/backpack.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "backstab",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/backstab.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "backup",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/backup.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bandage-roll",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bandage-roll.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "barbed-spear",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/barbed-spear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "barbed-sun",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/barbed-sun.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "barn",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/barn.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bat-wing",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bat-wing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "battle-axe",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/battle-axe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bear-face",
+      "author": "sparker",
+      "source": "https://game-icons.net/1x1/sparker/bear-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "beast-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/beast-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bed",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bed.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bed-lamp",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bed-lamp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "beer-stein",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/beer-stein.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "belt-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/belt-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "belt-buckles",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/belt-buckles.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "berries-bowl",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/berries-bowl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bestial-fangs",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bestial-fangs.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "biceps",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/biceps.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "big-diamond-ring",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/big-diamond-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bindle",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bindle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "black-hole-bolas",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/black-hole-bolas.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "black-knight-helm",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/black-knight-helm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bleeding-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bleeding-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bleeding-wound",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bleeding-wound.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bloody-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bloody-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "blunderbuss",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/blunderbuss.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bo",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bo.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "boar",
+      "author": "caro-asercion",
+      "source": "https://game-icons.net/1x1/caro-asercion/boar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "body-balance",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/body-balance.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bolt",
+      "author": "badges",
+      "source": "https://game-icons.net/1x1/badges/bolt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bolt-bomb",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bolt-bomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bolt-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bolt-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bolt-spell-cast",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bolt-spell-cast.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bone-gnawer",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bone-gnawer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bone-mace",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bone-mace.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "book-aura",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/book-aura.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "book-cover",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/book-cover.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "book-pile",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/book-pile.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "book-storm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/book-storm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bookshelf",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bookshelf.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "boot-kick",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/boot-kick.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bordered-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bordered-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bow-arrow",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bow-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bow-string",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bow-string.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bowman",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bowman.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "boxing-glove",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/boxing-glove.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "boxing-ring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/boxing-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bracer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/bracer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bracers",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/bracers.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/brain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain-dump",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/brain-dump.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain-freeze",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/brain-freeze.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain-leak",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/brain-leak.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain-stem",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/brain-stem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brain-tentacle",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/brain-tentacle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "brainstorm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/brainstorm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "branch-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/branch-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "breaking-chain",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/breaking-chain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "breastplate",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/breastplate.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broadsword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/broadsword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broken-bone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/broken-bone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broken-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/broken-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broken-heart-zone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/broken-heart-zone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broken-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/broken-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "broken-wall",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/broken-wall.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bubble-field",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bubble-field.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bubbling-bowl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bubbling-bowl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bubbling-flask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bubbling-flask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bull-horns",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/bull-horns.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "bullseye",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/bullseye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "burning-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/burning-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "butterfly",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/butterfly.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cage",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cage.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "caltrops",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/caltrops.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "camp-cooking-pot",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/camp-cooking-pot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "campfire",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/campfire.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "camping-tent",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/camping-tent.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cancel",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/cancel.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "candle-light",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/candle-light.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "candlebright",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/candlebright.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "canoe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/canoe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cape-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cape-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "card-ace-hearts",
+      "author": "aussiesim",
+      "source": "https://game-icons.net/1x1/aussiesim/card-ace-hearts.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "card-joker",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/card-joker.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "card-pick",
+      "author": "faithtoken",
+      "source": "https://game-icons.net/1x1/faithtoken/card-pick.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "card-play",
+      "author": "quoting",
+      "source": "https://game-icons.net/1x1/quoting/card-play.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cartwheel",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cartwheel.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "castle",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/castle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "castle-ruins",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/castle-ruins.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cat",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cauldron",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cauldron.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cave-entrance",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cave-entrance.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "centurion-helmet",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/centurion-helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chain-mail",
+      "author": "willdabeast",
+      "source": "https://game-icons.net/1x1/willdabeast/chain-mail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "charging-bull",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/charging-bull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "charm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/charm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chef-toque",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/chef-toque.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chemical-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/chemical-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chemical-bolt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/chemical-bolt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chemical-drop",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/chemical-drop.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cherish",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cherish.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chess-king",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/chess-king.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chess-knight",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/chess-knight.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chess-queen",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/chess-queen.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chest",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/chest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "chest-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/chest-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "claw-slashes",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/claw-slashes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cleaver",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cleaver.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cloak",
+      "author": "lucasms",
+      "source": "https://game-icons.net/1x1/lucasms/cloak.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cloak-dagger",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cloak-dagger.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cloaked-figure-on-horseback",
+      "author": "caro-asercion",
+      "source": "https://game-icons.net/1x1/caro-asercion/cloaked-figure-on-horseback.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "clothes",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/clothes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "clover",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/clover.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "clover-spiked",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/clover-spiked.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "coffee-cup",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/coffee-cup.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cog",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cog.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "coins",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/coins.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "colombian-statue",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/colombian-statue.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "coma",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/coma.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "compass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/compass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "convergence-target",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/convergence-target.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "conversation",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/conversation.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cooking-pot",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cooking-pot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cracked-disc",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cracked-disc.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crenulated-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crenulated-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crested-helmet",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crested-helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cross-flare",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cross-flare.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cross-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/cross-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crossbow",
+      "author": "carl-olsen",
+      "source": "https://game-icons.net/1x1/carl-olsen/crossbow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crossed-axes",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crossed-axes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crossed-bones",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crossed-bones.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crossed-chains",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crossed-chains.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crossed-swords",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crossed-swords.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crosshair",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/crosshair.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crosshair-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crosshair-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crowbar",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/crowbar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crown",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crown.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crown-coin",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crown-coin.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crowned-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crowned-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-ball",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-ball.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-bars",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-bars.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-earrings",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/crystal-earrings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-growth",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-growth.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-shine",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-shine.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "crystal-wand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/crystal-wand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "cursed-star",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/cursed-star.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "curvy-knife",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/curvy-knife.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "daemon-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/daemon-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "deadly-strike",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/deadly-strike.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "death-juice",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/death-juice.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "death-note",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/death-note.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "death-zone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/death-zone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "deer-track",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/deer-track.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "defensive-wall",
+      "author": "heavenly-dog",
+      "source": "https://game-icons.net/1x1/heavenly-dog/defensive-wall.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dervish-swords",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dervish-swords.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "desert",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/desert.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "despair",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/despair.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "diamond-ring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/diamond-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dice-six-faces-one",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dice-six-faces-one.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dice-six-faces-six",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dice-six-faces-six.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dig-hole",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dig-hole.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "direction-sign",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/direction-sign.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "disintegrate",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/disintegrate.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dodge",
+      "author": "felbrigg",
+      "source": "https://game-icons.net/1x1/felbrigg/dodge.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dodging",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dodging.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "domino-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/domino-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "double-face-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/double-face-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "double-ringed-orb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/double-ringed-orb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dragon-head",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dragon-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dragon-orb",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dragon-orb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dragon-spiral",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dragon-spiral.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dragonfly",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dragonfly.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "drama-masks",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/drama-masks.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dread",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/dread.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dread-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dread-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dream-catcher",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dream-catcher.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dripping-knife",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dripping-knife.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "drop",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/drop.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "drop-weapon",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/drop-weapon.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "drum",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/drum.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "duality",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/duality.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "duality-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/duality-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dust-cloud",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/dust-cloud.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dwarf-face",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/dwarf-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "dwarf-helmet",
+      "author": "kier-heyl",
+      "source": "https://game-icons.net/1x1/kier-heyl/dwarf-helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "earth-crack",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/earth-crack.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "earth-spit",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/earth-spit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "earwig",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/earwig.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "eclipse",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/eclipse.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "elf-ear",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/elf-ear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "elf-helmet",
+      "author": "kier-heyl",
+      "source": "https://game-icons.net/1x1/kier-heyl/elf-helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "empty-hourglass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/empty-hourglass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "energy-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/energy-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "energy-breath",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/energy-breath.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "energy-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/energy-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "energy-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/energy-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "energy-tank",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/energy-tank.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "enrage",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/enrage.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "entangled-typhoon",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/entangled-typhoon.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "entry-door",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/entry-door.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "erlenmeyer",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/erlenmeyer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "evil-eyes",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/evil-eyes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "evil-hand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/evil-hand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "evil-minion",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/evil-minion.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "exit-door",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/exit-door.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "explosive-materials",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/explosive-materials.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "eye",
+      "author": "badges",
+      "source": "https://game-icons.net/1x1/badges/eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "eye-of-horus",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/eye-of-horus.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "eye-target",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/eye-target.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fairy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fairy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fairy-wand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fairy-wand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "falling",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/falling.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "falling-leaf",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/falling-leaf.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "falling-rocks",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/falling-rocks.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "family-tree",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/family-tree.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "farmer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/farmer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fast-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fast-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "feather",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/feather.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "feathered-wing",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/feathered-wing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fencer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fencer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fern",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fern.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/fire.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-axe",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-axe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-bomb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-bomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-bottle",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-bottle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-flower",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fire-flower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-gem",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fire-gem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-punch",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-punch.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-ray",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-ray.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-ring",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-silhouette",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-silhouette.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-spell-cast",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fire-spell-cast.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-tail",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-tail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fire-zone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fire-zone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fireball",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fireball.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "firewall",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/firewall.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "first-aid-kit",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/first-aid-kit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fish-cooked",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/fish-cooked.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fishing-net",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fishing-net.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fist",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fist.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flail",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/flail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flanged-mace",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/flanged-mace.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flat-hammer",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/flat-hammer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fleshy-mass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fleshy-mass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flexible-star",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/flexible-star.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "floating-ghost",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/floating-ghost.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flower-emblem",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/flower-emblem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flower-pot",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/flower-pot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fluffy-wing",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fluffy-wing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flute",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/flute.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fly",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fly.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flying-dagger",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/flying-dagger.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "flying-flag",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/flying-flag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fog",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fog.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "foot-trip",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/foot-trip.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "footprint",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/footprint.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "footsteps",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/footsteps.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "forest",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/forest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "forest-camp",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/forest-camp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "forward-field",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/forward-field.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fox-head",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fox-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "frog",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/frog.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "frostfire",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/frostfire.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "frozen-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/frozen-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fruit-bowl",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/fruit-bowl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fruit-tree",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fruit-tree.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fulguro-punch",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/fulguro-punch.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "fur-shirt",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/fur-shirt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gear-hammer",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/gear-hammer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gears",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/gears.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gem-chain",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/gem-chain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ghost",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ghost.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ghost-ally",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ghost-ally.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "giant",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/giant.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gladius",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/gladius.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "globe",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/globe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "globe-ring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/globe-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gloves",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/gloves.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "glowing-hands",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/glowing-hands.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gold-bar",
+      "author": "willdabeast",
+      "source": "https://game-icons.net/1x1/willdabeast/gold-bar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gold-stack",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/gold-stack.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "goo-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/goo-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "goo-spurt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/goo-spurt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gooey-daemon",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/gooey-daemon.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "gooey-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/gooey-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grab",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/grab.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "graduate-cap",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/graduate-cap.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grapple",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/grapple.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grasping-claws",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/grasping-claws.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grass",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/grass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grass-mushroom",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/grass-mushroom.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "graveyard",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/graveyard.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "griffin-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/griffin-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "griffin-symbol",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/griffin-symbol.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "grouped-drops",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/grouped-drops.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "growth",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/growth.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "guarded-tower",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/guarded-tower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "guitar",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/guitar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "halberd",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/halberd.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "half-dead",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/half-dead.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hammer-break",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hammer-break.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hammer-drop",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hammer-drop.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hammer-nails",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hammer-nails.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hand-bandage",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hand-bandage.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hand-grip",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hand-grip.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hand-of-god",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hand-of-god.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "handcuffed",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/handcuffed.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "handcuffs",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/handcuffs.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "handheld-fan",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/handheld-fan.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "harpoon-chain",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/harpoon-chain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hatchet",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hatchet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hawk-emblem",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hawk-emblem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "head-shot",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/head-shot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "healing",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/healing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "healing-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/healing-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "health-decrease",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/health-decrease.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hearing-disabled",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/hearing-disabled.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-battery",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-battery.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-beats",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-beats.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-bottle",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heart-bottle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-drop",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heart-drop.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-earrings",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-earrings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-inside",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heart-inside.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-key",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-key.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-minus",
+      "author": "zeromancer",
+      "source": "https://game-icons.net/1x1/zeromancer/heart-minus.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-necklace",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-necklace.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-organ",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heart-organ.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-plus",
+      "author": "zeromancer",
+      "source": "https://game-icons.net/1x1/zeromancer/heart-plus.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-stake",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-stake.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-tower",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heart-tower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heart-wings",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/heart-wings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heartburn",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heartburn.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heavy-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heavy-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heavy-lightning",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/heavy-lightning.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "helmet",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "help",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/help.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "heraldic-sun",
+      "author": "caro-asercion",
+      "source": "https://game-icons.net/1x1/caro-asercion/heraldic-sun.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "herbs-bundle",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/herbs-bundle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hidden",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hidden.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "high-kick",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/high-kick.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hiking",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hiking.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "holy-grail",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/holy-grail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "holy-hand-grenade",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/holy-hand-grenade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "holy-oak",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/holy-oak.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "holy-symbol",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/holy-symbol.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "holy-water",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/holy-water.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hood",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hood.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hooded-assassin",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/hooded-assassin.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hooded-figure",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/hooded-figure.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "horse-head",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/horse-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "horseshoe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/horseshoe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hot-meal",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hot-meal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hound",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hound.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hourglass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/hourglass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "house",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/house.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "human-ear",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/human-ear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "hunter-eyes",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/hunter-eyes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ice-cube",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ice-cube.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ice-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ice-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ice-spell-cast",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ice-spell-cast.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "iceberg",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/iceberg.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ifrit",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ifrit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "imp",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/imp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "imperial-crown",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/imperial-crown.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "imprisoned",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/imprisoned.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "infinity",
+      "author": "various-artists",
+      "source": "https://game-icons.net/1x1/various-artists/infinity.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "info",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/info.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ink-swirl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ink-swirl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "interlaced-tentacles",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/interlaced-tentacles.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "invisible",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/invisible.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "invisible-face",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/invisible-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "iron-cross",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/iron-cross.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "jester-hat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/jester-hat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "jeweled-chalice",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/jeweled-chalice.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "journey",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/journey.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "jumping-rope",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/jumping-rope.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "katana",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/katana.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "keyring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/keyring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "kimono",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/kimono.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "king",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/king.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "knapsack",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/knapsack.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "knight-banner",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/knight-banner.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "knockout",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/knockout.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lab-coat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/lab-coat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lantern",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lantern.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lantern-flame",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lantern-flame.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lasso",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/lasso.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "laurel-crown",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/laurel-crown.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "laurels-trophy",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/laurels-trophy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "layered-armor",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/layered-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "leaf-skeleton",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/leaf-skeleton.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "leaf-swirl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/leaf-swirl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "leather-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/leather-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "leather-boot",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/leather-boot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "leather-vest",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/leather-vest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "liar",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/liar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "life-buoy",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/life-buoy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "life-in-the-balance",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/life-in-the-balance.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-bow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-bow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-frequency",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-frequency.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-shadow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-shadow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-shout",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-shout.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-slashes",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-slashes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-spanner",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-spanner.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-storm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-storm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lightning-trio",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lightning-trio.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "linked-rings",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/linked-rings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lion",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lion.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lipstick",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/lipstick.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lizardman",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lizardman.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lob-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lob-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lock-picking",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/lock-picking.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "locked-chest",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/locked-chest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lockpicks",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/lockpicks.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "long-antennae-bug",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/long-antennae-bug.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "love-letter",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/love-letter.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "love-song",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/love-song.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "lyre",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/lyre.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mad-scientist",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mad-scientist.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-axe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magic-axe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-broom",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magic-broom.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-gate",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-gate.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-hat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magic-hat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-lamp",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-lamp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-palm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-palm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-portal",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-portal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-potion",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magic-potion.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-swirl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magic-swirl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magic-trident",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magic-trident.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magick-trick",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/magick-trick.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "magnifying-glass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/magnifying-glass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mail-shirt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mail-shirt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mailed-fist",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mailed-fist.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mantrap",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mantrap.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "maze",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/maze.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "meal",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/meal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mechanical-arm",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mechanical-arm.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "medallist",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/medallist.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "medical-pack",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/medical-pack.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "medicine-pills",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/medicine-pills.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "meditation",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/meditation.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "megaphone",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/megaphone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "metal-bar",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/metal-bar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "metal-hand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/metal-hand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "metal-plate",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/metal-plate.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "metal-scales",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/metal-scales.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "meteor-impact",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/meteor-impact.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "military-fort",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/military-fort.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mining",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mining.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mirror-mirror",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mirror-mirror.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "monkey",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/monkey.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "monster-grasp",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/monster-grasp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "moon",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/moon.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mountain-climbing",
+      "author": "caro-asercion",
+      "source": "https://game-icons.net/1x1/caro-asercion/mountain-climbing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mounted-knight",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/mounted-knight.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "mouth-watering",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/mouth-watering.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "multiple-targets",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/multiple-targets.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "muscle-fat",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/muscle-fat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "muscle-up",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/muscle-up.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "muscular-torso",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/muscular-torso.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "music-spell",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/music-spell.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "musical-notes",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/musical-notes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "musical-score",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/musical-score.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "musket",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/musket.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "nailed-head",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/nailed-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "necklace",
+      "author": "lucasms",
+      "source": "https://game-icons.net/1x1/lucasms/necklace.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "nested-hearts",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/nested-hearts.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "night-sky",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/night-sky.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "night-sleep",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/night-sleep.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "night-vision",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/night-vision.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "noodles",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/noodles.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "nose-front",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/nose-front.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "nose-side",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/nose-side.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "oak",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/oak.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "oak-leaf",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/oak-leaf.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "octopus",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/octopus.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "oil-can",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/oil-can.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "old-king",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/old-king.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "one-eyed",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/one-eyed.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "open-book",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/open-book.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "opposite-hearts",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/opposite-hearts.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "oppression",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/oppression.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "orc-head",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/orc-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ore",
+      "author": "faithtoken",
+      "source": "https://game-icons.net/1x1/faithtoken/ore.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ostrich",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ostrich.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "owl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/owl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "padlock",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/padlock.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "paint-brush",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/paint-brush.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pan-flute",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pan-flute.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "paranoia",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/paranoia.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "paw-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/paw-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "peace-dove",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/peace-dove.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "perpendicular-rings",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/perpendicular-rings.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "person-in-bed",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/person-in-bed.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "piercing-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/piercing-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pikeman",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pikeman.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pirate-captain",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pirate-captain.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pirate-coat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pirate-coat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pirate-flag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pirate-flag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pirate-hat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pirate-hat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pirate-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/pirate-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pistol-gun",
+      "author": "john-colburn",
+      "source": "https://game-icons.net/1x1/john-colburn/pistol-gun.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pitchfork",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pitchfork.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "plain-arrow",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/plain-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "plain-dagger",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/plain-dagger.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "plant-roots",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/plant-roots.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "plant-seed",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/plant-seed.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "plasma-bolt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/plasma-bolt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pocket-bow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/pocket-bow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pointy-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/pointy-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "poison",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/poison.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "poison-bottle",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/poison-bottle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "poison-cloud",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/poison-cloud.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "poison-gas",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/poison-gas.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "poker-hand",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/poker-hand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "pope-crown",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/pope-crown.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "portal",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/portal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "potato",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/potato.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "potion-ball",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/potion-ball.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "powder",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/powder.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "powder-bag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/powder-bag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "power-ring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/power-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "prayer",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/prayer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "prism",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/prism.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "psychic-waves",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/psychic-waves.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "punch",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/punch.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "punch-blast",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/punch-blast.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "punching-bag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/punching-bag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "puppet",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/puppet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "quick-slash",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/quick-slash.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "quill-ink",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/quill-ink.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "quiver",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/quiver.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "raise-zombie",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/raise-zombie.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rally-the-troops",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rally-the-troops.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rank-1",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/rank-1.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rank-2",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/rank-2.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rank-3",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/rank-3.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "read",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/read.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "receive-money",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/receive-money.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "resonance",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/resonance.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ribcage",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ribcage.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rifle",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/rifle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ring",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ring-mould",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ring-mould.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ringed-beam",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ringed-beam.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ringing-bell",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/ringing-bell.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "ringmaster",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/ringmaster.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "robber-hand",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/robber-hand.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "robe",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/robe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "robot-antennas",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/robot-antennas.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "robot-golem",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/robot-golem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rock",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rock.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rock-golem",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rock-golem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rolled-cloth",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rolled-cloth.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rolling-bomb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rolling-bomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rolling-dices",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rolling-dices.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rolling-energy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rolling-energy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "roman-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/roman-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rope-coil",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rope-coil.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "round-potion",
+      "author": "caro-asercion",
+      "source": "https://game-icons.net/1x1/caro-asercion/round-potion.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "round-shield",
+      "author": "willdabeast",
+      "source": "https://game-icons.net/1x1/willdabeast/round-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "royal-love",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/royal-love.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rule-book",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/rule-book.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "run",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/run.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rune-stone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rune-stone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "rune-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/rune-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "running-ninja",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/running-ninja.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "running-shoe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/running-shoe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "saber-slash",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/saber-slash.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sabers-choc",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sabers-choc.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "saddle",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/saddle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sailboat",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sailboat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "salt-shaker",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/salt-shaker.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "scale-mail",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/scale-mail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "scales",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/scales.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "screaming",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/screaming.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "scroll-quill",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/scroll-quill.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "scroll-unfurled",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/scroll-unfurled.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "scythe",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/scythe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "self-love",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/self-love.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shadow-follower",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shadow-follower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shadow-grasp",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shadow-grasp.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shaking-hands",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shaking-hands.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sharp-axe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sharp-axe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sharp-lips",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sharp-lips.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sharp-smile",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sharp-smile.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shattered-glass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shattered-glass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shattered-heart",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shattered-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shattered-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shattered-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-bash",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shield-bash.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-bounces",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shield-bounces.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-disabled",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/shield-disabled.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-echoes",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shield-echoes.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-impact",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shield-impact.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-opposition",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shield-opposition.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shield-reflect",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shield-reflect.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shieldcomb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shieldcomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shining-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shining-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shining-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shining-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shirt",
+      "author": "lucasms",
+      "source": "https://game-icons.net/1x1/lucasms/shirt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shoulder-armor",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shoulder-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shoulder-bag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/shoulder-bag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "shouting",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/shouting.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sickle",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sickle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "siege-ram",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/siege-ram.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sight-disabled",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/sight-disabled.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "silenced",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/silenced.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "silver-bullet",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/silver-bullet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skeleton",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/skeleton.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skills",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/skills.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skull",
+      "author": "badges",
+      "source": "https://game-icons.net/1x1/badges/skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skull-bolt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/skull-bolt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skull-crossed-bones",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/skull-crossed-bones.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "skull-staff",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/skull-staff.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sleeping-bag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sleeping-bag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sleepy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sleepy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "slicing-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/slicing-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sling",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sling.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "smoke-bomb",
+      "author": "darkzaitzev",
+      "source": "https://game-icons.net/1x1/darkzaitzev/smoke-bomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "smoking-orb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/smoking-orb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snail",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/snail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snake",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/snake.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snake-bite",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/snake-bite.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snake-spiral",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/snake-spiral.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snake-tongue",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/snake-tongue.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "snowflake-1",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/snowflake-1.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sonic-lightning",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sonic-lightning.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "soul-vessel",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/soul-vessel.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spark-spirit",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spark-spirit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sparkles",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sparkles.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spartan-helmet",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/spartan-helmet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spears",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spears.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spell-book",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/spell-book.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spider-web",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spider-web.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiked-armor",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spiked-armor.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiked-bat",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/spiked-bat.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiked-dragon-head",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/spiked-dragon-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiked-mace",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spiked-mace.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiked-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/spiked-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spine-arrow",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spine-arrow.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spiral-thrust",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spiral-thrust.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spotted-bug",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/spotted-bug.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sprint",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sprint.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "spyglass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/spyglass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stairs",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/stairs.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "standing-potion",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/standing-potion.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "star-gate",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/star-gate.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "star-medal",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/star-medal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "star-swirl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/star-swirl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "steeltoe-boots",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/steeltoe-boots.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stomach",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/stomach.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-block",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-block.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-bust",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/stone-bust.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-crafting",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-crafting.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-spear",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-spear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-tablet",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-tablet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-throne",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-throne.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "stone-tower",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/stone-tower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "street-light",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/street-light.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "striking-arrows",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/striking-arrows.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "strong",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/strong.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sun-cloud",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sun-cloud.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sun-priest",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sun-priest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sun-radiations",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sun-radiations.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sun-spear",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sun-spear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sunbeams",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sunbeams.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sundial",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sundial.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sunflower",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sunflower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sunrise",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sunrise.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "surprised",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/surprised.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "surprised-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/surprised-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "surrounded-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/surrounded-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "surrounded-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/surrounded-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swimfins",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/swimfins.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swirl-ring",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/swirl-ring.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swiss-army-knife",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/swiss-army-knife.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-altar",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sword-altar.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-array",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-array.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-brandish",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/sword-brandish.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-break",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-break.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-clash",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-clash.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-hilt",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-hilt.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-in-stone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-in-stone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-slice",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-slice.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-smithing",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-smithing.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-spade",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-spade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-spin",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-spin.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-tie",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-tie.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "sword-wound",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/sword-wound.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swordman",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/swordman.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swords-emblem",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/swords-emblem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "swords-power",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/swords-power.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "talk",
+      "author": "skoll",
+      "source": "https://game-icons.net/1x1/skoll/talk.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "target-arrows",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/target-arrows.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "target-dummy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/target-dummy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "targeting",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/targeting.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "team-idea",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/team-idea.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "team-upgrade",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/team-upgrade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tear-tracks",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tear-tracks.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "telepathy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/telepathy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "teleport",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/teleport.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "templar-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/templar-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "templar-heart",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/templar-heart.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "templar-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/templar-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "temple-door",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/temple-door.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tentacle-strike",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tentacle-strike.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tentacles-skull",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tentacles-skull.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "terror",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/terror.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "theater-curtains",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/theater-curtains.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thermometer-cold",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/thermometer-cold.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "think",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/think.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "third-eye",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/third-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thor-fist",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thor-fist.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thor-hammer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/thor-hammer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thorny-vine",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thorny-vine.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "three-leaves",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/three-leaves.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thrown-charcoal",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thrown-charcoal.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thrown-daggers",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thrown-daggers.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thrown-knife",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thrown-knife.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thrown-spear",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thrown-spear.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "thunder-struck",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/thunder-struck.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tiara",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tiara.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tied-scroll",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tied-scroll.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tightrope",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tightrope.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "time-trap",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/time-trap.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tired-eye",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tired-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tombstone",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tombstone.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tongue",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tongue.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "toolbox",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/toolbox.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tooth",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tooth.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "torc",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/torc.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "torch",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/torch.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "totem",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/totem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tower-flag",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tower-flag.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trade",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/trade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trail",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/trail.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "transform",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/transform.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "transfuse",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/transfuse.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trap-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/trap-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "treasure-map",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/treasure-map.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tree-face",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/tree-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tree-roots",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/tree-roots.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "tribal-mask",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/tribal-mask.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trident",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/trident.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trident-shield",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/trident-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trophy",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/trophy.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "trumpet",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/trumpet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "turban",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/turban.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "turtle",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/turtle.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "two-handed-sword",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/two-handed-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "unicorn",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/unicorn.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "unlit-bomb",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/unlit-bomb.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "unlit-candelabra",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/unlit-candelabra.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "up-card",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/up-card.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "upgrade",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/upgrade.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "vampire-dracula",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/vampire-dracula.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "viking-church",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/viking-church.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "virus",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/virus.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "vomiting",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/vomiting.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "voodoo-doll",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/voodoo-doll.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "walking-scout",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/walking-scout.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "war-axe",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/war-axe.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "warhammer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/warhammer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "warlock-eye",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/warlock-eye.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wasp-sting",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wasp-sting.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "watchtower",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/watchtower.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "water-drop",
+      "author": "sbed",
+      "source": "https://game-icons.net/1x1/sbed/water-drop.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "water-splash",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/water-splash.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wave-crest",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wave-crest.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wave-surfer",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/wave-surfer.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "web-spit",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/web-spit.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "weight-lifting-down",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/weight-lifting-down.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "weight-lifting-up",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/weight-lifting-up.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "werewolf",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/werewolf.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "whip",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/whip.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "whirlwind",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/whirlwind.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "white-book",
+      "author": "willdabeast",
+      "source": "https://game-icons.net/1x1/willdabeast/white-book.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wind-slap",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wind-slap.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wine-glass",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wine-glass.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wing-cloak",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wing-cloak.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "winged-emblem",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/winged-emblem.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "winged-shield",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/winged-shield.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "winged-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/winged-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wingfoot",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wingfoot.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "witch-face",
+      "author": "cathelineau",
+      "source": "https://game-icons.net/1x1/cathelineau/witch-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wizard-face",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/wizard-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wizard-staff",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wizard-staff.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wolf-head",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wolf-head.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wolf-howl",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wolf-howl.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "woman-elf-face",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/woman-elf-face.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wood-club",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/wood-club.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wood-pile",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/wood-pile.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wooden-pegleg",
+      "author": "delapouite",
+      "source": "https://game-icons.net/1x1/delapouite/wooden-pegleg.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wooden-sign",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wooden-sign.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "wrapped-sweet",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/wrapped-sweet.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "icon": "zeus-sword",
+      "author": "lorc",
+      "source": "https://game-icons.net/1x1/lorc/zeus-sword.html",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    }
+  ]
+}

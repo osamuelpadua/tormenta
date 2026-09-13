@@ -14,7 +14,7 @@ A interface usa a identidade de fantasia medieval em carvão, ferro, vinho e dou
 
 As janelas usam a altura disponível, com cabeçalho e ações separados do conteúdo rolável. A altura acompanha `visualViewport` quando disponível; margens reservam as áreas seguras do dispositivo. O menu Ferramentas abre na parte inferior.
 
-Em telas estreitas, os formulários usam uma coluna. A criação mantém a etapa atual visível na faixa horizontal e retorna ao topo ao avançar. Abas, tabelas do texto organizado e PDF ampliado têm rolagem própria quando necessária. A página principal não precisa de rolagem lateral.
+Em telas estreitas, os formulários usam uma coluna. A criação mantém a etapa atual visível na faixa horizontal e retorna ao topo ao avançar. Abas e PDF ampliado têm rolagem própria quando necessária. A página principal não precisa de rolagem lateral.
 
 O PDF original preserva o tamanho do leitor durante a renderização e reserva espaço para a barra de rolagem, evitando o ciclo de redimensionamentos que causava piscadas. O leitor continua com página impressa, busca e zoom.
 

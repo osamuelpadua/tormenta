@@ -14,7 +14,7 @@ A reformulação aplica fantasia medieval sombria à interface existente. A dire
 | Recuperação           | Verde `#a2c694` nos comandos de cura e recuperação                                                                      |
 | Interação             | Foco dourado, iluminação discreta ao passar o ponteiro, movimento curto nas barras; respeito a `prefers-reduced-motion` |
 
-As duas famílias tipográficas são distribuídas pelo Fontsource e incluídas no cache offline. As licenças OFL acompanham os pacotes instalados. Os símbolos continuam usando Lucide, com espessura consistente.
+As duas famílias tipográficas são distribuídas pelo Fontsource e incluídas no cache offline. As licenças OFL acompanham os pacotes instalados. Os controles usam Lucide; equipamentos, poderes, magias e condições usam silhuetas específicas de Game-icons.net, com cor herdada do contexto. Consulte [a auditoria e os créditos dos ícones](AUDITORIA_LEITOR.md).
 
 ## Aplicação nas telas
 

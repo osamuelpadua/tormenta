@@ -74,6 +74,10 @@ import {
 import "./styles.css";
 import "./ui/mobile.css";
 import "./ui/fantasy.css";
+import "./ui/entity-icon.css";
+import "./ui/controls.css";
+import "./ui/book.css";
+import { EntityIcon } from "./ui/entity-icon";
 
 type Tab = "sheet" | "combat" | "powers" | "spells" | "inventory";
 type ModalState =
@@ -363,6 +367,21 @@ export default function App() {
               <BookOpen size={16} />
               Consultar o livro
             </button>
+            <p className="art-credits">
+              Ícones de fantasia de{" "}
+              <a
+                href="https://game-icons.net/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Game-icons.net
+              </a>
+              , sob CC BY 3.0.{" "}
+              <a href="/art/credits.html" target="_blank" rel="noreferrer">
+                Autores e créditos
+              </a>
+              .
+            </p>
           </div>
         </Modal>
       );
@@ -431,6 +450,7 @@ export default function App() {
         return (
           <Modal
             title={e.name}
+            titleIcon={<EntityIcon name={e.name} size={34} />}
             subtitle={e.group || e.kind}
             onClose={close}
             footer={

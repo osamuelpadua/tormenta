@@ -10,8 +10,8 @@ test("o PDF permanece estável com barras de rolagem que ocupam largura", async 
   // which concealed the resize/render feedback loop in the original tests.
   await page.addStyleTag({
     content: `
-    .book-reader .modal-body { scrollbar-width: auto; }
-    .book-reader .modal-body::-webkit-scrollbar { width: 17px; }
+    .book-reader .book-pdf-scroll { scrollbar-width: auto; }
+    .book-reader .book-pdf-scroll::-webkit-scrollbar { width: 17px; }
   `,
   });
   await page
@@ -24,7 +24,7 @@ test("o PDF permanece estável com barras de rolagem que ocupam largura", async 
     .evaluate(async (dialog) => {
       const frame = dialog.querySelector(".book-pdf")!;
       const host = dialog.querySelector(".book-pdf-host")!;
-      const scroller = dialog.querySelector(".modal-body")!;
+      const scroller = dialog.querySelector(".book-pdf-scroll")!;
       const initialCanvas = host.querySelector("canvas");
       let replacements = 0;
       let hiddenFrames = 0;

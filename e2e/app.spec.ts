@@ -266,12 +266,14 @@ test("celular, teclado, pesquisa de perícia e catálogo offline", async ({
     .click();
   await expect(page.locator(".book-page")).toContainText("Atributos");
   await page.getByLabel("Página do livro").fill("233");
+  await page.getByLabel("Página do livro").press("Enter");
   await expect(page.locator(".book-page")).toContainText("rodada");
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
   await context.setOffline(true);
   await page.getByLabel("Página do livro").fill("394");
+  await page.getByLabel("Página do livro").press("Enter");
   await expect(page.locator(".book-page")).toContainText("Abalado");
 });
 

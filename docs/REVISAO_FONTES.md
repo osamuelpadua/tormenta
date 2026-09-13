@@ -38,4 +38,4 @@ Há testes automatizados das regras indicadas, mas os testes não representam co
 
 Os números de página permitem voltar ao PDF original. O leitor reorganiza títulos e parágrafos usando fontes e posições da extração. A tabela 1-3, na página impressa 32 (PDF 38), foi reconstruída e conferida visualmente: 14 classes, seis colunas e duas notas. Os valores permanecem os da tabela, inclusive “mais 4” nas perícias do Caçador, sem substituição pelo texto específico da classe usado no motor.
 
-O leitor agora usa o PDF original como visualização padrão, preservando tabelas, caixas e ilustrações. “Texto organizado” e “Texto extraído” continuam disponíveis como alternativas, com as limitações de disposição e hifenização da extração. A exibição do PDF não altera o estado de revisão nem a cobertura de automação do catálogo.
+O leitor usa exclusivamente o PDF original, preservando tabelas, caixas e ilustrações. O texto extraído é utilizado apenas para pesquisa e auditoria das fontes. A exibição do PDF não altera o estado de revisão nem a cobertura de automação do catálogo.

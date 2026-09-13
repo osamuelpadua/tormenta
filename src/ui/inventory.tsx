@@ -1,16 +1,6 @@
 import { useState } from "react";
-import {
-  Backpack,
-  Coins,
-  Hammer,
-  Package,
-  Pencil,
-  Plus,
-  Swords,
-  Trash2,
-  Shield,
-  Shirt,
-} from "lucide-react";
+import { EntityIcon } from "./entity-icon";
+import { Backpack, Coins, Hammer, Pencil, Plus, Trash2 } from "lucide-react";
 import { CATALOG, DAMAGE_TYPES, ENTRY_MAP, newItem, slug } from "../data/rules";
 import { calculate, itemBenefits } from "../domain/calculate";
 import { ITEM_TEMPLATES, itemFromTemplate, uid } from "../domain/character";
@@ -126,15 +116,7 @@ export function Inventory({
             >
               <button className="item-name" onClick={() => onItem(i)}>
                 <span className="item-icon">
-                  {i.damage ? (
-                    <Swords size={24} strokeWidth={1.4} />
-                  ) : i.category === "Escudo" ? (
-                    <Shield size={24} strokeWidth={1.4} />
-                  ) : i.defense ? (
-                    <Shirt size={24} strokeWidth={1.4} />
-                  ) : (
-                    <Package size={24} strokeWidth={1.4} />
-                  )}
+                  <EntityIcon name={i.name} size={33} />
                 </span>
                 <span>
                   <strong>{i.name}</strong>
@@ -352,7 +334,7 @@ export function ItemModal({
             ).map((i) => (
               <button key={i.id} onClick={() => buy(itemFromTemplate(i.id))}>
                 <span className="item-icon">
-                  {i.damage ? <Swords size={20} /> : <Package size={20} />}
+                  <EntityIcon name={i.name} size={30} />
                 </span>
                 <span>
                   <strong>{i.name}</strong>
@@ -385,6 +367,7 @@ export function ItemModal({
                       })
                     }
                   >
+                    <EntityIcon name={e.name} />
                     <span>
                       <strong>{e.name}</strong>
                       <small>

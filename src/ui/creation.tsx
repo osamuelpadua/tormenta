@@ -1,4 +1,5 @@
 import { useMemo, useState, useLayoutEffect, useRef } from "react";
+import { EntityIcon } from "./entity-icon";
 import {
   ArrowLeft,
   ArrowRight,
@@ -122,6 +123,7 @@ export function EntryPicker({
                     onChange={() => toggle(e)}
                   />
                   <span>
+                    <EntityIcon name={e.name} size={24} />{" "}
                     <strong>{e.name}</strong>
                     <small>
                       {spells

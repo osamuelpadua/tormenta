@@ -35,6 +35,8 @@ export function Modal({
   footer,
   className = "",
   toolbar,
+  onEscape,
+  titleIcon,
 }: {
   title: string;
   subtitle?: string;
@@ -44,6 +46,8 @@ export function Modal({
   footer?: ReactNode;
   className?: string;
   toolbar?: ReactNode;
+  onEscape?: () => void;
+  titleIcon?: ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -75,7 +79,7 @@ export function Modal({
       className={`modal ${wide ? "modal-wide" : ""} ${className}`}
       onCancel={(e) => {
         e.preventDefault();
-        onClose();
+        (onEscape ?? onClose)();
       }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -85,7 +89,10 @@ export function Modal({
         <header className="modal-heading">
           <div>
             {subtitle && <span className="eyebrow">{subtitle}</span>}
-            <h2 id={titleId}>{title}</h2>
+            <h2 id={titleId}>
+              {titleIcon}
+              {title}
+            </h2>
           </div>
           <button className="icon-button" aria-label="Fechar" onClick={onClose}>
             <X size={21} />

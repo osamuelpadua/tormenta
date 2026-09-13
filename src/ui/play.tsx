@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EntityIcon } from "./entity-icon";
 import {
   Activity,
   ArrowRight,
@@ -11,7 +12,6 @@ import {
   Moon,
   Plus,
   Shield,
-  Skull,
   Sparkles,
   Swords,
   Target,
@@ -147,7 +147,7 @@ export function AttackList({ onAttack }: { onAttack: (id: string) => void }) {
       {d.attacks.map((a) => (
         <div className="attack-row" key={a.id}>
           <div className="attack-icon">
-            <Swords size={19} />
+            <EntityIcon name={a.name} size={31} />
           </div>
           <div className="attack-title">
             <strong>{a.name}</strong>
@@ -193,6 +193,10 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
         <div className="condition-pills">
           {d.conditions.map((id) => (
             <Pill key={id} tone="red">
+              <EntityIcon
+                name={CONDITIONS.find((e) => slug(e.name) === id)?.name ?? id}
+                size={16}
+              />
               {CONDITIONS.find((e) => slug(e.name) === id)?.name ?? id}
             </Pill>
           ))}
@@ -210,11 +214,13 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
               <div
                 className={`effect-dot ${e.source === "condicao" ? "negative" : ""}`}
               >
-                {e.source === "condicao" ? (
-                  <Skull size={17} />
-                ) : (
-                  <Sparkles size={17} />
-                )}
+                <EntityIcon
+                  name={
+                    CONDITIONS.find((x) => slug(x.name) === e.condition)
+                      ?.name ?? e.name
+                  }
+                  size={23}
+                />
               </div>
               <div>
                 <button
@@ -537,6 +543,7 @@ export function Combat({
               <div className="quick-powers">
                 {powers.map((e) => (
                   <button key={e.id} onClick={() => onUse(e)}>
+                    <EntityIcon name={e.name} size={28} />
                     <span>{e.name}</span>
                     <small>
                       {usageFor(c, e).minimum} PM ·{" "}
@@ -853,6 +860,7 @@ export function AttackModal({
   return (
     <Modal
       title={attack.name}
+      titleIcon={<EntityIcon name={attack.name} size={34} />}
       subtitle="Ataque com dados físicos"
       onClose={onClose}
       footer={
@@ -1172,6 +1180,7 @@ export function ConditionModal({ onClose }: { onClose: () => void }) {
                   key={e.id}
                   onClick={() => setCondition(slug(e.name))}
                 >
+                  <EntityIcon name={e.name} size={23} />
                   {e.name}
                 </button>
               ),
@@ -1326,6 +1335,7 @@ export function UseModal({
   return (
     <Modal
       title={entry.name}
+      titleIcon={<EntityIcon name={entry.name} size={34} />}
       subtitle={
         entry.kind === "spell"
           ? `${entry.magicType} · ${entry.circle}º círculo · ${entry.school}`
