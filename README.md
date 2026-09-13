@@ -28,6 +28,10 @@ Mantenha o mesmo endereço, protocolo e porta para acessar a mesma base local. `
 
 ## Usar
 
+Na primeira visita, o cartão **Leve Tormenta Wiki com você** recomenda instalar o app. **Instalar app** abre a confirmação nativa quando o navegador disponibiliza a instalação; nos demais casos, mostra instruções para o dispositivo. No iPhone/iPad, use Safari → Compartilhar → Adicionar à Tela de Início. **Agora não** é lembrado neste navegador, e a opção continua no menu lateral ou em Ferramentas no celular. O aviso fica oculto ao abrir o app instalado ou após uma instalação confirmada pelo navegador.
+
+O navegador controla a confirmação final e a criação do ícone; o site não instala silenciosamente. O fluxo usa [`beforeinstallprompt`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event) quando disponível e as [instruções da Apple](https://support.apple.com/en-nz/guide/iphone/iphea86e5236/ios) no iOS. Os testes de instalação simulam os eventos nativos e os dispositivos; a instalação pelo sistema operacional requer conferência no dispositivo real.
+
 Na primeira abertura, o app já mostra **Budrik**, anão bárbaro de nível 6, como personagem de exemplo, com 69/98 PV e 12/18 PM. A ficha pode ser editada normalmente. O exemplo só é adicionado uma vez em uma base sem personagens nem fichas arquivadas; fichas existentes são preservadas, e arquivar Budrik não faz ele reaparecer.
 
 Os dados são físicos, rolados na mesa. Consulte os bônus na ficha; registrar um teste de perícia é opcional. Ao informar o d20, o app soma os modificadores e compara com a CD, se preenchida. Ataques, efeitos com dados e a criação por rolagem pedem os resultados físicos antes de concluir. Cancelar esse registro preserva a ficha e os recursos. Os dados informados ficam no histórico e nos backups.

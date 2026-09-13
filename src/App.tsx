@@ -83,6 +83,11 @@ import "./ui/entity-icon.css";
 import "./ui/controls.css";
 import "./ui/book.css";
 import { EntityIcon } from "./ui/entity-icon";
+import {
+  InstallDialog,
+  InstallRecommendation,
+  useAppInstall,
+} from "./ui/install";
 
 type Tab = "sheet" | "combat" | "powers" | "spells" | "inventory";
 type ModalState =
@@ -97,7 +102,8 @@ type ModalState =
         | "condition"
         | "coins"
         | "archive"
-        | "help";
+        | "help"
+        | "install";
     }
   | { kind: "tools" }
   | { kind: "resource"; mode: "damage" | "hp" | "mp" | "rest" }
@@ -167,6 +173,12 @@ export default function App() {
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(""), 6500);
   }, []);
+  const installation = useAppInstall(notify);
+  const showInstall = () => {
+    installation.dismiss();
+    setModal({ kind: "install" });
+  };
+  const requestInstall = () => void installation.install(showInstall);
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
@@ -301,6 +313,16 @@ export default function App() {
               </span>
               <ArrowRight size={17} />
             </button>
+            {!installation.installed && (
+              <button onClick={showInstall}>
+                <Download size={22} />
+                <span>
+                  <strong>Instalar app</strong>
+                  <small>Adicione Tormenta Wiki ao dispositivo</small>
+                </span>
+                <ArrowRight size={17} />
+              </button>
+            )}
             <button onClick={() => setModal({ kind: "help" })}>
               <CircleHelp size={22} />
               <span>
@@ -312,6 +334,8 @@ export default function App() {
           </div>
         </Modal>
       );
+    if (modal.kind === "install")
+      return <InstallDialog installation={installation} onClose={close} />;
     if (modal.kind === "create")
       return (
         <CharacterWizard
@@ -525,6 +549,12 @@ export default function App() {
           ))}
         </nav>
         <div className="sidebar-bottom">
+          {!installation.installed && (
+            <button onClick={showInstall}>
+              <Download size={18} />
+              Instalar app
+            </button>
+          )}
           <button onClick={() => openBook(17)}>
             <BookOpen size={18} />
             Livro de referência
@@ -638,6 +668,10 @@ export default function App() {
             </button>
           </div>
         )}
+        <InstallRecommendation
+          installation={installation}
+          onInstall={requestInstall}
+        />
         <main id="main-content">
           {characters === undefined ? (
             <div className="loading-state">

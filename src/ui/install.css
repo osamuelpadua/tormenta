@@ -1,0 +1,98 @@
+.install-recommendation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 22px 36px 0;
+  padding: 20px;
+  border: 1px solid #c6a76b55;
+  border-radius: 4px;
+  background: linear-gradient(115deg, #363326, #1b2018 70%);
+}
+.install-recommendation > img,
+.install-intro > img {
+  flex: none;
+}
+.install-recommendation-copy {
+  flex: 1;
+  min-width: 0;
+}
+.install-recommendation h2 {
+  margin: 0 0 5px;
+  color: var(--gold-bright);
+  font-size: 19px;
+}
+.install-recommendation p {
+  margin: 0;
+  color: var(--muted);
+}
+.install-recommendation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.install-recommendation .button {
+  min-height: 44px;
+}
+.install-intro {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.install-intro p {
+  margin: 0;
+}
+.install-dialog h3 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--gold-bright);
+}
+.install-dialog ol {
+  padding-left: 24px;
+}
+.install-dialog li {
+  padding: 6px 0 6px 4px;
+}
+.install-dialog li::marker {
+  color: var(--gold);
+  font-weight: 700;
+}
+.install-dialog li svg {
+  vertical-align: middle;
+  color: var(--gold);
+}
+.install-note {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 13px;
+}
+@media (max-width: 1200px) {
+  .install-recommendation {
+    flex-wrap: wrap;
+  }
+  .install-recommendation-actions {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .install-recommendation {
+    margin: 16px 12px 0;
+    padding: 16px;
+    gap: 12px;
+  }
+  .install-recommendation > img {
+    width: 46px;
+    height: 46px;
+  }
+  .install-recommendation h2 {
+    font-size: 17px;
+  }
+  .install-recommendation p {
+    font-size: 14px;
+  }
+  .install-recommendation-actions .button {
+    flex: 1;
+    padding-inline: 10px;
+  }
+}
