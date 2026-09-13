@@ -1,0 +1,23 @@
+{
+  "ruleset": "t20-jda-2023-11-17",
+  "sources": [
+    {
+      "id": "book",
+      "file": "Tormenta20-Edicao-Jogo-do-Ano-17-11-2023_.pdf",
+      "pages": 407,
+      "sha256": "40b9ed85d8bf3a3573bb654c471d5ea6f561a9cc7e7ac68cecc8cd18338fcdaa",
+      "characters": 1463216,
+      "lowTextPages": [
+        3, 4, 5, 6, 11, 12, 65, 118, 144, 174, 218, 243, 246, 286, 330, 356, 407
+      ]
+    },
+    {
+      "id": "sheet",
+      "file": "Tormenta20-Jogo-do-Ano-Ficha.pdf",
+      "pages": 1,
+      "sha256": "c16fd47e088d0e480f1f6ed66d6c3d2be4a6fe8b7cd82f0c3b55fe9742249d53",
+      "characters": 1317,
+      "lowTextPages": []
+    }
+  ]
+}

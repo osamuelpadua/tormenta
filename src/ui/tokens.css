@@ -1,0 +1,15 @@
+:root {
+  --paper: #f7f4ed;
+  --surface: #fffdf9;
+  --ink: #433c32;
+  --muted: #766753;
+  --line: #e9e2d6;
+  --line-strong: #ddd3c3;
+  --sidebar: #252522;
+  --red: #923d46;
+  --red-light: #f7ebe5;
+  --focus: #be8a42;
+  --shadow: 0 12px 34px #60462918;
+  --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}

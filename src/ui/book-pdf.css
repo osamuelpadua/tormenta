@@ -1,0 +1,136 @@
+.book-reader-pdf .modal-body {
+  background: #e5e0d7;
+  padding: 20px 28px 30px;
+}
+.book-reader-pdf .book-page {
+  max-width: none;
+}
+.book-reader-pdf .book-page-meta {
+  max-width: none;
+  margin-bottom: 16px;
+}
+.book-pdf {
+  position: relative;
+  min-height: 280px;
+  min-width: 0;
+  width: 100%;
+}
+.book-pdf-scroll {
+  overflow: auto;
+  max-width: 100%;
+}
+.book-pdf-sheet {
+  position: relative;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 2px 10px #30282020;
+}
+.book-pdf-sheet canvas {
+  display: block;
+}
+.book-pdf-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 280px;
+  padding: 24px;
+  color: var(--ink);
+  text-align: center;
+}
+.book-pdf-message p {
+  flex-basis: 100%;
+}
+.book-pdf-zoom {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.book-pdf-zoom button,
+.book-open-pdf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: 12px;
+}
+.book-pdf-zoom button:nth-child(2) {
+  min-width: 48px;
+  font-variant-numeric: tabular-nums;
+}
+.book-pdf-zoom button:disabled {
+  opacity: 0.4;
+}
+
+/* Positioning contract of PDF.js 6 TextLayer (Apache-2.0, Mozilla Foundation).
+   Only the selectable text overlay is styled here; glyphs come from the PDF. */
+.book-pdf-text {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  text-align: initial;
+  line-height: 1;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  caret-color: CanvasText;
+  --min-font-size: 1;
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+.book-pdf-text :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0 0;
+}
+.book-pdf-text > :not(.markedContent),
+.book-pdf-text .markedContent span:not(.markedContent) {
+  z-index: 1;
+  --font-height: 0;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  --scale-x: 1;
+  --rotate: 0deg;
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x))
+    scale(var(--min-font-size-inv));
+}
+.book-pdf-text .markedContent {
+  display: contents;
+}
+.book-pdf-text ::selection {
+  background: #376fc050;
+}
+.book-pdf-text br::selection {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .book-reader-pdf .modal-body {
+    padding: 16px 12px 24px;
+  }
+  .book-reader-pdf .book-tools {
+    gap: 7px;
+  }
+  .book-pdf-zoom {
+    gap: 2px;
+  }
+  .book-pdf-zoom button,
+  .book-open-pdf {
+    min-height: 44px;
+  }
+}
