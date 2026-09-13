@@ -71,9 +71,7 @@ test("PDF original com zoom no celular, troca rápida de páginas e ilustraçõe
   await context.setOffline(true);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.reload();
-  await page
-    .getByRole("button", { name: "Livro de referência", exact: true })
-    .click();
+  await expect(page.locator(".book-pdf canvas")).toBeVisible();
   // PDF p. 12 is an illustration: it must render even without extracted text.
   await page.getByLabel("Página do livro").fill("6");
   await page.getByLabel("Página do livro").press("Enter");

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { EntityIcon } from "./entity-icon";
+import { itemSource } from "./book-reference";
+import { BookEntryButton } from "./entry-readout";
 import { Backpack, Coins, Hammer, Pencil, Plus, Trash2 } from "lucide-react";
 import { CATALOG, DAMAGE_TYPES, ENTRY_MAP, newItem, slug } from "../data/rules";
 import { calculate, itemBenefits } from "../domain/calculate";
@@ -154,6 +156,11 @@ export function Inventory({
               >
                 <Pencil size={16} />
               </button>
+              {itemSource(i) && (
+                <div className="inventory-book-reference">
+                  <BookEntryButton entry={itemSource(i)!} />
+                </div>
+              )}
             </div>
           ))}
         </section>
@@ -309,6 +316,11 @@ export function ItemModal({
       }
     >
       <ErrorList errors={error ? [error] : []} />
+      {stage === "edit" && itemSource(draft) && (
+        <div className="item-source-reference">
+          <BookEntryButton entry={itemSource(draft)!} />
+        </div>
+      )}
       {stage === "catalog" ? (
         <>
           <div className="row between">

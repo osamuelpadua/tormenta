@@ -1,0 +1,302 @@
+[
+  {
+    "id": "race:humano",
+    "name": "Humano",
+    "page": 19
+  },
+  {
+    "id": "race:anao",
+    "name": "Anão",
+    "page": 20
+  },
+  {
+    "id": "race:dahllan",
+    "name": "Dahllan",
+    "page": 21
+  },
+  {
+    "id": "race:elfo",
+    "name": "Elfo",
+    "page": 22
+  },
+  {
+    "id": "race:goblin",
+    "name": "Goblin",
+    "page": 23
+  },
+  {
+    "id": "race:lefou",
+    "name": "Lefou",
+    "page": 24
+  },
+  {
+    "id": "race:minotauro",
+    "name": "Minotauro",
+    "page": 25
+  },
+  {
+    "id": "race:qareen",
+    "name": "Qareen",
+    "page": 26
+  },
+  {
+    "id": "race:golem",
+    "name": "Golem",
+    "page": 27
+  },
+  {
+    "id": "race:hynne",
+    "name": "Hynne",
+    "page": 27
+  },
+  {
+    "id": "race:kliren",
+    "name": "Kliren",
+    "page": 28
+  },
+  {
+    "id": "race:medusa",
+    "name": "Medusa",
+    "page": 28
+  },
+  {
+    "id": "race:osteon",
+    "name": "Osteon",
+    "page": 29
+  },
+  {
+    "id": "race:sereia-tritao",
+    "name": "Sereia/tritão",
+    "page": 29
+  },
+  {
+    "id": "race:silfide",
+    "name": "Sílfide",
+    "page": 30
+  },
+  {
+    "id": "race:suraggel",
+    "name": "Suraggel",
+    "page": 30
+  },
+  {
+    "id": "race:trog",
+    "name": "Trog",
+    "page": 31
+  },
+  {
+    "id": "class:arcanista",
+    "name": "Arcanista",
+    "page": 36
+  },
+  {
+    "id": "class:barbaro",
+    "name": "Bárbaro",
+    "page": 40
+  },
+  {
+    "id": "class:bardo",
+    "name": "Bardo",
+    "page": 43
+  },
+  {
+    "id": "class:bucaneiro",
+    "name": "Bucaneiro",
+    "page": 46
+  },
+  {
+    "id": "class:cacador",
+    "name": "Caçador",
+    "page": 49
+  },
+  {
+    "id": "class:cavaleiro",
+    "name": "Cavaleiro",
+    "page": 52
+  },
+  {
+    "id": "class:clerigo",
+    "name": "Clérigo",
+    "page": 56
+  },
+  {
+    "id": "class:druida",
+    "name": "Druida",
+    "page": 60
+  },
+  {
+    "id": "class:guerreiro",
+    "name": "Guerreiro",
+    "page": 64
+  },
+  {
+    "id": "class:inventor",
+    "name": "Inventor",
+    "page": 67
+  },
+  {
+    "id": "class:ladino",
+    "name": "Ladino",
+    "page": 72
+  },
+  {
+    "id": "class:lutador",
+    "name": "Lutador",
+    "page": 75
+  },
+  {
+    "id": "class:nobre",
+    "name": "Nobre",
+    "page": 78
+  },
+  {
+    "id": "class:paladino",
+    "name": "Paladino",
+    "page": 81
+  },
+  {
+    "id": "skill:acrobacia",
+    "name": "Acrobacia",
+    "page": 115
+  },
+  {
+    "id": "skill:adestramento",
+    "name": "Adestramento",
+    "page": 115
+  },
+  {
+    "id": "skill:atletismo",
+    "name": "Atletismo",
+    "page": 116
+  },
+  {
+    "id": "skill:atuacao",
+    "name": "Atuação",
+    "page": 116
+  },
+  {
+    "id": "skill:cavalgar",
+    "name": "Cavalgar",
+    "page": 116
+  },
+  {
+    "id": "skill:conhecimento",
+    "name": "Conhecimento",
+    "page": 117
+  },
+  {
+    "id": "skill:cura",
+    "name": "Cura",
+    "page": 117
+  },
+  {
+    "id": "skill:diplomacia",
+    "name": "Diplomacia",
+    "page": 118
+  },
+  {
+    "id": "skill:enganacao",
+    "name": "Enganação",
+    "page": 118
+  },
+  {
+    "id": "skill:fortitude",
+    "name": "Fortitude",
+    "page": 119
+  },
+  {
+    "id": "skill:furtividade",
+    "name": "Furtividade",
+    "page": 119
+  },
+  {
+    "id": "skill:guerra",
+    "name": "Guerra",
+    "page": 119
+  },
+  {
+    "id": "skill:iniciativa",
+    "name": "Iniciativa",
+    "page": 119
+  },
+  {
+    "id": "skill:intimidacao",
+    "name": "Intimidação",
+    "page": 120
+  },
+  {
+    "id": "skill:intuicao",
+    "name": "Intuição",
+    "page": 120
+  },
+  {
+    "id": "skill:investigacao",
+    "name": "Investigação",
+    "page": 120
+  },
+  {
+    "id": "skill:jogatina",
+    "name": "Jogatina",
+    "page": 120
+  },
+  {
+    "id": "skill:ladinagem",
+    "name": "Ladinagem",
+    "page": 120
+  },
+  {
+    "id": "skill:luta",
+    "name": "Luta",
+    "page": 121
+  },
+  {
+    "id": "skill:misticismo",
+    "name": "Misticismo",
+    "page": 121
+  },
+  {
+    "id": "skill:nobreza",
+    "name": "Nobreza",
+    "page": 121
+  },
+  {
+    "id": "skill:oficio",
+    "name": "Ofício",
+    "page": 121
+  },
+  {
+    "id": "skill:percepcao",
+    "name": "Percepção",
+    "page": 122
+  },
+  {
+    "id": "skill:pilotagem",
+    "name": "Pilotagem",
+    "page": 122
+  },
+  {
+    "id": "skill:pontaria",
+    "name": "Pontaria",
+    "page": 122
+  },
+  {
+    "id": "skill:reflexos",
+    "name": "Reflexos",
+    "page": 122
+  },
+  {
+    "id": "skill:religiao",
+    "name": "Religião",
+    "page": 122
+  },
+  {
+    "id": "skill:sobrevivencia",
+    "name": "Sobrevivência",
+    "page": 123
+  },
+  {
+    "id": "skill:vontade",
+    "name": "Vontade",
+    "page": 123
+  }
+]

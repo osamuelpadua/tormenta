@@ -1,0 +1,302 @@
+.reference-library {
+  min-width: 0;
+}
+.library-scopes {
+  display: flex;
+  gap: 8px;
+  padding: 5px;
+  margin: 24px 0 12px;
+  background: #10150e;
+  border: 1px solid var(--line);
+}
+.library-scopes button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 22px;
+  min-height: 46px;
+  color: var(--muted);
+  border: 1px solid transparent;
+}
+.library-scopes button[aria-pressed="true"] {
+  color: var(--gold-bright);
+  border-color: #8e7847;
+  background: #302c1d;
+}
+.library-scopes button span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.library-context-line {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+}
+.reference-library .library-toolbar {
+  flex-wrap: wrap;
+}
+.reference-library .library-toolbar .searchbox {
+  flex: 1;
+  min-width: 220px;
+}
+.library-filters {
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+.library-filter-heading,
+.library-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.library-filter-heading {
+  margin-bottom: 12px;
+}
+.library-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.library-filter-grid .field {
+  margin: 0;
+}
+.library-filter-grid select {
+  width: 100%;
+  min-width: 0;
+}
+.library-filters p {
+  font-size: 13px;
+  margin-top: 16px;
+}
+.library-filter-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+.library-results-heading {
+  margin: 18px 0;
+  scroll-margin-top: 90px;
+  color: var(--muted);
+}
+.library-results-heading label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.library-results-heading select {
+  width: 170px;
+}
+.reference-library .power-card[data-selected="true"] {
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 #b89a5a;
+}
+.reference-library .power-card footer .text-button,
+.book-entry-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  text-align: left;
+}
+.reference-library .power-card footer {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.reference-library .pagination {
+  margin: 24px 0;
+}
+.entry-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 22px;
+  margin: 18px 0 24px;
+}
+.entry-facts div {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 9px;
+}
+.entry-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+.entry-facts dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+.entry-prerequisites,
+.entry-relation {
+  margin-bottom: 20px;
+  padding: 14px;
+  background: #12180f;
+  border: 1px solid var(--line);
+}
+.entry-prerequisites h3 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+.entry-relation p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.entry-enhancements {
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+}
+.entry-enhancements > div {
+  padding-top: 14px;
+}
+.entry-enhancements p {
+  margin: 5px 0;
+}
+.entry-readout .source-text {
+  white-space: pre-line;
+}
+.inventory-row .inventory-book-reference {
+  grid-column: 1 / -1;
+  padding: 0 0 0 8px;
+}
+.item-source-reference {
+  margin-bottom: 18px;
+}
+.character-source-links > .book-entry-link {
+  display: flex;
+}
+.reader-back {
+  position: absolute;
+  z-index: 10;
+  top: 9px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+.book-reader:has(.reader-back) .modal-heading h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  padding: 0;
+}
+@media (max-width: 900px) {
+  .library-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .reference-library .library-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .reference-library .library-toolbar .searchbox {
+    min-width: 0;
+    grid-column: 1 / -1;
+  }
+  .library-scopes button {
+    padding: 12px;
+    flex: 1;
+  }
+  .reader-back {
+    top: 6px;
+    left: 6px;
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+  .reader-back span {
+    display: none;
+  }
+  .book-reader:has(.reader-back) .reader-search-toggle {
+    left: 58px;
+  }
+}
+@media (max-width: 600px) {
+  .library-scopes {
+    gap: 4px;
+    margin-top: 18px;
+  }
+  .library-scopes button {
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 9px 7px;
+  }
+  .library-scopes button > svg {
+    display: none;
+  }
+  .library-filter-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .library-filters {
+    padding: 14px;
+  }
+  .library-filters {
+    max-height: 65dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .library-filter-heading {
+    position: sticky;
+    top: -14px;
+    z-index: 1;
+    background: var(--surface);
+    padding: 8px 0;
+  }
+  .library-filter-actions {
+    position: sticky;
+    bottom: -14px;
+    background: var(--surface);
+    padding: 12px 0;
+  }
+  .library-results-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .library-results-heading label {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .reference-library .power-card {
+    padding: 15px 15px 0;
+  }
+  .reference-library .power-title {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  .reference-library .power-card > p {
+    margin: 5px 0 14px;
+  }
+  .reference-library .power-card footer {
+    margin-top: 12px;
+    padding: 8px 14px;
+  }
+  .reference-library .card-tags {
+    margin-bottom: 8px;
+  }
+  .reference-library .pagination {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .reference-library .pagination button {
+    flex: 1;
+    white-space: normal;
+    min-width: 100px;
+  }
+  .entry-facts {
+    gap: 12px;
+  }
+  .inventory-row .inventory-book-reference {
+    padding: 0;
+  }
+}

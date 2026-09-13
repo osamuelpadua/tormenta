@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EntityIcon } from "./entity-icon";
+import { BookEntryButton, BookSubjectButton } from "./entry-readout";
 import {
   BookOpen,
   Check,
@@ -301,6 +302,19 @@ export function Sheet({
                 <dd>{c.age} anos</dd>
               </div>
             </dl>
+            <details className="source-details character-source-links">
+              <summary>Conferir no livro</summary>
+              <BookSubjectButton subject={`race:${c.raceId}`} />
+              {[...new Set(c.levels.map((l) => l.classId))].map((id) => (
+                <BookSubjectButton key={id} subject={`class:${id}`} />
+              ))}
+              {ENTRY_MAP.get(c.originId) && (
+                <BookEntryButton entry={ENTRY_MAP.get(c.originId)!} />
+              )}
+              {ENTRY_MAP.get(c.deityId) && (
+                <BookEntryButton entry={ENTRY_MAP.get(c.deityId)!} />
+              )}
+            </details>
           </section>
           <EffectsList onCondition={onCondition} />
           {(partners(c).length > 0 || familiar(c)) && (
@@ -556,193 +570,10 @@ export function SkillModal({
           )}
         </>
       )}
-      <SourceButton page={114} onClick={() => openBook(114)} />
+      {selectedUse && <BookEntryButton entry={selectedUse} />}
+      <BookSubjectButton
+        subject={`skill:${skillId.startsWith("oficio-") ? "oficio" : skillId}`}
+      />
     </Modal>
-  );
-}
-export function Library({
-  spells,
-  onAdd,
-  onUse,
-}: {
-  spells: boolean;
-  onAdd: () => void;
-  onUse: (e: CatalogEntry) => void;
-}) {
-  const { character: c, commit, openEntry, openBook } = useApp();
-  const [query, setQuery] = useState("");
-  const [group, setGroup] = useState("all");
-  const [favorites, setFavorites] = useState(false);
-  const all = [
-    ...new Map(
-      characterEntries(c)
-        .filter((e) => (e.kind === "spell") === spells)
-        .map((e) => [e.id, e]),
-    ).values(),
-  ];
-  const groups = [
-    ...new Set(
-      all.map((e) =>
-        spells ? `${e.circle}º círculo` : e.group || "Raça / origem",
-      ),
-    ),
-  ];
-  const entries = all.filter(
-    (e) =>
-      slug(e.name + " " + e.description).includes(slug(query)) &&
-      (group === "all" ||
-        (spells ? `${e.circle}º círculo` : e.group || "Raça / origem") ===
-          group) &&
-      (!favorites || c.favorites.includes(e.id)),
-  );
-  return (
-    <>
-      <div className="library-toolbar">
-        <SearchBox
-          value={query}
-          onChange={setQuery}
-          placeholder={
-            spells ? "Pesquisar minhas magias…" : "Pesquisar meus poderes…"
-          }
-        />
-        <select
-          aria-label="Filtrar biblioteca"
-          value={group}
-          onChange={(e) => setGroup(e.target.value)}
-        >
-          <option value="all">
-            {spells ? "Todos os círculos" : "Todas as origens"}
-          </option>
-          {groups.map((g) => (
-            <option key={g}>{g}</option>
-          ))}
-        </select>
-        <button
-          className={`button ${favorites ? "selected" : ""}`}
-          onClick={() => setFavorites(!favorites)}
-        >
-          <Star size={16} />
-          Favoritos
-        </button>
-        <button className="button primary" onClick={onAdd}>
-          <Plus size={16} />
-          {spells ? "Aprender magia" : "Adicionar poder"}
-        </button>
-      </div>
-      {entries.length ? (
-        <div className="library-grid">
-          {entries.map((e) => {
-            const usage = usageFor(c, e);
-            const ac = c.acquisitions.find((a) => a.entryId === e.id);
-            return (
-              <article
-                className="power-card"
-                data-magic={spells || undefined}
-                key={e.id}
-              >
-                <div className="row between">
-                  <Pill tone={spells ? "blue" : "gold"}>
-                    {spells
-                      ? `${e.circle}º · ${e.school}`
-                      : e.group || "Habilidade racial"}
-                  </Pill>
-                  <button
-                    className="icon-button"
-                    aria-label={`Favoritar ${e.name}`}
-                    onClick={() =>
-                      void commit({
-                        type: "edit",
-                        character: {
-                          ...c,
-                          favorites: c.favorites.includes(e.id)
-                            ? c.favorites.filter((x) => x !== e.id)
-                            : [...c.favorites, e.id],
-                        },
-                        reason: `Favorito: ${e.name}`,
-                      })
-                    }
-                  >
-                    <Star
-                      size={16}
-                      fill={
-                        c.favorites.includes(e.id) ? "currentColor" : "none"
-                      }
-                    />
-                  </button>
-                </div>
-                <button className="power-title" onClick={() => openEntry(e)}>
-                  <span className="power-emblem" aria-hidden="true">
-                    <EntityIcon name={e.name} size={31} />
-                  </span>
-                  {e.name}
-                </button>
-                <p>
-                  {e.description
-                    .replace(/^(Arcana|Divina|Universal).*?Duração:.*?\./s, "")
-                    .slice(0, 210)}
-                  {e.description.length > 210 ? "…" : ""}
-                </p>
-                <div className="card-tags">
-                  <Pill>{coverageFor(e).label}</Pill>
-                  {usage.active ? (
-                    <>
-                      <span>{usage.minimum} PM</span>
-                      <span>{usage.duration}</span>
-                    </>
-                  ) : (
-                    <span>Habilidade passiva</span>
-                  )}
-                  {ac?.mode === "device" && (
-                    <Pill>Engenhoca{ac.broken ? " enguiçada" : ""}</Pill>
-                  )}
-                  {ac?.source === "arcanista" &&
-                    c.choices.path === "Mago" &&
-                    spells && (
-                      <Pill tone={ac.prepared ? "green" : "neutral"}>
-                        {ac.prepared ? "Memorizada" : "Não memorizada"}
-                      </Pill>
-                    )}
-                </div>
-                <footer>
-                  <button
-                    className="text-button"
-                    onClick={() => openBook(e.page)}
-                  >
-                    Consultar · p. {e.page}
-                  </button>
-                  {usage.active && (
-                    <button className="button small" onClick={() => onUse(e)}>
-                      {spells ? "Lançar" : "Usar"}
-                      <Sparkles size={13} />
-                    </button>
-                  )}
-                </footer>
-              </article>
-            );
-          })}
-        </div>
-      ) : (
-        <Empty
-          icon={spells ? <Sparkles /> : <BookOpen />}
-          heading={
-            query || group !== "all"
-              ? "Nenhum resultado"
-              : spells
-                ? "Seu grimório começa aqui"
-                : "Seu repertório de aventuras"
-          }
-          action={
-            <button className="button primary" onClick={onAdd}>
-              <Plus size={16} />
-              {spells ? "Consultar magias" : "Consultar poderes"}
-            </button>
-          }
-        >
-          {spells
-            ? "Encontre magias no catálogo, registre sua origem e organize as favoritas."
-            : "Habilidades de raça e classe aparecem automaticamente. Adicione as escolhas que fazem parte da sua história."}
-        </Empty>
-      )}
-    </>
   );
 }

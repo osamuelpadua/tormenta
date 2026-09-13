@@ -66,10 +66,7 @@ test("PDF: pesquisa preservada, destaques, todos os resultados e controles recol
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await context.setOffline(true);
   await page.reload();
-  await page
-    .getByRole("button", { name: "Abrir ferramentas", exact: true })
-    .click();
-  await page.getByRole("button", { name: /Livro de referência/ }).click();
+  await expect(page.locator(".book-pdf canvas")).toBeVisible();
   await page
     .getByRole("button", { name: "Pesquisar no livro", exact: true })
     .click();

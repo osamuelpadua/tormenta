@@ -1,6 +1,12 @@
 import { useMemo, useState, useLayoutEffect, useRef } from "react";
 import { EntityIcon } from "./entity-icon";
 import {
+  BookEntryButton,
+  BookSubjectButton,
+  EntryReadout,
+} from "./entry-readout";
+import { LIBRARY_ROW_MAP, searchText } from "./library-data";
+import {
   ArrowLeft,
   ArrowRight,
   Check,
@@ -80,7 +86,17 @@ export function EntryPicker({
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState("");
-  const filtered = entries.filter((e) => slug(e.name).includes(slug(query)));
+  const filtered = entries.filter((e) =>
+    searchText(query)
+      .split(" ")
+      .filter(Boolean)
+      .every((term) =>
+        (
+          LIBRARY_ROW_MAP.get(e.id)?.text ??
+          searchText(e.name + " " + e.description)
+        ).includes(term),
+      ),
+  );
   const picked = character.acquisitions.filter(
     (a) => a.source === source && entries.some((e) => e.id === a.entryId),
   );
@@ -140,7 +156,12 @@ export function EntryPicker({
                   {open === e.id ? "Recolher" : "Detalhes"}
                 </button>
               </div>
-              {open === e.id && <p className="source-text">{e.description}</p>}
+              {open === e.id && (
+                <>
+                  <EntryReadout entry={e} />
+                  <BookEntryButton entry={e} />
+                </>
+              )}
               {ac && (
                 <AcquisitionChoices
                   character={character}
@@ -1045,6 +1066,7 @@ export function CharacterWizard({
               <div className="notice">
                 <strong>Habilidades raciais</strong>
                 <p>{race.abilities.join(" · ")}</p>
+                <BookSubjectButton subject={`race:${race.id}`} />
               </div>
             </>
           )}
@@ -1138,6 +1160,7 @@ export function CharacterWizard({
                 <summary>
                   Progressão completa de {cls.name} · p. {cls.page}
                 </summary>
+                <BookSubjectButton subject={`class:${cls.id}`} />
                 <table>
                   <thead>
                     <tr>
@@ -1187,9 +1210,14 @@ export function CharacterWizard({
                   </select>
                 </Field>
                 {c.originId && (
-                  <p className="source-text">
-                    {ENTRY_MAP.get(c.originId)?.description}
-                  </p>
+                  <>
+                    <p className="source-text">
+                      {ENTRY_MAP.get(c.originId)?.description}
+                    </p>
+                    {ENTRY_MAP.get(c.originId) && (
+                      <BookEntryButton entry={ENTRY_MAP.get(c.originId)!} />
+                    )}
+                  </>
                 )}
                 <Field label="Sua história">
                   <textarea
@@ -1224,9 +1252,14 @@ export function CharacterWizard({
                 </select>
               </Field>
               {c.deityId ? (
-                <p className="source-text">
-                  {ENTRY_MAP.get(c.deityId)?.description}
-                </p>
+                <>
+                  <p className="source-text">
+                    {ENTRY_MAP.get(c.deityId)?.description}
+                  </p>
+                  {ENTRY_MAP.get(c.deityId) && (
+                    <BookEntryButton entry={ENTRY_MAP.get(c.deityId)!} />
+                  )}
+                </>
               ) : (
                 <div className="notice">
                   <p>

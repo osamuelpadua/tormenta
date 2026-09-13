@@ -52,7 +52,11 @@ import {
   ConditionModal,
   UseModal,
 } from "./ui/play";
-import { Sheet, SkillModal, Library } from "./ui/sheet";
+import { Sheet, SkillModal } from "./ui/sheet";
+import { Library } from "./ui/library";
+import { EntryDetails } from "./ui/entry-details";
+import { useReferenceNavigation } from "./ui/reference-navigation";
+import "./ui/library.css";
 import { CoinsModal, Inventory, ItemModal } from "./ui/inventory";
 import {
   AddEntry,
@@ -65,6 +69,7 @@ import {
 } from "./ui/manage";
 import {
   AppContext,
+  ReferenceContext,
   AsyncButton,
   Empty,
   Modal,
@@ -98,10 +103,9 @@ type ModalState =
   | { kind: "resource"; mode: "damage" | "hp" | "mp" | "rest" }
   | { kind: "attack"; id: string }
   | { kind: "skill"; id: string }
-  | { kind: "use" | "entry"; entry: CatalogEntry }
+  | { kind: "use"; entry: CatalogEntry }
   | { kind: "item"; item?: Item }
-  | { kind: "add"; spells: boolean }
-  | { kind: "book"; page: number }
+  | { kind: "add"; spells: boolean; entry?: CatalogEntry }
   | null;
 const NAV = [
   {
@@ -147,10 +151,9 @@ export default function App() {
   const [selected, setSelected] = useState(
     () => localStorage.getItem("tormenta-selected") ?? "",
   );
-  const [tab, setTab] = useState<Tab>(() => {
-    const hash = location.hash.slice(1);
-    return NAV.some((n) => n.id === hash) ? (hash as Tab) : "sheet";
-  });
+  const navigation = useReferenceNavigation();
+  const { route, setTab } = navigation;
+  const tab = route.tab;
   const [modal, setModal] = useState<ModalState>(null);
   const [toast, setToast] = useState("");
   const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
@@ -187,7 +190,6 @@ export default function App() {
     if (c) localStorage.setItem("tormenta-selected", c.id);
   }, [c?.id]);
   useEffect(() => {
-    location.hash = tab;
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [tab]);
   const close = () => setModal(null);
@@ -243,8 +245,11 @@ export default function App() {
   const background = (promise: Promise<unknown>) => {
     void promise.catch(() => {});
   };
-  const openEntry = (entry: CatalogEntry) => setModal({ kind: "entry", entry });
-  const openBook = (page: number) => setModal({ kind: "book", page });
+  const openEntry = (entry: CatalogEntry) => navigation.openEntry(entry.id);
+  const openBook = (page: number, focus?: string) => {
+    if (modal?.kind === "tools") close();
+    navigation.openBook(page, focus);
+  };
   const onResource = (mode: "damage" | "hp" | "mp" | "rest") =>
     setModal({ kind: "resource", mode });
   const onAttack = (id: string) => setModal({ kind: "attack", id });
@@ -262,7 +267,7 @@ export default function App() {
           onClose={close}
         >
           <div className="mobile-tools-list">
-            <button onClick={() => setModal({ kind: "book", page: 17 })}>
+            <button onClick={() => openBook(17)}>
               <BookOpen size={22} />
               <span>
                 <strong>Livro de referência</strong>
@@ -324,8 +329,6 @@ export default function App() {
       );
     if (modal.kind === "backup")
       return <BackupModal onClose={close} onImported={setSelected} />;
-    if (modal.kind === "book")
-      return <BookModal page={modal.page} onClose={close} />;
     if (modal.kind === "help")
       return (
         <Modal title="Sua mesa, seu ritmo" onClose={close}>
@@ -412,7 +415,13 @@ export default function App() {
       case "coins":
         return <CoinsModal onClose={close} />;
       case "add":
-        return <AddEntry spells={modal.spells} onClose={close} />;
+        return (
+          <AddEntry
+            spells={modal.spells}
+            initialEntry={modal.entry}
+            onClose={close}
+          />
+        );
       case "archive":
         return (
           <Modal
@@ -444,105 +453,6 @@ export default function App() {
             </p>
           </Modal>
         );
-      case "entry": {
-        const e = modal.entry;
-        const acs = c.acquisitions.filter((a) => a.entryId === e.id);
-        return (
-          <Modal
-            title={e.name}
-            titleIcon={<EntityIcon name={e.name} size={34} />}
-            subtitle={e.group || e.kind}
-            onClose={close}
-            footer={
-              <>
-                <SourceButton page={e.page} onClick={() => openBook(e.page)} />
-                <button className="button" onClick={close}>
-                  Fechar
-                </button>
-              </>
-            }
-          >
-            <div className="spell-meta">
-              {e.magicType && (
-                <Pill tone="blue">
-                  {e.magicType} · {e.circle}º círculo
-                </Pill>
-              )}
-              {e.school && <Pill>{e.school}</Pill>}
-            </div>
-            <p className="source-text">{e.description}</p>
-            {acs.map((a) => (
-              <section className="acquisition-detail" key={a.id}>
-                <h3>
-                  Aprendido no nível {a.level} ·{" "}
-                  {CLASS_MAP.get(a.source)?.name ?? a.source}
-                </h3>
-                {Object.entries(a.choices).map(([key, value]) => (
-                  <p key={key}>
-                    <b>{key}:</b> {value}
-                  </p>
-                ))}
-                {e.kind === "spell" &&
-                  a.source === "arcanista" &&
-                  c.choices.path === "Mago" && (
-                    <button
-                      className="button small"
-                      onClick={() =>
-                        background(
-                          commit({
-                            type: "edit",
-                            character: {
-                              ...c,
-                              acquisitions: c.acquisitions.map((x) =>
-                                x.id === a.id
-                                  ? { ...x, prepared: !x.prepared }
-                                  : x,
-                              ),
-                            },
-                            reason: `Memorização: ${e.name}`,
-                          }),
-                        )
-                      }
-                    >
-                      {a.prepared ? "Retirar da memorização" : "Memorizar"}
-                    </button>
-                  )}
-                {a.mode === "device" && a.broken && (
-                  <button
-                    className="button"
-                    onClick={() =>
-                      background(
-                        commit({ type: "repairDevice", acquisitionId: a.id }),
-                      )
-                    }
-                  >
-                    Reparar engenhoca (1 hora)
-                  </button>
-                )}
-                <button
-                  className="text-button danger-text"
-                  onClick={() =>
-                    background(
-                      commit({
-                        type: "edit",
-                        character: {
-                          ...c,
-                          acquisitions: c.acquisitions.filter(
-                            (x) => x.id !== a.id,
-                          ),
-                        },
-                        reason: `Remoção de aquisição: ${e.name}`,
-                      }).then(close),
-                    )
-                  }
-                >
-                  Remover aquisição
-                </button>
-              </section>
-            ))}
-          </Modal>
-        );
-      }
     }
   };
   const body = (
@@ -615,7 +525,7 @@ export default function App() {
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <button onClick={() => setModal({ kind: "book", page: 17 })}>
+          <button onClick={() => openBook(17)}>
             <BookOpen size={18} />
             Livro de referência
           </button>
@@ -846,7 +756,7 @@ export default function App() {
               )}{" "}
               {(tab === "powers" || tab === "spells") && (
                 <Library
-                  key={tab}
+                  key={`${c.id}:${tab}`}
                   spells={tab === "spells"}
                   onAdd={() =>
                     setModal({ kind: "add", spells: tab === "spells" })
@@ -902,17 +812,42 @@ export default function App() {
         </div>
       )}
       {modalContent()}
+      {c && route.entryId && ENTRY_MAP.has(route.entryId) && (
+        <EntryDetails
+          entry={ENTRY_MAP.get(route.entryId)!}
+          onClose={navigation.back}
+          onAcquire={(entry) => {
+            navigation.back();
+            setModal({ kind: "add", spells: entry.kind === "spell", entry });
+          }}
+        />
+      )}
+      {route.bookPage !== undefined && (!route.entryId || c) && (
+        <BookModal
+          key={route.bookPage + ":" + (route.focus ?? "")}
+          page={route.bookPage}
+          focus={route.focus}
+          onClose={navigation.back}
+          returnLabel={
+            route.entryId ? "Voltar ao conteúdo" : "Voltar à consulta"
+          }
+        />
+      )}
       {diceDialog}
     </div>
   );
-  return c ? (
-    <AppContext.Provider
-      value={{ character: c, commit, notify, openEntry, openBook }}
-    >
-      {body}
-    </AppContext.Provider>
-  ) : (
-    body
+  return (
+    <ReferenceContext.Provider value={{ openEntry, openBook }}>
+      {c ? (
+        <AppContext.Provider
+          value={{ character: c, commit, notify, openEntry, openBook }}
+        >
+          {body}
+        </AppContext.Provider>
+      ) : (
+        body
+      )}
+    </ReferenceContext.Provider>
   );
 }
 function Welcome({

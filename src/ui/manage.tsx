@@ -34,6 +34,7 @@ import type { CatalogEntry, Character } from "../domain/types";
 import { db, downloadBackup } from "../storage/database";
 import { parseBackup, type Backup } from "../storage/schema";
 import { EntryPicker, SpellChoices } from "./creation";
+import { BookSubjectButton } from "./entry-readout";
 import {
   AsyncButton,
   Empty,
@@ -713,6 +714,7 @@ export function Evolution({ onClose }: { onClose: () => void }) {
               {cls.name} {n}
             </strong>
             <p>{cls.progression[String(n) as keyof typeof cls.progression]}</p>
+            <BookSubjectButton subject={`class:${cls.id}`} />
             <small>
               p. {cls.page} · O primeiro nível de uma nova classe usa os ganhos
               de níveis adicionais. Treinamentos e proficiências iniciais não
@@ -804,13 +806,25 @@ export function Evolution({ onClose }: { onClose: () => void }) {
 }
 export function AddEntry({
   spells,
+  initialEntry,
   onClose,
 }: {
   spells: boolean;
+  initialEntry?: CatalogEntry;
   onClose: () => void;
 }) {
   const { character: c, commit } = useApp();
-  const [draft, setDraft] = useState(structuredClone(c));
+  const [draft, setDraft] = useState(() => {
+    const draft = structuredClone(c);
+    if (
+      initialEntry &&
+      !draft.acquisitions.some((a) => a.entryId === initialEntry.id)
+    )
+      draft.acquisitions.push(
+        acquisition(initialEntry.id, c.levels.length, c.levels[0].classId),
+      );
+    return draft;
+  });
   const [source, setSource] = useState(c.levels[0].classId);
   const [mode, setMode] = useState<"spell" | "formula" | "device">("spell");
   const [reason, setReason] = useState("");
@@ -868,7 +882,20 @@ export function AddEntry({
       <ErrorList errors={error ? [error] : []} />
       <div className="form-grid">
         <Field label="Origem da aprendizagem">
-          <select value={source} onChange={(e) => setSource(e.target.value)}>
+          <select
+            value={source}
+            onChange={(e) => {
+              const source = e.target.value;
+              setSource(source);
+              if (initialEntry)
+                setDraft((draft) => ({
+                  ...draft,
+                  acquisitions: draft.acquisitions.map((a) =>
+                    selected.some((x) => x.id === a.id) ? { ...a, source } : a,
+                  ),
+                }));
+            }}
+          >
             {[...new Set(c.levels.map((l) => l.classId))].map((id) => (
               <option key={id} value={id}>
                 {CLASS_MAP.get(id)?.name}

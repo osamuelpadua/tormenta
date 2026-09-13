@@ -1,0 +1,11 @@
+{
+  "checked": 1436,
+  "verified": 1435,
+  "missing": [
+    {
+      "id": "skillUse-intuicao-do",
+      "name": "do)",
+      "page": 120
+    }
+  ]
+}

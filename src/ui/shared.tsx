@@ -20,8 +20,12 @@ export interface UIContext {
   commit: (command: Command) => Promise<void>;
   notify: (text: string) => void;
   openEntry: (entry: CatalogEntry) => void;
-  openBook: (page: number) => void;
+  openBook: (page: number, focus?: string) => void;
 }
+export const ReferenceContext = createContext<{
+  openEntry: (entry: CatalogEntry) => void;
+  openBook: (page: number, focus?: string) => void;
+} | null>(null);
 export const AppContext = createContext<UIContext>(null!);
 export const useApp = () => useContext(AppContext);
 let openModals = 0;

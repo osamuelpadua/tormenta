@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EntityIcon } from "./entity-icon";
+import { BookEntryButton } from "./entry-readout";
 import {
   Activity,
   ArrowRight,
@@ -1189,6 +1190,11 @@ export function ConditionModal({ onClose }: { onClose: () => void }) {
           <p className="source-text">
             {CONDITIONS.find((e) => slug(e.name) === condition)?.description}
           </p>
+          {CONDITIONS.find((e) => slug(e.name) === condition) && (
+            <BookEntryButton
+              entry={CONDITIONS.find((e) => slug(e.name) === condition)!}
+            />
+          )}
         </>
       ) : (
         <>
@@ -1683,7 +1689,7 @@ export function UseModal({
           </div>
         </section>
       )}
-      <SourceButton page={entry.page} onClick={() => openBook(entry.page)} />
+      <BookEntryButton entry={entry} />
     </Modal>
   );
 }

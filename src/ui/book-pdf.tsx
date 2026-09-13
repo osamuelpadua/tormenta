@@ -1,23 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  getDocument,
-  GlobalWorkerOptions,
   TextLayer,
   type PDFDocumentProxy,
   type PDFPageProxy,
   type RenderTask,
 } from "pdfjs-dist";
-import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import { acquireBookDocument } from "./book-document";
 import { bookUrl, pdfPageNumber } from "./book-source";
 import { bookMatches } from "./book-search";
 import "./book-pdf.css";
-
-GlobalWorkerOptions.workerSrc = workerUrl;
 
 export default function BookPdf({
   page,
   zoom,
   highlight,
+  focusHeading = false,
   matchRequest,
   onZoomChange,
   onPageChange,
@@ -25,6 +22,7 @@ export default function BookPdf({
   page: number;
   zoom: number;
   highlight: string;
+  focusHeading?: boolean;
   matchRequest: number;
   onZoomChange: (zoom: number) => void;
   onPageChange: (page: number) => void;
@@ -49,6 +47,47 @@ export default function BookPdf({
   const [renderError, setRenderError] = useState("");
   const renderKey = `${page}:${width}:${zoom}:${retry}`;
   const ready = rendered === renderKey;
+  const preview = displayedPage.current === page && !!rendered;
+
+  // Keep the previous raster visible at the requested size while a sharp copy
+  // is prepared. Rapid zoom changes are coalesced before starting PDF.js work.
+  useLayoutEffect(() => {
+    const sheet = host.current?.firstElementChild as HTMLElement | null;
+    const scroll = scroller.current;
+    if (!sheet || !scroll || !preview || !width) return;
+    const canvas = sheet.querySelector("canvas")!;
+    const originalWidth = parseFloat(canvas.style.width);
+    const originalHeight = parseFloat(canvas.style.height);
+    const scale = (width * zoom) / originalWidth;
+    if (!zoomAnchor.current) {
+      const padding = parseFloat(getComputedStyle(scroll).paddingTop);
+      const displayedWidth = sheet.getBoundingClientRect().width;
+      const displayedHeight = sheet.getBoundingClientRect().height;
+      zoomAnchor.current = {
+        x: (scroll.scrollLeft + scroll.clientWidth / 2) / displayedWidth,
+        y:
+          (scroll.scrollTop + scroll.clientHeight / 2 - padding) /
+          displayedHeight,
+        viewX: scroll.clientWidth / 2,
+        viewY: scroll.clientHeight / 2,
+      };
+    }
+    host.current!.style.transform = "";
+    sheet.style.transformOrigin = "top left";
+    sheet.style.transform = `scale(${scale})`;
+    sheet.style.margin = "0";
+    host.current!.style.width = `${originalWidth * scale}px`;
+    host.current!.style.height = `${originalHeight * scale}px`;
+    const anchor = zoomAnchor.current;
+    scroll.scrollTo({
+      left: anchor.x * originalWidth * scale - anchor.viewX,
+      top:
+        anchor.y * originalHeight * scale -
+        anchor.viewY +
+        parseFloat(getComputedStyle(scroll).paddingTop),
+      behavior: "instant",
+    });
+  }, [page, width, zoom]);
 
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) =>
@@ -63,31 +102,7 @@ export default function BookPdf({
     setDocument(undefined);
     setProgress(0);
     setLoadError(false);
-    const assets = new URL(
-      `${import.meta.env.BASE_URL}pdfjs/`,
-      window.location.href,
-    ).href;
-    const task = getDocument({
-      url: bookUrl,
-      // Full responses work with the precached PDF, including offline reloads.
-      disableRange: true,
-      disableStream: true,
-      useSystemFonts: false,
-      cMapUrl: `${assets}cmaps/`,
-      standardFontDataUrl: `${assets}standard_fonts/`,
-      wasmUrl: `${assets}wasm/`,
-      iccUrl: `${assets}iccs/`,
-    });
-    task.onProgress = ({
-      loaded,
-      total,
-    }: {
-      loaded: number;
-      total: number;
-    }) => {
-      if (!cancelled && total > 0)
-        setProgress(Math.min(100, Math.round((loaded * 100) / total)));
-    };
+    const task = acquireBookDocument(setProgress);
     void task.promise
       .then((pdf) => {
         if (!cancelled) setDocument(pdf);
@@ -97,7 +112,7 @@ export default function BookPdf({
       });
     return () => {
       cancelled = true;
-      void task.destroy();
+      task.release();
     };
   }, [retry]);
 
@@ -175,7 +190,11 @@ export default function BookPdf({
             }
           : null);
       host.current?.replaceChildren(sheet);
-      if (host.current) host.current.style.transform = "";
+      if (host.current) {
+        host.current.style.transform = "";
+        host.current.style.width = "";
+        host.current.style.height = "";
+      }
       if (anchor && displayedPage.current === page) {
         scroll.scrollTo({
           left: anchor.x * viewport.width - anchor.viewX,
@@ -187,11 +206,17 @@ export default function BookPdf({
       displayedPage.current = page;
       setRendered(renderKey);
     };
-    void render().catch(() => {
-      if (!cancelled) setRenderError(renderKey);
-    });
+    const timer = window.setTimeout(
+      () => {
+        void render().catch(() => {
+          if (!cancelled) setRenderError(renderKey);
+        });
+      },
+      displayedPage.current === page ? 160 : 0,
+    );
     return () => {
       cancelled = true;
+      clearTimeout(timer);
       renderTask?.cancel();
       textLayer?.cancel();
       // Page cleanup waits for an active render, and frees decoded images.
@@ -215,6 +240,19 @@ export default function BookPdf({
       return { span, start, end: text.length - 1 };
     });
     const matches = bookMatches(text, highlight);
+    if (focusHeading) {
+      // Prefer the prominent heading to incidental mentions earlier on the page.
+      const score = (match: { start: number; end: number }) =>
+        Math.max(
+          0,
+          ...pieces
+            .filter(
+              (piece) => piece.end > match.start && piece.start < match.end,
+            )
+            .map((piece) => piece.span.getBoundingClientRect().height),
+        );
+      matches.sort((a, b) => score(b) - score(a) || a.start - b.start);
+    }
     const layer = window.document.createElement("div");
     layer.className = "book-pdf-highlights";
     layer.setAttribute("aria-hidden", "true");
@@ -252,8 +290,19 @@ export default function BookPdf({
         inline: "center",
         behavior: "instant",
       });
+      if (focusHeading && window.innerWidth <= 600 && layer.firstElementChild) {
+        // Align the beginning of the column, leaving room to read after its title.
+        scroller.current?.scrollTo({
+          left: Math.max(
+            0,
+            parseFloat((layer.firstElementChild as HTMLElement).style.left) -
+              16,
+          ),
+          behavior: "instant",
+        });
+      }
     }
-  }, [highlight, matchRequest, ready, rendered]);
+  }, [highlight, focusHeading, matchRequest, ready, rendered]);
 
   useEffect(() => {
     const scroll = scroller.current!;
@@ -373,7 +422,8 @@ export default function BookPdf({
           </a>
         </div>
       ) : (
-        !ready && (
+        !ready &&
+        !preview && (
           <div className="book-pdf-message" role="status">
             {document
               ? "Preparando página…"
@@ -392,10 +442,12 @@ export default function BookPdf({
         <div
           ref={host}
           className="book-pdf-host"
-          aria-hidden={!ready || error}
+          aria-hidden={(!ready && !preview) || error}
           // Keep the previous page's space while its replacement is drawn.
           // Removing it from layout toggles the scrollbar and retriggers resize.
-          style={{ visibility: !ready || error ? "hidden" : undefined }}
+          style={{
+            visibility: (!ready && !preview) || error ? "hidden" : undefined,
+          }}
         />
       </div>
     </div>

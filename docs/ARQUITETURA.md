@@ -20,6 +20,8 @@ Cinco destinos principais. No desktop, navegação lateral e ficha em duas colun
 
 ## Consistência
 
+Poderes e Magias compartilham `library-data.ts` com os seletores de criação e evolução, consultando os mesmos IDs do catálogo. `library-state.ts` conserva a consulta por personagem e módulo; `reference-navigation.ts` integra detalhes e PDF ao histórico e ao hash. `book-references.json` registra as fontes verificadas. O leitor continua único e pode sobrepor formulários sem descartar seus rascunhos. Consulte [a auditoria da biblioteca](BIBLIOTECA.md).
+
 Revisão de personagem e ID de comando previnem gravações repetidas e edições concorrentes silenciosas. IndexedDB é a fonte persistente; consultas reativas atualizam a interface após a transação. Erros de armazenamento são apresentados. Nenhum avanço do tempo decorre do relógio real. Atualização de PWA depende de ação explícita para não interromper combate.
 
 O banco está na versão 3. A versão 2 introduz comandos idempotentes e recuperação; a versão 3 converte pacotes de munição para unidades. Ambas preservam uma cópia integral anterior à migração. A versão do envelope JSON de backup permanece 1; pacotes de munição identificáveis em arquivos antigos são normalizados durante a prévia, com aviso.

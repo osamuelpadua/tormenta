@@ -18,6 +18,7 @@ import {
   SlidersHorizontal,
   Check,
   ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 import { Modal } from "./shared";
 import { bookUrl, pdfPageNumber } from "./book-source";
@@ -40,22 +41,28 @@ type SearchPage = {
 
 export function BookModal({
   page = 17,
+  focus = "",
+  returnLabel,
   onClose,
 }: {
   page?: number;
+  focus?: string;
+  returnLabel?: string;
   onClose: () => void;
 }) {
   const initialPage = parseBookPage(String(page)) ?? 17;
   const [current, setCurrent] = useState(initialPage);
   const [pageInput, setPageInput] = useState(String(initialPage));
   const [pageError, setPageError] = useState("");
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(
+    focus ? (window.innerWidth <= 600 ? 2 : 1.15) : 1,
+  );
   const [controls, setControls] = useState(true);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [highlight, setHighlight] = useState("");
-  const [matchRequest, setMatchRequest] = useState(0);
+  const [highlight, setHighlight] = useState(focus);
+  const [matchRequest, setMatchRequest] = useState(focus ? 1 : 0);
   const [pages, setPages] = useState<SearchPage[]>([]);
   const [searchState, setSearchState] = useState<
     "idle" | "loading" | "ready" | "error"
@@ -170,6 +177,16 @@ export function BookModal({
       }
     >
       <div className="reader-stage" ref={viewport}>
+        {returnLabel && (
+          <button
+            className="reader-back reader-float"
+            aria-label={returnLabel}
+            onClick={onClose}
+          >
+            <ArrowLeft size={19} />
+            <span>{returnLabel}</span>
+          </button>
+        )}
         <article
           className="book-page"
           aria-label={`${bookPageLabel(current)} do livro`}
@@ -185,6 +202,7 @@ export function BookModal({
               page={current}
               zoom={zoom}
               highlight={highlight}
+              focusHeading={!!focus && highlight === focus}
               matchRequest={matchRequest}
               onZoomChange={changeZoom}
               onPageChange={goTo}

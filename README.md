@@ -40,6 +40,8 @@ Os dados são físicos, rolados na mesa. Consulte os bônus na ficha; registrar 
 
 Personagens ficam no perfil deste navegador. Limpar os dados do site remove a base local. A recuperação local mantém cópias anteriores às migrações e fichas arquivadas; o arquivo JSON exportado permite restaurar em outro navegador ou dispositivo.
 
+Em Poderes e Magias, alterne entre o repertório do personagem e a biblioteca completa. Combine filtros, consulte detalhes e use **Ver no livro** para abrir a fonte com destaque e zoom. Voltar preserva a pesquisa e a posição da lista. Itens do inventário e outras referências identificadas também permitem consultar sua descrição no PDF.
+
 No celular e em tablets de até 900 px, use as cinco áreas na barra inferior. O menu no canto superior direito reúne livro, histórico, backups e ajuda. Na Ficha, os atalhos levam diretamente a perícias, ataques, detalhes e anotações. Os botões de PV e PM mostram a ação antes de abrir a prévia.
 
 ## Fontes e organização
@@ -53,6 +55,7 @@ O PDF tem aproximadamente 66 MB. Ele e os recursos locais do PDF.js são incluí
 - [Responsividade e experiência no celular](docs/RESPONSIVIDADE.md)
 - [Identidade visual de fantasia medieval](docs/IDENTIDADE_VISUAL.md)
 - [Auditoria do leitor e identidade dos ícones](docs/AUDITORIA_LEITOR.md)
+- [Bibliotecas de Poderes e Magias, referências e navegação](docs/BIBLIOTECA.md)
 - [Cobertura por fase e limitações](docs/LIMITACOES.md)
 - [Proveniência e estado da revisão](docs/REVISAO_FONTES.md)
 - [Hashes dos PDFs](docs/sources.json) e [índice de extração](docs/catalog-audit.json)
@@ -84,6 +87,6 @@ Vitest verifica o motor, regras de combate e magia, integridade das referências
 
 O backup da ficha manuscrita de Budrik está em `src/data/budrik.json` e é embarcado no app para preparar o personagem de exemplo sem depender de uma requisição de rede. `predev` e `prebuild` também o copiam para `public/imports/budrik.json`, pronto para a tela Backups. Ele inclui as leituras provisórias em Anotações, os totais originais dos ataques e os recursos atuais escolhidos: 69/98 PV e 12/18 PM. O script `node scripts/import-budrik.mjs` regenera os dois arquivos a partir da transcrição registrada no projeto.
 
-Validação da reformulação visual: build de produção, 114 testes Vitest e 26 cenários Playwright aprovados. Inclui as cinco áreas em sete larguras, formulários com altura reduzida, criação, sessão, evolução, backups e PDF offline. A regressão da piscada no leitor verifica sumiços, substituições e mudanças de tamanho com barras de rolagem visíveis como no Windows. Os limites da emulação estão em `docs/RESPONSIVIDADE.md`; a revisão integral das regras permanece pendente conforme `docs/LIMITACOES.md`.
+Validação da reformulação visual: build de produção, 119 testes Vitest e 30 cenários Playwright aprovados. Inclui as cinco áreas em sete larguras, formulários com altura reduzida, criação, sessão, evolução, backups e PDF offline. A regressão da piscada no leitor verifica sumiços, substituições e mudanças de tamanho com barras de rolagem visíveis como no Windows. Os limites da emulação estão em `docs/RESPONSIVIDADE.md`; a revisão integral das regras permanece pendente conforme `docs/LIMITACOES.md`.
 
 O app está publicado em https://tormenta-osamuelpaduas-projects.vercel.app, com deploy automático da branch `main`. As fichas continuam locais ao navegador, sem sincronização em nuvem.
