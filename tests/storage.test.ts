@@ -13,6 +13,79 @@ afterEach(async () => {
   await db.delete();
 });
 describe("persistência transacional e backups", () => {
+  it("abre uma base nova com Budrik antes da primeira consulta", async () => {
+    db.on("ready", () => db.initializeExampleCharacter());
+    const [c] = await db.characters.toArray();
+    expect(c).toMatchObject({
+      name: "Budrik",
+      raceId: "anao",
+      hp: 69,
+      mp: 12,
+    });
+    expect(c.levels).toHaveLength(6);
+    expect(c.inventory.some((item) => item.name === "Marreta certeira")).toBe(
+      true,
+    );
+    expect((await db.exportBackup()).history.length).toBeGreaterThan(0);
+  });
+  it("duas abas adicionam apenas um exemplo e preservam edições ao reabrir", async () => {
+    const other = new CharacterDatabase(db.name);
+    try {
+      await Promise.all([
+        db.initializeExampleCharacter(),
+        other.initializeExampleCharacter(),
+      ]);
+      expect(await db.characters.count()).toBe(1);
+      const [c] = await db.characters.toArray();
+      await db.dispatch(c.id, c.revision, {
+        type: "resource",
+        kind: "mp",
+        amount: 1,
+        mode: "spend",
+        reason: "Habilidade",
+      });
+      const backup = await db.exportBackup();
+      db.close();
+      await db.open();
+      await db.initializeExampleCharacter();
+      expect((await db.exportBackup()).characters).toEqual(backup.characters);
+      expect((await db.exportBackup()).history).toEqual(backup.history);
+      expect((await db.characters.get(c.id))!.mp).toBe(11);
+    } finally {
+      other.close();
+    }
+  });
+  it("preserva uma ficha existente e não cria o exemplo após arquivá-la", async () => {
+    const c = hero();
+    await db.create(c);
+    const before = await db.exportBackup();
+    await db.initializeExampleCharacter();
+    const after = await db.exportBackup();
+    expect(after.characters).toEqual(before.characters);
+    expect(after.history).toEqual(before.history);
+    await db.archive(c.id);
+    await db.initializeExampleCharacter();
+    expect(await db.characters.count()).toBe(0);
+  });
+  it("não recria Budrik depois que o exemplo é arquivado", async () => {
+    await db.initializeExampleCharacter();
+    const [c] = await db.characters.toArray();
+    await db.archive(c.id);
+    db.close();
+    await db.open();
+    await db.initializeExampleCharacter();
+    expect(await db.characters.count()).toBe(0);
+    expect((await db.recovery.toArray())[0].characters[0].id).toBe(c.id);
+  });
+  it("respeita fichas arquivadas antes da introdução do exemplo", async () => {
+    const c = hero();
+    await db.create(c);
+    await db.archive(c.id);
+    const recovery = await db.recovery.toArray();
+    await db.initializeExampleCharacter();
+    expect(await db.characters.count()).toBe(0);
+    expect(await db.recovery.toArray()).toEqual(recovery);
+  });
   it("migra pacotes de munição mantendo o estado anterior na recuperação", async () => {
     const legacy = new Dexie(db.name);
     legacy.version(2).stores({

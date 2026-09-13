@@ -6,6 +6,7 @@ playwright-report/
 *.tsbuildinfo
 *.local
 public/pdfjs/
+public/imports/budrik.json
 .env
 .env.*
 !.env.example

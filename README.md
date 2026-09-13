@@ -28,6 +28,8 @@ Mantenha o mesmo endereço, protocolo e porta para acessar a mesma base local. `
 
 ## Usar
 
+Na primeira abertura, o app já mostra **Budrik**, anão bárbaro de nível 6, como personagem de exemplo, com 69/98 PV e 12/18 PM. A ficha pode ser editada normalmente. O exemplo só é adicionado uma vez em uma base sem personagens nem fichas arquivadas; fichas existentes são preservadas, e arquivar Budrik não faz ele reaparecer.
+
 Os dados são físicos, rolados na mesa. Consulte os bônus na ficha; registrar um teste de perícia é opcional. Ao informar o d20, o app soma os modificadores e compara com a CD, se preenchida. Ataques, efeitos com dados e a criação por rolagem pedem os resultados físicos antes de concluir. Cancelar esse registro preserva a ficha e os recursos. Os dados informados ficam no histórico e nos backups.
 
 1. Crie o personagem pelo assistente. Distribua os atributos, escolha raça, classe, origem, devoção, perícias, poderes, equipamento e magias. A revisão mostra escolhas pendentes e permite registrar exceções autorizadas com motivo.
@@ -78,8 +80,8 @@ npm.cmd run test:e2e
 
 Vitest verifica o motor, regras de combate e magia, integridade das referências, backups, idempotência e migrações. Playwright executa os fluxos em Chromium, incluindo toque emulado e larguras de 320 a 1440 px. Os testes de navegador iniciam o servidor de produção na porta 4173; faça o build antes. Capturas ficam em `.cache/screenshots` e relatórios de falha em `test-results`.
 
-O backup da ficha manuscrita de Budrik está em `public/imports/budrik.json`, pronto para a tela Backups. Ele inclui as leituras provisórias em Anotações, os totais originais dos ataques e os recursos atuais escolhidos: 69/98 PV e 12/18 PM. O script `node scripts/import-budrik.mjs` regenera esse arquivo a partir da transcrição registrada no projeto.
+O backup da ficha manuscrita de Budrik está em `src/data/budrik.json` e é embarcado no app para preparar o personagem de exemplo sem depender de uma requisição de rede. `predev` e `prebuild` também o copiam para `public/imports/budrik.json`, pronto para a tela Backups. Ele inclui as leituras provisórias em Anotações, os totais originais dos ataques e os recursos atuais escolhidos: 69/98 PV e 12/18 PM. O script `node scripts/import-budrik.mjs` regenera os dois arquivos a partir da transcrição registrada no projeto.
 
 Validação da revisão de responsividade: build de produção, 92 testes Vitest e 21 cenários Playwright aprovados. Inclui as cinco áreas em sete larguras, formulários com altura reduzida, criação, sessão, evolução, backups e PDF offline. A regressão da piscada no leitor verifica sumiços, substituições e mudanças de tamanho com barras de rolagem visíveis como no Windows. Os limites da emulação estão em `docs/RESPONSIVIDADE.md`; a revisão integral das regras permanece pendente conforme `docs/LIMITACOES.md`.
 
-Não há publicação ou sincronização em nuvem configurada.
+O app está publicado em https://tormenta-osamuelpaduas-projects.vercel.app, com deploy automático da branch `main`. As fichas continuam locais ao navegador, sem sincronização em nuvem.

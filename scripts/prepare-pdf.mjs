@@ -2,6 +2,10 @@ import { cpSync, mkdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 
+// Keep the downloadable backup identical to the bundled example character.
+mkdirSync("public/imports", { recursive: true });
+cpSync("src/data/budrik.json", "public/imports/budrik.json");
+
 // Serve PDF.js fonts and image decoders locally, including their licenses.
 const require = createRequire(import.meta.url);
 const source = dirname(require.resolve("pdfjs-dist/package.json"));

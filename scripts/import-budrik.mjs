@@ -178,12 +178,13 @@ try {
   };
   const { warnings } = parseBackup(JSON.stringify(backup));
   if (warnings.length) throw new Error(warnings.join("; "));
+  writeFileSync("src/data/budrik.json", JSON.stringify(backup, null, 2));
   mkdirSync("public/imports", { recursive: true });
   writeFileSync("public/imports/budrik.json", JSON.stringify(backup, null, 2));
   console.log(
     JSON.stringify(
       {
-        file: "public/imports/budrik.json",
+        file: "src/data/budrik.json",
         name: c.name,
         attributes: Object.fromEntries(
           Object.entries(d.attributes).map(([id, v]) => [id, v.total]),

@@ -5,13 +5,8 @@ import { acquisition } from "../src/domain/character";
 
 test.use({ hasTouch: true });
 
-async function importBudrik(page: Page) {
+async function loadBudrik(page: Page) {
   await page.goto("/");
-  await page.getByRole("button", { name: "Restaurar um backup" }).click();
-  await page
-    .locator("input[type=file]")
-    .setInputFiles("public/imports/budrik.json");
-  await page.getByRole("button", { name: "Importar como cópias" }).click();
   await expect(page.locator(".character-banner h2")).toHaveText("Budrik");
 }
 
@@ -56,7 +51,7 @@ for (const width of [320, 390, 600, 768, 900, 1024, 1440]) {
     page,
   }) => {
     await page.setViewportSize({ width, height: 844 });
-    await importBudrik(page);
+    await loadBudrik(page);
     const nav = page.locator(width <= 900 ? ".mobile-nav" : ".main-nav");
     await expect(nav).toBeVisible();
     for (const name of [
@@ -123,7 +118,7 @@ test("celular: atalhos, dano, histórico e inventário funcionam com toque", asy
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await importBudrik(page);
+  await loadBudrik(page);
   await page
     .getByRole("navigation", { name: "Atalhos da ficha" })
     .getByRole("button", { name: "Ataques", exact: true })
@@ -190,7 +185,7 @@ test("320px: edição, evolução, condições e catálogos ficam dentro das jan
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
-  await importBudrik(page);
+  await loadBudrik(page);
   await page.getByRole("button", { name: "Editar ficha", exact: true }).tap();
   for (const name of [
     "Identidade",
@@ -255,7 +250,10 @@ test("390px: magias mostram aprimoramentos e confirmação acessível", async ({
   spell.prepared = true;
   c.acquisitions.push(spell);
   await page.goto("/");
-  await page.getByRole("button", { name: "Restaurar um backup" }).tap();
+  await page
+    .getByRole("button", { name: "Abrir ferramentas", exact: true })
+    .tap();
+  await page.getByRole("button", { name: /Backups e importação/ }).tap();
   await page.locator("input[type=file]").setInputFiles({
     name: "mago.json",
     mimeType: "application/json",
@@ -296,7 +294,9 @@ test("320px: criação mantém a etapa visível e formulários dentro da tela", 
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto("/");
-  await page.getByRole("button", { name: "Criar meu personagem" }).tap();
+  await page
+    .getByRole("button", { name: "Criar personagem", exact: true })
+    .tap();
   await page.getByLabel("Nome do personagem", { exact: true }).fill("Aurora");
   for (let i = 0; i < 11; i++) {
     await dialogFits(page);

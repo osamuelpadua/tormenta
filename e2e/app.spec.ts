@@ -20,7 +20,9 @@ async function importCharacter(page: Page, character?: Character) {
     history: [],
   };
   await page.goto("/");
-  await page.getByRole("button", { name: "Restaurar um backup" }).click();
+  await page
+    .getByRole("button", { name: "Backups e importação", exact: true })
+    .click();
   await page.locator("input[type=file]").setInputFiles({
     name: "personagem.json",
     mimeType: "application/json",
@@ -41,7 +43,9 @@ test("cria um personagem pelas escolhas do assistente sem exceções", async ({
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page.getByRole("button", { name: "Criar meu personagem" }).click();
+  await page
+    .getByRole("button", { name: "Novo personagem", exact: true })
+    .click();
   await page.getByLabel("Nome do personagem", { exact: true }).fill("Aurora");
   await page.getByLabel("Jogador", { exact: true }).fill("Samuel");
   await page.locator(".wizard-nav button").nth(1).click();

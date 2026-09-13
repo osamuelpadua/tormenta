@@ -1,9 +1,15 @@
 import Dexie, { type Table } from "dexie";
 import { RULESET } from "../data/rules";
+import budrikBackup from "../data/budrik.json";
 import { timestamp, uid, normalizeAmmunition } from "../domain/character";
 import { execute, type Command } from "../domain/commands";
 import type { Character, HistoryEvent } from "../domain/types";
-import { BACKUP_SCHEMA, characterSchema, type Backup } from "./schema";
+import {
+  BACKUP_SCHEMA,
+  characterSchema,
+  parseBackup,
+  type Backup,
+} from "./schema";
 
 export class CharacterDatabase extends Dexie {
   characters!: Table<Character, string>;
@@ -79,6 +85,29 @@ export class CharacterDatabase extends Dexie {
             e.before?.inventory.forEach(normalizeAmmunition);
           });
       });
+  }
+  async initializeExampleCharacter() {
+    await this.transaction(
+      "rw",
+      this.characters,
+      this.history,
+      this.settings,
+      this.recovery,
+      async () => {
+        const key = "example-character-initialized";
+        if (await this.settings.get(key)) return;
+        // A shared transaction prevents duplicate examples when two tabs open.
+        // Recovery records also preserve a previously emptied character list.
+        if (
+          (await this.characters.count()) === 0 &&
+          (await this.recovery.count()) === 0
+        ) {
+          const { backup } = parseBackup(JSON.stringify(budrikBackup));
+          await this.importBackup(backup);
+        }
+        await this.settings.put({ key, value: "1" });
+      },
+    );
   }
   async create(character: Character) {
     const c = characterSchema.parse(character) as Character;

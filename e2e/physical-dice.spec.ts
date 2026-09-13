@@ -7,11 +7,6 @@ async function loadBudrik(page: Page) {
     };
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "Restaurar um backup" }).click();
-  await page
-    .locator("input[type=file]")
-    .setInputFiles("public/imports/budrik.json");
-  await page.getByRole("button", { name: "Importar como cópias" }).click();
   await expect(page.locator(".character-banner h2")).toHaveText("Budrik");
 }
 
