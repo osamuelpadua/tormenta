@@ -569,7 +569,7 @@ export function Library({
   onAdd: () => void;
   onUse: (e: CatalogEntry) => void;
 }) {
-  const { character: c, commit, openEntry } = useApp();
+  const { character: c, commit, openEntry, openBook } = useApp();
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState("all");
   const [favorites, setFavorites] = useState(false);
@@ -704,7 +704,10 @@ export function Library({
                     )}
                 </div>
                 <footer>
-                  <button className="text-button" onClick={() => openEntry(e)}>
+                  <button
+                    className="text-button"
+                    onClick={() => openBook(e.page)}
+                  >
                     Consultar · p. {e.page}
                   </button>
                   {usage.active && (
