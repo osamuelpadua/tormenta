@@ -249,3 +249,42 @@ test("um jogador vê a ficha do grupo apenas para leitura", async ({ page }) => 
   await page.setViewportSize({ width: 390, height: 844 });
   await shot(page, "05-ficha-grupo-celular");
 });
+
+test("convida quem não tem conta, sem empilhar com o convite de instalação", async ({
+  page,
+}) => {
+  const invite = page.getByRole("region", { name: "Jogue com o seu grupo" });
+  const install = page.getByRole("region", {
+    name: "Leve Tormenta Wiki com você",
+  });
+  await page.goto("/");
+  await expect(invite).toBeVisible();
+  await expect(install).toHaveCount(0);
+  await invite.getByRole("button", { name: "Agora não" }).click();
+  await expect(invite).toHaveCount(0);
+  await expect(install).toBeVisible();
+  await page.reload();
+  await expect(page.locator(".character-banner h2")).toHaveText("Budrik");
+  await expect(invite).toHaveCount(0);
+
+  // A week later the invitation returns once; it opens on "Criar conta".
+  await page.evaluate(() =>
+    localStorage.setItem(
+      "tormenta-account-prompt",
+      String(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    ),
+  );
+  await page.reload();
+  await invite.getByRole("button", { name: "Criar conta" }).click();
+  const dialog = page.getByRole("dialog");
+  await expect(
+    dialog.getByRole("tab", { name: "Criar conta" }),
+  ).toHaveAttribute("aria-selected", "true");
+  await dialog.getByLabel("Como quer ser chamado").fill("Ana");
+  await dialog.getByLabel("E-mail").fill("convite@mesa.dev");
+  await dialog.getByLabel("Senha").fill("segredo123");
+  await dialog.locator("form button.primary").click();
+  await expect(dialog.getByText("convite@mesa.dev")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(invite).toHaveCount(0);
+});

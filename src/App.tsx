@@ -94,6 +94,8 @@ import {
 import { backend, useSyncStatus } from "./sync/backend";
 import {
   AccountModal,
+  AccountRecommendation,
+  useAccountPrompt,
   syncLabel,
   usePendingCount,
 } from "./ui/campaigns/account";
@@ -114,9 +116,9 @@ type ModalState =
         | "coins"
         | "archive"
         | "help"
-        | "install"
-        | "account";
+        | "install";
     }
+  | { kind: "account"; signup?: boolean }
   | { kind: "tools" }
   | { kind: "resource"; mode: "damage" | "hp" | "mp" | "rest" }
   | { kind: "attack"; id: string }
@@ -164,6 +166,7 @@ export default function App() {
   const { requestDice, diceDialog } = usePhysicalDice();
   const sync = useSyncStatus();
   const pending = usePendingCount();
+  const accountPrompt = useAccountPrompt();
   const accountId = sync.session?.userId ?? null;
   // Local-only characters always show; account characters only while that
   // account is signed in. Wait for the session check to keep the selection.
@@ -394,7 +397,9 @@ export default function App() {
     if (modal.kind === "install")
       return <InstallDialog installation={installation} onClose={close} />;
     if (modal.kind === "account")
-      return <AccountModal onClose={close} notify={notify} />;
+      return (
+        <AccountModal onClose={close} notify={notify} signup={modal.signup} />
+      );
     if (modal.kind === "create")
       return (
         <CharacterWizard
@@ -804,12 +809,20 @@ export default function App() {
             </button>
           </div>
         )}
-        {!(tab === "maps" && route.mapId) && !route.campaignMapId && (
-          <InstallRecommendation
-            installation={installation}
-            onInstall={requestInstall}
-          />
-        )}
+        {!(tab === "maps" && route.mapId) &&
+          !route.campaignMapId &&
+          // One invitation at a time: the account first, then installing.
+          (accountPrompt.show ? (
+            <AccountRecommendation
+              onCreate={() => setModal({ kind: "account", signup: true })}
+              onDismiss={accountPrompt.dismiss}
+            />
+          ) : (
+            <InstallRecommendation
+              installation={installation}
+              onInstall={requestInstall}
+            />
+          ))}
         <main id="main-content">
           {characters === undefined ? (
             <div className="loading-state">

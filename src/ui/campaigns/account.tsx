@@ -1,11 +1,81 @@
 import { useState, type FormEvent } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { CloudUpload, LogOut, RefreshCw, UserRound } from "lucide-react";
+import {
+  CloudUpload,
+  LogOut,
+  RefreshCw,
+  UserPlus,
+  UserRound,
+  Users,
+} from "lucide-react";
 import { db } from "../../storage/database";
 import { backend, engine, useSyncStatus } from "../../sync/backend";
 import type { SyncStatus } from "../../sync/sync-engine";
 import { AsyncButton, Field, Modal, Pill, Toggle } from "../shared";
 
+const PROMPT_KEY = "tormenta-account-prompt";
+const PROMPT_PAUSE = 7 * 24 * 60 * 60 * 1000;
+function promptDismissedAt() {
+  try {
+    return Number(localStorage.getItem(PROMPT_KEY)) || 0;
+  } catch {
+    return 0;
+  }
+}
+// Invites signed-out users to create an account; "Agora não" pauses it for
+// a week, after which it returns once as a reminder.
+export function useAccountPrompt() {
+  const status = useSyncStatus();
+  const [dismissedAt, setDismissedAt] = useState(promptDismissedAt);
+  const show =
+    !!backend &&
+    status.state === "signed-out" &&
+    Date.now() - dismissedAt > PROMPT_PAUSE;
+  const dismiss = () => {
+    const now = Date.now();
+    try {
+      localStorage.setItem(PROMPT_KEY, String(now));
+    } catch {
+      // Storage blocked: the prompt simply returns next visit.
+    }
+    setDismissedAt(now);
+  };
+  return { show, dismiss };
+}
+export function AccountRecommendation({
+  onCreate,
+  onDismiss,
+}: {
+  onCreate: () => void;
+  onDismiss: () => void;
+}) {
+  return (
+    <section
+      className="install-recommendation account-recommendation"
+      aria-labelledby="account-recommendation-title"
+    >
+      <span className="account-recommendation-seal" aria-hidden="true">
+        <Users size={28} />
+      </span>
+      <div className="install-recommendation-copy">
+        <h2 id="account-recommendation-title">Jogue com o seu grupo</h2>
+        <p>
+          Crie uma conta grátis para guardar suas fichas na nuvem, entrar em
+          campanhas e explorar o mapa com a mesa.
+        </p>
+      </div>
+      <div className="install-recommendation-actions">
+        <button className="button primary" onClick={onCreate}>
+          <UserPlus size={17} />
+          Criar conta
+        </button>
+        <button className="button" onClick={onDismiss}>
+          Agora não
+        </button>
+      </div>
+    </section>
+  );
+}
 export function syncLabel(status: SyncStatus, pending: number) {
   if (status.state === "syncing") return "Sincronizando…";
   if (status.state === "offline")
@@ -20,8 +90,14 @@ export function usePendingCount() {
   return useLiveQuery(() => db.outbox.count(), [], 0);
 }
 
-function SignIn({ onDone }: { onDone: () => void }) {
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+function SignIn({
+  onDone,
+  initialMode = "signin",
+}: {
+  onDone: () => void;
+  initialMode?: "signin" | "signup";
+}) {
+  const [mode, setMode] = useState(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -179,7 +255,10 @@ function UploadLocal() {
 export function AccountModal({
   onClose,
   notify,
+  signup = false,
 }: {
+  // Opens on "Criar conta" instead of "Entrar".
+  signup?: boolean;
   onClose: () => void;
   notify: (text: string) => void;
 }) {
@@ -204,6 +283,7 @@ export function AccountModal({
       )}
       {!session ? (
         <SignIn
+          initialMode={signup ? "signup" : "signin"}
           onDone={() => {
             notify("Bem-vindo de volta à mesa.");
           }}

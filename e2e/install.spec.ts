@@ -3,6 +3,15 @@ import { test, expect, type Page } from "@playwright/test";
 const recommendation = (page: Page) =>
   page.getByRole("region", { name: "Leve Tormenta Wiki com você" });
 
+// These tests cover installing; the account invitation, shown first to
+// signed-out visitors, has its own test (campaigns.spec.ts).
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    if (!localStorage.getItem("tormenta-account-prompt"))
+      localStorage.setItem("tormenta-account-prompt", String(Date.now()));
+  });
+});
+
 async function offer(page: Page, outcome: "accepted" | "dismissed" | "error") {
   await page.evaluate((result) => {
     const event = new Event("beforeinstallprompt", { cancelable: true });

@@ -571,3 +571,17 @@
   color: var(--muted);
   font-size: 13px;
 }
+
+/* Convite para criar conta: mesmo formato do convite para instalar. */
+.account-recommendation-seal {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--bronze);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #3a3322, #171a14 72%);
+  color: var(--gold-bright);
+  box-shadow: 0 0 14px #e0c58e33;
+}
