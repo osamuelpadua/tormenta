@@ -21,6 +21,14 @@ export interface UIContext {
   notify: (text: string) => void;
   openEntry: (entry: CatalogEntry) => void;
   openBook: (page: number, focus?: string) => void;
+  // "master": another member's sheet in a campaign the user leads, where
+  // only effects (damage, healing, conditions) apply. "viewer": read-only.
+  access?: "owner" | "master" | "viewer";
+}
+// Owners act on everything; masters apply effects; viewers only read.
+export function useAccess() {
+  const access = useContext(AppContext).access ?? "owner";
+  return { owner: access === "owner", effects: access !== "viewer" };
 }
 export const ReferenceContext = createContext<{
   openEntry: (entry: CatalogEntry) => void;

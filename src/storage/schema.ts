@@ -275,6 +275,7 @@ export const eventSchema = z.strictObject({
   before: characterSchema.optional(),
   undone: z.boolean().optional(),
   rolls: z.array(rollSchema).max(100).optional(),
+  author: text.optional(),
 });
 export const BACKUP_SCHEMA = 1;
 const backupSchema = z.strictObject({

@@ -1,13 +1,42 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
-import { diceSides, physicalRoll } from "../domain/dice";
-import type { RollResult } from "../domain/types";
+import { execute, type Command } from "../domain/commands";
+import { diceSides, physicalRoll, PhysicalRollRequired } from "../domain/dice";
+import type { Character, RollResult } from "../domain/types";
 import { Field, Modal } from "./shared";
 
 export type RequestDice = (
   expression: string,
   label: string,
 ) => Promise<RollResult | null>;
+
+// Evaluates a copy first and asks for every die the command needs, so
+// resources and history are saved only after all results are confirmed.
+export async function prepareCommand(
+  character: Character,
+  command: Command,
+  requestDice: RequestDice,
+): Promise<Command> {
+  const prepared: Command = {
+    ...command,
+    physicalRolls: [...(command.physicalRolls ?? [])],
+  };
+  for (;;) {
+    try {
+      execute(character, prepared);
+      return prepared;
+    } catch (error) {
+      if (!(error instanceof PhysicalRollRequired)) throw error;
+      const result = await requestDice(error.expression, error.label);
+      if (!result)
+        throw new Error("Registro cancelado. Nenhuma alteração foi salva.");
+      prepared.physicalRolls!.push({
+        expression: error.expression,
+        values: result.dice.flatMap((die) => die.values),
+      });
+    }
+  }
+}
 
 export function usePhysicalDice() {
   const [pending, setPending] = useState<{

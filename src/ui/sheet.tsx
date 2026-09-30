@@ -45,6 +45,7 @@ import {
   SearchBox,
   SourceButton,
   Toggle,
+  useAccess,
   useApp,
 } from "./shared";
 
@@ -62,6 +63,7 @@ export function Sheet({
   onSkill: (id: string) => void;
 }) {
   const { character: c, openEntry } = useApp();
+  const { owner } = useAccess();
   const d = calculate(c);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
@@ -200,9 +202,11 @@ export function Sheet({
                 <Swords size={17} />
                 Ataques
               </h3>
-              <button className="text-button" onClick={onEdit}>
-                Configurar
-              </button>
+              {owner && (
+                <button className="text-button" onClick={onEdit}>
+                  Configurar
+                </button>
+              )}
             </div>
             <AttackList onAttack={onAttack} />
           </section>
@@ -238,13 +242,15 @@ export function Sheet({
           >
             <div className="panel-heading">
               <h3>Características</h3>
-              <button
-                className="icon-button"
-                onClick={onEdit}
-                aria-label="Editar características"
-              >
-                <Pencil size={15} />
-              </button>
+              {owner && (
+                <button
+                  className="icon-button"
+                  onClick={onEdit}
+                  aria-label="Editar características"
+                >
+                  <Pencil size={15} />
+                </button>
+              )}
             </div>
             <Calculation
               label="Iniciativa"
@@ -344,11 +350,13 @@ export function Sheet({
             <div className="panel-heading">
               <h3>
                 <Feather size={17} />
-                Sua história
+                {owner ? "Sua história" : "História"}
               </h3>
-              <button className="text-button" onClick={onEdit}>
-                Editar
-              </button>
+              {owner && (
+                <button className="text-button" onClick={onEdit}>
+                  Editar
+                </button>
+              )}
             </div>
             <div className="bio-preview">
               {c.concept && <p>{c.concept}</p>}
@@ -386,6 +394,7 @@ export function SkillModal({
   onClose: () => void;
 }) {
   const { character: c, commit, openBook } = useApp();
+  const { owner } = useAccess();
   const [bonus, setBonus] = useState(0);
   const [dc, setDC] = useState("");
   const [die, setDie] = useState("");
@@ -424,28 +433,30 @@ export function SkillModal({
           <button className="button" onClick={onClose}>
             Fechar
           </button>
-          <AsyncButton
-            disabled={(skill.trained && !trained) || !validDie}
-            action={async () => {
-              try {
-                await commit({
-                  type: "roll",
-                  expression,
-                  physicalRolls: [{ expression, values: [Number(die)] }],
-                  label: `${skill.name}${selectedUse ? `: ${selectedUse.name}` : ""}`,
-                  skill: skillId,
-                  dc: dc === "" ? undefined : Number(dc),
-                  context: { underwater, attracted },
-                });
-                onClose();
-              } catch (e) {
-                setError((e as Error).message);
-              }
-            }}
-          >
-            <Check size={17} />
-            Registrar teste
-          </AsyncButton>
+          {owner && (
+            <AsyncButton
+              disabled={(skill.trained && !trained) || !validDie}
+              action={async () => {
+                try {
+                  await commit({
+                    type: "roll",
+                    expression,
+                    physicalRolls: [{ expression, values: [Number(die)] }],
+                    label: `${skill.name}${selectedUse ? `: ${selectedUse.name}` : ""}`,
+                    skill: skillId,
+                    dc: dc === "" ? undefined : Number(dc),
+                    context: { underwater, attracted },
+                  });
+                  onClose();
+                } catch (e) {
+                  setError((e as Error).message);
+                }
+              }}
+            >
+              <Check size={17} />
+              Registrar teste
+            </AsyncButton>
+          )}
         </>
       }
     >
@@ -454,27 +465,29 @@ export function SkillModal({
         <Pill tone={trained ? "green" : "neutral"}>
           {trained ? "Treinada" : "Não treinada"}
         </Pill>
-        <button
-          className="text-button"
-          onClick={() =>
-            void commit({
-              type: "edit",
-              character: {
-                ...c,
-                favorites: c.favorites.includes(skillId)
-                  ? c.favorites.filter((x) => x !== skillId)
-                  : [...c.favorites, skillId],
-              },
-              reason: `Favorito: ${skill.name}`,
-            })
-          }
-        >
-          <Star
-            size={16}
-            fill={c.favorites.includes(skillId) ? "currentColor" : "none"}
-          />
-          Favorita
-        </button>
+        {owner && (
+          <button
+            className="text-button"
+            onClick={() =>
+              void commit({
+                type: "edit",
+                character: {
+                  ...c,
+                  favorites: c.favorites.includes(skillId)
+                    ? c.favorites.filter((x) => x !== skillId)
+                    : [...c.favorites, skillId],
+                },
+                reason: `Favorito: ${skill.name}`,
+              })
+            }
+          >
+            <Star
+              size={16}
+              fill={c.favorites.includes(skillId) ? "currentColor" : "none"}
+            />
+            Favorita
+          </button>
+        )}
       </div>
       {skill.trained && !trained && (
         <div className="notice danger">

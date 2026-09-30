@@ -64,6 +64,7 @@ import {
   SearchBox,
   SourceButton,
   Toggle,
+  useAccess,
   useApp,
 } from "./shared";
 
@@ -73,6 +74,7 @@ export function Resources({
   onResource: (type: "damage" | "hp" | "mp" | "rest") => void;
 }) {
   const { character: c } = useApp();
+  const { effects } = useAccess();
   const d = calculate(c);
   return (
     <div className="resource-grid">
@@ -90,28 +92,30 @@ export function Resources({
           <div className="resource-value">
             <strong>{c[kind]}</strong>
             <span>/ {d[kind].total}</span>
-            <div className="resource-actions">
-              <button
-                title={kind === "hp" ? "Receber dano" : "Gastar PM"}
-                aria-label={kind === "hp" ? "Receber dano" : "Gastar PM"}
-                onClick={() => onResource(kind === "hp" ? "damage" : "mp")}
-              >
-                <Minus size={18} />
-                <span className="resource-action-label">
-                  {kind === "hp" ? "Dano" : "Gastar"}
-                </span>
-              </button>
-              <button
-                title={kind === "hp" ? "Recuperar PV" : "Recuperar PM"}
-                aria-label={kind === "hp" ? "Recuperar PV" : "Recuperar PM"}
-                onClick={() => onResource(kind)}
-              >
-                <Plus size={18} />
-                <span className="resource-action-label">
-                  {kind === "hp" ? "Curar" : "Recuperar"}
-                </span>
-              </button>
-            </div>
+            {effects && (
+              <div className="resource-actions">
+                <button
+                  title={kind === "hp" ? "Receber dano" : "Gastar PM"}
+                  aria-label={kind === "hp" ? "Receber dano" : "Gastar PM"}
+                  onClick={() => onResource(kind === "hp" ? "damage" : "mp")}
+                >
+                  <Minus size={18} />
+                  <span className="resource-action-label">
+                    {kind === "hp" ? "Dano" : "Gastar"}
+                  </span>
+                </button>
+                <button
+                  title={kind === "hp" ? "Recuperar PV" : "Recuperar PM"}
+                  aria-label={kind === "hp" ? "Recuperar PV" : "Recuperar PM"}
+                  onClick={() => onResource(kind)}
+                >
+                  <Plus size={18} />
+                  <span className="resource-action-label">
+                    {kind === "hp" ? "Curar" : "Recuperar"}
+                  </span>
+                </button>
+              </div>
+            )}
           </div>
           <div
             className="resource-track"
@@ -142,6 +146,7 @@ export function Resources({
 }
 export function AttackList({ onAttack }: { onAttack: (id: string) => void }) {
   const { character: c } = useApp();
+  const { owner } = useAccess();
   const d = calculate(c);
   return (
     <div className="attack-list">
@@ -162,14 +167,20 @@ export function AttackList({ onAttack }: { onAttack: (id: string) => void }) {
               {a.threat === 20 ? "20" : a.threat} / ×{a.critical}
             </small>
           </div>
-          <button
-            className="roll-button"
-            onClick={() => onAttack(a.id)}
-            aria-label={`Atacar com ${a.name}`}
-          >
-            <Dices size={17} />
-            {sign(a.toHit.total)}
-          </button>
+          {owner ? (
+            <button
+              className="roll-button"
+              onClick={() => onAttack(a.id)}
+              aria-label={`Atacar com ${a.name}`}
+            >
+              <Dices size={17} />
+              {sign(a.toHit.total)}
+            </button>
+          ) : (
+            <span className="roll-button" aria-label="Bônus de ataque">
+              {sign(a.toHit.total)}
+            </span>
+          )}
         </div>
       ))}
     </div>
@@ -177,6 +188,7 @@ export function AttackList({ onAttack }: { onAttack: (id: string) => void }) {
 }
 export function EffectsList({ onCondition }: { onCondition: () => void }) {
   const { character: c, commit, openEntry } = useApp();
+  const { effects } = useAccess();
   const d = calculate(c);
   return (
     <section className="panel effects-panel">
@@ -185,10 +197,12 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
           <Activity size={17} />
           Condições e efeitos
         </h3>
-        <button className="text-button" onClick={onCondition}>
-          <Plus size={15} />
-          Adicionar
-        </button>
+        {effects && (
+          <button className="text-button" onClick={onCondition}>
+            <Plus size={15} />
+            Adicionar
+          </button>
+        )}
       </div>
       {d.conditions.length > 0 && (
         <div className="condition-pills">
@@ -274,13 +288,17 @@ export function EffectsList({ onCondition }: { onCondition: () => void }) {
                   <small>rodadas</small>
                 </span>
               )}
-              <button
-                className="icon-button"
-                aria-label={`Encerrar ${e.name}`}
-                onClick={() => void commit({ type: "removeEffect", id: e.id })}
-              >
-                <X size={16} />
-              </button>
+              {effects && (
+                <button
+                  className="icon-button"
+                  aria-label={`Encerrar ${e.name}`}
+                  onClick={() =>
+                    void commit({ type: "removeEffect", id: e.id })
+                  }
+                >
+                  <X size={16} />
+                </button>
+              )}
             </div>
           ))}
         </div>

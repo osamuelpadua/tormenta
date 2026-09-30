@@ -6,11 +6,13 @@
   "scripts": {
     "predev": "node scripts/prepare-pdf.mjs",
     "dev": "vite --host 127.0.0.1",
+    "dev:demo": "vite --host 127.0.0.1 --mode demo",
     "prebuild": "node scripts/prepare-pdf.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:campaigns": "playwright test -c playwright.campaigns.config.ts",
     "sources": "node scripts/extract-sources.mjs && node scripts/format-book.mjs",
     "sources:format": "node scripts/format-book.mjs",
     "maps:prepare": "node scripts/prepare-maps.mjs"
@@ -18,6 +20,7 @@
   "dependencies": {
     "@fontsource-variable/cinzel": "^5.3.0",
     "@fontsource-variable/source-sans-3": "^5.3.0",
+    "@supabase/supabase-js": "^2.117.2",
     "dexie": "^4.2.0",
     "dexie-react-hooks": "^4.2.0",
     "fflate": "^0.8.3",

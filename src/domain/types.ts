@@ -258,6 +258,8 @@ export interface HistoryEvent {
   before?: Character;
   undone?: boolean;
   rolls?: RollResult[];
+  // Set when someone other than the owner (the campaign master) made the change.
+  author?: string;
 }
 export interface RollResult {
   expression: string;

@@ -3,23 +3,51 @@ import { ENTRY_MAP } from "../data/rules";
 import { parseBookPage } from "./book-search";
 
 export type Tab =
-  "sheet" | "combat" | "powers" | "spells" | "inventory" | "maps";
+  "sheet" | "combat" | "powers" | "spells" | "inventory" | "maps" | "campaigns";
+export type CampaignView = "table" | "party" | "members" | "notes";
 export interface ReferenceRoute {
   tab: Tab;
   entryId?: string;
   bookPage?: number;
   focus?: string;
   mapId?: string;
+  campaignId?: string;
+  campaignView?: CampaignView;
+  // Another member's sheet opened from a campaign.
+  memberCharacterId?: string;
+  invite?: string;
 }
-const tabs = ["sheet", "combat", "powers", "spells", "inventory", "maps"];
+const tabs = [
+  "sheet",
+  "combat",
+  "powers",
+  "spells",
+  "inventory",
+  "maps",
+  "campaigns",
+];
+const campaignViews = ["table", "party", "members", "notes"];
+const param = (params: URLSearchParams, key: string) =>
+  params.get(key)?.slice(0, 200) || undefined;
 export function readRoute(hash: string): ReferenceRoute {
   const [path, query] = hash.replace(/^#/, "").split("?");
   const params = new URLSearchParams(query);
   const entryId = params.get("entry") ?? "";
+  const view = params.get("view") ?? "";
   return {
     tab: tabs.includes(path) ? (path as Tab) : "sheet",
     ...(path === "maps" && params.get("map")
       ? { mapId: params.get("map")!.slice(0, 200) }
+      : {}),
+    ...(path === "campaigns"
+      ? {
+          campaignId: param(params, "campaign"),
+          campaignView: campaignViews.includes(view)
+            ? (view as CampaignView)
+            : undefined,
+          memberCharacterId: param(params, "character"),
+          invite: param(params, "invite")?.slice(0, 20),
+        }
       : {}),
     ...(ENTRY_MAP.has(entryId) ? { entryId } : {}),
     ...(params.has("book") && parseBookPage(params.get("book")!) !== undefined
@@ -33,6 +61,13 @@ export function readRoute(hash: string): ReferenceRoute {
 export function routeHash(route: ReferenceRoute) {
   const params = new URLSearchParams();
   if (route.tab === "maps" && route.mapId) params.set("map", route.mapId);
+  if (route.tab === "campaigns") {
+    if (route.campaignId) params.set("campaign", route.campaignId);
+    if (route.campaignView) params.set("view", route.campaignView);
+    if (route.memberCharacterId)
+      params.set("character", route.memberCharacterId);
+    if (route.invite) params.set("invite", route.invite);
+  }
   if (route.entryId) params.set("entry", route.entryId);
   if (route.bookPage !== undefined) params.set("book", String(route.bookPage));
   if (route.focus) params.set("focus", route.focus);
@@ -71,11 +106,20 @@ export function useReferenceNavigation() {
   const back = () => {
     if (history.state?.referenceNavigation?.parent) history.back();
     else {
+      const campaign =
+        route.tab === "campaigns"
+          ? {
+              campaignId: route.campaignId,
+              campaignView: route.campaignView,
+              memberCharacterId: route.memberCharacterId,
+            }
+          : {};
       const next =
         route.bookPage !== undefined && route.entryId
-          ? { tab: route.tab, entryId: route.entryId }
+          ? { tab: route.tab, entryId: route.entryId, ...campaign }
           : {
               tab: route.tab,
+              ...campaign,
               ...(route.bookPage !== undefined && route.mapId
                 ? { mapId: route.mapId }
                 : {}),
@@ -92,6 +136,17 @@ export function useReferenceNavigation() {
     route,
     setTab: (tab: Tab) => navigate({ tab }),
     openMap: (mapId: string) => navigate({ tab: "maps", mapId }),
+    openCampaign: (
+      campaignId?: string,
+      campaignView?: CampaignView,
+      memberCharacterId?: string,
+    ) =>
+      navigate({
+        tab: "campaigns",
+        campaignId,
+        campaignView,
+        memberCharacterId,
+      }),
     openEntry: (entryId: string) => navigate({ tab: route.tab, entryId }),
     openBook: (page: number, focus?: string) =>
       navigate({ ...route, bookPage: page, focus }),

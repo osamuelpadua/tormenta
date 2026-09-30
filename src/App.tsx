@@ -35,6 +35,7 @@ import {
   Swords,
   TrendingUp,
   Undo2,
+  UserRound,
   Users,
   WifiOff,
   X,
@@ -43,9 +44,8 @@ import { CATALOG, CLASS_MAP, ENTRY_MAP, RACE_MAP } from "./data/rules";
 import { calculate } from "./domain/calculate";
 import { uid } from "./domain/character";
 import type { CatalogEntry, Item } from "./domain/types";
-import { execute, type Command } from "./domain/commands";
-import { PhysicalRollRequired } from "./domain/dice";
-import { usePhysicalDice } from "./ui/physical-dice";
+import type { Command } from "./domain/commands";
+import { prepareCommand, usePhysicalDice } from "./ui/physical-dice";
 import { db, downloadBackup } from "./storage/database";
 import { CharacterWizard } from "./ui/creation";
 import {
@@ -91,6 +91,14 @@ import {
   InstallRecommendation,
   useAppInstall,
 } from "./ui/install";
+import { backend, useSyncStatus } from "./sync/backend";
+import {
+  AccountModal,
+  syncLabel,
+  usePendingCount,
+} from "./ui/campaigns/account";
+import Campaigns from "./ui/campaigns/campaigns";
+import "./ui/campaigns/campaigns.css";
 
 const Maps = lazy(() => import("./ui/maps/maps"));
 type ModalState =
@@ -106,7 +114,8 @@ type ModalState =
         | "coins"
         | "archive"
         | "help"
-        | "install";
+        | "install"
+        | "account";
     }
   | { kind: "tools" }
   | { kind: "resource"; mode: "damage" | "hp" | "mp" | "rest" }
@@ -153,10 +162,21 @@ function FlameIcon({ size = 20 }: { size?: number }) {
 }
 export default function App() {
   const { requestDice, diceDialog } = usePhysicalDice();
-  const characters = useLiveQuery(
-    () => db.characters.orderBy("updatedAt").reverse().toArray(),
-    [],
-  );
+  const sync = useSyncStatus();
+  const pending = usePendingCount();
+  const accountId = sync.session?.userId ?? null;
+  // Local-only characters always show; account characters only while that
+  // account is signed in. Wait for the session check to keep the selection.
+  const characters = useLiveQuery(async () => {
+    if (backend && sync.state === "ready") return undefined;
+    const all = await db.characters.orderBy("updatedAt").reverse().toArray();
+    const owners = new Map(
+      (await db.characterSync.toArray()).map((s) => [s.id, s.accountId]),
+    );
+    return all.filter(
+      (c) => !owners.has(c.id) || owners.get(c.id) === accountId,
+    );
+  }, [accountId, sync.state === "ready"]);
   const [selected, setSelected] = useState(
     () => localStorage.getItem("tormenta-selected") ?? "",
   );
@@ -187,6 +207,19 @@ export default function App() {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
   } = useRegisterSW({
+    // Installed apps are usually resumed from the background instead of
+    // reloaded, so the browser never re-fetches sw.js on its own.
+    onRegisteredSW: (_url, registration) => {
+      if (!registration) return;
+      const check = () => {
+        if (navigator.onLine && !registration.installing)
+          void registration.update().catch(() => undefined);
+      };
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") check();
+      });
+      setInterval(check, 60 * 60 * 1000);
+    },
     onRegisterError: () =>
       notify(
         "Não foi possível preparar o uso offline. Recarregue quando houver conexão.",
@@ -213,28 +246,7 @@ export default function App() {
       const task = (async () => {
         if (!c) throw new Error("Selecione um personagem.");
         try {
-          const prepared: Command = {
-            ...command,
-            physicalRolls: [...(command.physicalRolls ?? [])],
-          };
-          // Evaluate a copy first; resources and history are saved only after every die is confirmed.
-          for (;;) {
-            try {
-              execute(c, prepared);
-              break;
-            } catch (error) {
-              if (!(error instanceof PhysicalRollRequired)) throw error;
-              const result = await requestDice(error.expression, error.label);
-              if (!result)
-                throw new Error(
-                  "Registro cancelado. Nenhuma alteração foi salva.",
-                );
-              prepared.physicalRolls!.push({
-                expression: error.expression,
-                values: result.dice.flatMap((die) => die.values),
-              });
-            }
-          }
+          const prepared = await prepareCommand(c, command, requestDice);
           await db.dispatch(c.id, c.revision, prepared, uid());
           const result = ["roll", "attack", "use"].includes(command.type)
             ? await db.history
@@ -282,6 +294,35 @@ export default function App() {
           onClose={close}
         >
           <div className="mobile-tools-list">
+            {backend && (
+              <>
+                <button
+                  onClick={() => {
+                    close();
+                    navigation.openCampaign();
+                  }}
+                >
+                  <Users size={22} />
+                  <span>
+                    <strong>Campanhas</strong>
+                    <small>Seu grupo, as fichas e a visão do mestre</small>
+                  </span>
+                  <ArrowRight size={17} />
+                </button>
+                <button onClick={() => setModal({ kind: "account" })}>
+                  <UserRound size={22} />
+                  <span>
+                    <strong>{sync.session ? "Sua conta" : "Entrar"}</strong>
+                    <small>
+                      {sync.session
+                        ? `${sync.session.name} · ${syncLabel(sync, pending)}`
+                        : "Guarde suas fichas na nuvem"}
+                    </small>
+                  </span>
+                  <ArrowRight size={17} />
+                </button>
+              </>
+            )}
             <button
               onClick={() => {
                 close();
@@ -352,6 +393,8 @@ export default function App() {
       );
     if (modal.kind === "install")
       return <InstallDialog installation={installation} onClose={close} />;
+    if (modal.kind === "account")
+      return <AccountModal onClose={close} notify={notify} />;
     if (modal.kind === "create")
       return (
         <CharacterWizard
@@ -572,6 +615,16 @@ export default function App() {
             <MapIcon size={19} />
             <span>Mapas</span>
           </button>
+          {backend && (
+            <button
+              className={tab === "campaigns" ? "active" : ""}
+              aria-current={tab === "campaigns" ? "page" : undefined}
+              onClick={() => navigation.openCampaign()}
+            >
+              <Users size={19} />
+              <span>Campanhas</span>
+            </button>
+          )}
         </nav>
         <div className="sidebar-bottom">
           {!installation.installed && (
@@ -592,13 +645,32 @@ export default function App() {
             <CircleHelp size={18} />
             Como usar
           </button>
-          <div className="sidebar-status">
-            <HardDrive size={15} />
-            <div>
-              <span>Local. Seu. Sem cadastro.</span>
-              <small>Arton acompanha você.</small>
+          {backend ? (
+            <button
+              className="sidebar-status account-status"
+              onClick={() => setModal({ kind: "account" })}
+            >
+              <UserRound size={15} />
+              <div>
+                <span>
+                  {sync.session ? sync.session.name : "Entrar na sua conta"}
+                </span>
+                <small>
+                  {sync.session
+                    ? syncLabel(sync, pending)
+                    : "Fichas na nuvem e campanhas."}
+                </small>
+              </div>
+            </button>
+          ) : (
+            <div className="sidebar-status">
+              <HardDrive size={15} />
+              <div>
+                <span>Local. Seu. Sem cadastro.</span>
+                <small>Arton acompanha você.</small>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </aside>
       <div className="workspace">
@@ -631,17 +703,42 @@ export default function App() {
           </div>
           <div className="breadcrumb">
             <span>
-              {tab === "maps" ? "Atlas da campanha" : "Meus personagens"}
+              {tab === "maps"
+                ? "Atlas da campanha"
+                : tab === "campaigns"
+                  ? "Mesa compartilhada"
+                  : "Meus personagens"}
             </span>
             <span>/</span>
             <strong>
-              {tab === "maps" ? "Mapas" : (c?.name ?? "Uma nova aventura")}
+              {tab === "maps"
+                ? "Mapas"
+                : tab === "campaigns"
+                  ? "Campanhas"
+                  : (c?.name ?? "Uma nova aventura")}
             </strong>
           </div>
           <div className="topbar-tools">
-            <span className="local-status">
+            <span
+              className="local-status"
+              data-state={
+                sync.session
+                  ? sync.state === "error"
+                    ? "error"
+                    : sync.state === "syncing"
+                      ? "syncing"
+                      : pending
+                        ? "pending"
+                        : undefined
+                  : undefined
+              }
+            >
               <i />
-              {online ? "Salvo neste dispositivo" : "Sem conexão"}
+              {sync.session
+                ? syncLabel(sync, pending)
+                : online
+                  ? "Salvo neste dispositivo"
+                  : "Sem conexão"}
             </span>
             {c && (
               <>
@@ -709,6 +806,21 @@ export default function App() {
               <img src="/icon.svg" alt="" />
               <p>Abrindo Tormenta Wiki…</p>
             </div>
+          ) : tab === "campaigns" ? (
+            <Campaigns
+              campaignId={route.campaignId}
+              view={route.campaignView}
+              memberCharacterId={route.memberCharacterId}
+              invite={route.invite}
+              open={navigation.openCampaign}
+              openOwnCharacter={(id) => {
+                setSelected(id);
+                setTab("sheet");
+              }}
+              onAccount={() => setModal({ kind: "account" })}
+              notify={notify}
+              requestDice={requestDice}
+            />
           ) : tab === "maps" ? (
             <Suspense fallback={<p role="status">Abrindo seu atlas…</p>}>
               <Maps

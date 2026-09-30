@@ -5,6 +5,12 @@ import budrikBackup from "../data/budrik.json";
 import { timestamp, uid, normalizeAmmunition } from "../domain/character";
 import { execute, type Command } from "../domain/commands";
 import type { Character, HistoryEvent } from "../domain/types";
+import type {
+  CachedCampaign,
+  CharacterSync,
+  OutboxEntry,
+  PartyCharacter,
+} from "../sync/types";
 import {
   BACKUP_SCHEMA,
   characterSchema,
@@ -21,6 +27,10 @@ export class CharacterDatabase extends Dexie {
   history!: Table<HistoryEvent, string>;
   commands!: Table<{ id: string; characterId: string; at: string }, string>;
   settings!: Table<{ key: string; value: string }, string>;
+  characterSync!: Table<CharacterSync, string>;
+  outbox!: Table<OutboxEntry, number>;
+  campaigns!: Table<CachedCampaign, string>;
+  party!: Table<PartyCharacter, string>;
   recovery!: Table<
     {
       id: string;
@@ -97,6 +107,19 @@ export class CharacterDatabase extends Dexie {
       mapAssets: "id",
       mapTiles: "[assetId+z+x+y], assetId",
     });
+    // Additive migration for accounts: characters without a characterSync row
+    // stay local-only, exactly as before.
+    this.version(5).stores({
+      characterSync: "id, accountId",
+      outbox: "++seq, characterId",
+      campaigns: "id, accountId",
+      party: "id, accountId, campaignId",
+    });
+  }
+  // Queues a change of an account-linked character for upload.
+  private async enqueue(characterId: string, op: OutboxEntry["op"]) {
+    if (await this.characterSync.get(characterId))
+      await this.outbox.add({ characterId, at: timestamp(), op });
   }
   async initializeExampleCharacter() {
     await this.transaction(
@@ -145,9 +168,13 @@ export class CharacterDatabase extends Dexie {
   ) {
     return this.transaction(
       "rw",
-      this.characters,
-      this.history,
-      this.commands,
+      [
+        this.characters,
+        this.history,
+        this.commands,
+        this.characterSync,
+        this.outbox,
+      ],
       async () => {
         const key = `${id}:${commandId}`;
         const c = await this.characters.get(id);
@@ -157,48 +184,65 @@ export class CharacterDatabase extends Dexie {
           throw new Error(
             "A ficha mudou em outra operação ou aba. Confira os dados atualizados e tente novamente.",
           );
-        const result = execute(c, {
+        const prepared = {
           ...command,
           physicalRolls: command.physicalRolls ?? [],
-        });
+        };
+        const result = execute(c, prepared);
         const next = characterSchema.parse(result.character) as Character;
         await this.characters.put(next);
         await this.history.add(result.event);
         await this.commands.add({ id: key, characterId: id, at: timestamp() });
+        // Whole-sheet commands keep their starting point so a later conflict
+        // can reapply only the fields they changed.
+        await this.enqueue(id, {
+          kind: "command",
+          command: prepared,
+          eventId: result.event.id,
+          ...(command.type === "edit" || command.type === "level"
+            ? { base: c }
+            : {}),
+        });
         return next;
       },
     );
   }
   async undo(id: string, revision: number) {
-    return this.transaction("rw", this.characters, this.history, async () => {
-      const c = await this.characters.get(id);
-      if (!c || c.revision !== revision)
-        throw new Error("A ficha mudou; confira antes de desfazer.");
-      const events = await this.history
-        .where("characterId")
-        .equals(id)
-        .sortBy("at");
-      const last = events
-        .reverse()
-        .find((e) => e.before && !e.undone && e.kind !== "undo");
-      if (!last?.before) throw new Error("Não há operação para desfazer.");
-      const restored = structuredClone(last.before);
-      restored.revision = c.revision + 1;
-      restored.updatedAt = timestamp();
-      await this.characters.put(restored);
-      await this.history.update(last.id, { undone: true });
-      await this.history.add({
-        id: uid(),
-        characterId: id,
-        at: timestamp(),
-        title: `Desfeito: ${last.title}`,
-        detail:
-          "A operação completa foi revertida. O registro original foi mantido.",
-        kind: "undo",
-        round: c.combat.round,
-      });
-      return restored;
-    });
+    return this.transaction(
+      "rw",
+      [this.characters, this.history, this.characterSync, this.outbox],
+      async () => {
+        const c = await this.characters.get(id);
+        if (!c || c.revision !== revision)
+          throw new Error("A ficha mudou; confira antes de desfazer.");
+        const events = await this.history
+          .where("characterId")
+          .equals(id)
+          .sortBy("at");
+        const last = events
+          .reverse()
+          .find((e) => e.before && !e.undone && e.kind !== "undo");
+        if (!last?.before) throw new Error("Não há operação para desfazer.");
+        const restored = structuredClone(last.before);
+        restored.revision = c.revision + 1;
+        restored.updatedAt = timestamp();
+        await this.characters.put(restored);
+        await this.history.update(last.id, { undone: true });
+        const undoId = uid();
+        await this.history.add({
+          id: undoId,
+          characterId: id,
+          at: timestamp(),
+          title: `Desfeito: ${last.title}`,
+          detail:
+            "A operação completa foi revertida. O registro original foi mantido.",
+          kind: "undo",
+          round: c.combat.round,
+        });
+        await this.enqueue(id, { kind: "undo", eventIds: [last.id, undoId] });
+        return restored;
+      },
+    );
   }
   async exportBackup(ids?: string[]): Promise<Backup> {
     return this.transaction("r", this.characters, this.history, async () => {
@@ -267,12 +311,22 @@ export class CharacterDatabase extends Dexie {
   async archive(id: string) {
     await this.transaction(
       "rw",
-      this.characters,
-      this.history,
-      this.recovery,
+      [
+        this.characters,
+        this.history,
+        this.recovery,
+        this.characterSync,
+        this.outbox,
+      ],
       async () => {
         const c = await this.characters.get(id);
         if (!c) return;
+        // Pending changes are superseded; the sync row stays until the server
+        // confirms the removal.
+        if (await this.characterSync.get(id)) {
+          await this.outbox.where("characterId").equals(id).delete();
+          await this.enqueue(id, { kind: "delete" });
+        }
         const history = await this.history
           .where("characterId")
           .equals(id)
