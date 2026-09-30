@@ -128,7 +128,9 @@ test("atlas: cria, edita, move e exclui locais sem perder posições ao navegar"
     "<script>inofensivo</script>",
   );
   await mkdir(".cache/screenshots/maps", { recursive: true });
-  expect((await page.locator(".atlas-map-area").boundingBox())!.width).toBeGreaterThan(1000);
+  expect(
+    (await page.locator(".atlas-map-area").boundingBox())!.width,
+  ).toBeGreaterThan(1000);
   await page.screenshot({
     path: ".cache/screenshots/maps/desktop.png",
     fullPage: true,
@@ -288,13 +290,11 @@ test("atlas: imagem personalizada, backup ZIP, restauração e exclusão persist
   ctx.strokeStyle = "#55452b";
   ctx.lineWidth = 5;
   ctx.strokeRect(100, 100, 600, 400);
-  await page
-    .getByLabel("Imagem do mapa", { exact: true })
-    .setInputFiles({
-      name: "dungeon.png",
-      mimeType: "image/png",
-      buffer: image.toBuffer("image/png"),
-    });
+  await page.getByLabel("Imagem do mapa", { exact: true }).setInputFiles({
+    name: "dungeon.png",
+    mimeType: "image/png",
+    buffer: image.toBuffer("image/png"),
+  });
   await page
     .getByLabel("Anotações do mapa", { exact: true })
     .fill("A chave está sob a ponte.");
@@ -374,13 +374,11 @@ test("atlas: imagem personalizada, backup ZIP, restauração e exclusão persist
     replacementContext = replacement.getContext("2d");
   replacementContext.fillStyle = "#ceb77a";
   replacementContext.fillRect(0, 0, 600, 800);
-  await page
-    .getByLabel("Imagem do mapa", { exact: true })
-    .setInputFiles({
-      name: "vertical.png",
-      mimeType: "image/png",
-      buffer: replacement.toBuffer("image/png"),
-    });
+  await page.getByLabel("Imagem do mapa", { exact: true }).setInputFiles({
+    name: "vertical.png",
+    mimeType: "image/png",
+    buffer: replacement.toBuffer("image/png"),
+  });
   await expect(
     page.getByText("Substituir a imagem mantendo os locais", { exact: false }),
   ).toBeVisible();

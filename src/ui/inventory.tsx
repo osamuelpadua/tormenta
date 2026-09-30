@@ -22,179 +22,16 @@ import {
 } from "./shared";
 const currency = (n: number) =>
   new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 }).format(n);
-export function Inventory({
-  onItem,
-  onAdd,
-  onCoins,
-}: {
-  onItem: (i: Item) => void;
-  onAdd: () => void;
-  onCoins: () => void;
-}) {
-  const { character: c, commit } = useApp();
-  const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("all");
-  const d = calculate(c);
-  const entries = c.inventory.filter(
-    (i) =>
-      slug(i.name).includes(slug(query)) &&
-      (filter === "all" ||
-        (filter === "equipped" && ["wielded", "worn"].includes(i.state)) ||
-        filter === i.category),
-  );
-  return (
-    <>
-      <div className="inventory-summary">
-        <section className="panel">
-          <Backpack size={22} />
-          <div>
-            <span>Carga transportada</span>
-            <strong>
-              {d.load.total}
-              <small> / {d.capacity.total} espaços</small>
-            </strong>
-          </div>
-          <div className="load-meter">
-            <div
-              style={{
-                width: `${Math.min(100, (d.load.total / d.capacity.total) * 100)}%`,
-              }}
-            />
-          </div>
-          {d.load.total > d.capacity.total && (
-            <Pill tone="red">Sobrecarregado</Pill>
-          )}
-        </section>
-        <button className="panel coin-summary" onClick={onCoins}>
-          <Coins size={24} />
-          <div>
-            <span>Seus tibares</span>
-            <strong>
-              T$ {currency(c.coins.ts + c.coins.tc / 10 + c.coins.to * 10)}
-            </strong>
-            <small>
-              {c.coins.to} TO · {c.coins.ts} T$ · {c.coins.tc} TC
-            </small>
-          </div>
-          <Pencil size={16} />
-        </button>
-      </div>
-      <div className="library-toolbar">
-        <SearchBox
-          value={query}
-          onChange={setQuery}
-          placeholder="Pesquisar inventário…"
-        />
-        <select
-          aria-label="Filtrar inventário"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="all">Todos os itens</option>
-          <option value="equipped">Em uso</option>
-          {[...new Set(c.inventory.map((i) => i.category))].map((g) => (
-            <option key={g}>{g}</option>
-          ))}
-        </select>
-        <button className="button primary" onClick={onAdd}>
-          <Plus size={16} />
-          Adicionar item
-        </button>
-      </div>
-      {entries.length ? (
-        <section className="panel inventory-table">
-          <div className="inventory-table-head">
-            <span>Item</span>
-            <span>Quantidade</span>
-            <span>Espaços</span>
-            <span>Situação</span>
-            <span />
-          </div>
-          {entries.map((i) => (
-            <div
-              className="inventory-row"
-              data-equipped={i.state === "wielded" || i.state === "worn"}
-              key={i.id}
-            >
-              <button className="item-name" onClick={() => onItem(i)}>
-                <span className="item-icon">
-                  <EntityIcon name={i.name} size={33} />
-                </span>
-                <span>
-                  <strong>{i.name}</strong>
-                  <small>
-                    {i.category} · {itemBenefits(i)}
-                  </small>
-                  {i.improvements.length > 0 && (
-                    <small>{i.improvements.join(", ")}</small>
-                  )}
-                </span>
-              </button>
-              <span className="quantity">{i.quantity}</span>
-              <span className="spaces">{i.quantity * i.spaces}</span>
-              <select
-                aria-label={`Situação de ${i.name}`}
-                value={i.state}
-                onChange={(e) =>
-                  void commit({
-                    type: "equip",
-                    itemId: i.id,
-                    state: e.target.value as Item["state"],
-                    benefit: i.benefit,
-                  })
-                }
-              >
-                <option value="stored">Guardado</option>
-                <option value="carried">Carregado</option>
-                <option value="worn">Vestido</option>
-                <option value="wielded">Empunhado</option>
-              </select>
-              <button
-                className="icon-button"
-                aria-label={`Editar ${i.name}`}
-                onClick={() => onItem(i)}
-              >
-                <Pencil size={16} />
-              </button>
-              {itemSource(i) && (
-                <div className="inventory-book-reference">
-                  <BookEntryButton entry={itemSource(i)!} />
-                </div>
-              )}
-            </div>
-          ))}
-        </section>
-      ) : (
-        <Empty
-          icon={<Backpack />}
-          heading="Espaço para novas descobertas"
-          action={
-            <button className="button primary" onClick={onAdd}>
-              <Plus size={16} />
-              Adicionar item
-            </button>
-          }
-        >
-          Armas, equipamentos e tesouros da sua jornada ficam aqui.
-        </Empty>
-      )}
-      <div className="notice inventory-help">
-        <strong>Possuir, carregar e usar</strong>
-        <p>
-          Itens guardados não entram na carga. Para conceder benefícios, um item
-          deve estar vestido ou empunhado. Armas empunhadas aparecem nos
-          ataques. O limite normal é de quatro itens vestidos com benefícios.
-        </p>
-      </div>
-    </>
-  );
-}
+export { Inventory } from "./inventory-game";
 export function ItemModal({
   item,
   onClose,
+  consume: consumeNow = false,
 }: {
   item?: Item;
   onClose: () => void;
+  // Opens ready to consume one unit (the inventory Usar action).
+  consume?: boolean;
 }) {
   const { character: c, commit } = useApp();
   const [draft, setDraft] = useState<Item>(
@@ -211,7 +48,7 @@ export function ItemModal({
   const [days, setDays] = useState(7);
   const [cost, setCost] = useState(0);
   const [take10, setTake10] = useState(true);
-  const [consume, setConsume] = useState(false);
+  const [consume, setConsume] = useState(consumeNow);
   const [restore, setRestore] = useState<"hp" | "mp">("hp");
   const [expression, setExpression] = useState("");
   const [remove, setRemove] = useState(false);

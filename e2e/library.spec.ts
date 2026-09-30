@@ -83,9 +83,8 @@ test("inventário: consulta destacada preserva a edição e zoom rápido não oc
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/#inventory");
-  await page
-    .getByRole("button", { name: "Editar Marreta certeira", exact: true })
-    .click();
+  await page.locator('[data-item-name="Marreta certeira"]').click();
+  await page.getByRole("button", { name: "Editar item" }).click();
   await page.getByLabel("Nome", { exact: true }).fill("Marreta em revisão");
   await page
     .getByRole("dialog")
@@ -141,7 +140,7 @@ test("inventário: consulta destacada preserva a edição e zoom rápido não oc
   );
   await page.getByRole("button", { name: "Cancelar", exact: true }).click();
   await expect(
-    page.locator(".inventory-row").filter({ hasText: "Marreta certeira" }),
+    page.locator('[data-item-name="Marreta certeira"]'),
   ).toBeVisible();
   expect(errors).toEqual([]);
 });

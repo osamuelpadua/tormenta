@@ -122,7 +122,7 @@ type ModalState =
   | { kind: "attack"; id: string }
   | { kind: "skill"; id: string }
   | { kind: "use"; entry: CatalogEntry }
-  | { kind: "item"; item?: Item }
+  | { kind: "item"; item?: Item; consume?: boolean }
   | { kind: "add"; spells: boolean; entry?: CatalogEntry }
   | null;
 const NAV = [
@@ -494,7 +494,13 @@ export default function App() {
           <UseModal entry={modal.entry} onClose={close} onAttack={onAttack} />
         );
       case "item":
-        return <ItemModal item={modal.item} onClose={close} />;
+        return (
+          <ItemModal
+            item={modal.item}
+            consume={modal.consume}
+            onClose={close}
+          />
+        );
       case "coins":
         return <CoinsModal onClose={close} />;
       case "add":
@@ -963,6 +969,9 @@ export default function App() {
               {tab === "inventory" && (
                 <Inventory
                   onItem={(item) => setModal({ kind: "item", item })}
+                  onUse={(item) =>
+                    setModal({ kind: "item", item, consume: true })
+                  }
                   onAdd={() => setModal({ kind: "item" })}
                   onCoins={() => setModal({ kind: "coins" })}
                 />

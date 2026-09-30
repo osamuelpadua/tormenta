@@ -93,12 +93,7 @@ for (const width of [320, 390, 600, 768, 900, 1024, 1440]) {
       }
     }
     if (width <= 900) {
-      await touchTarget(
-        page.getByRole("button", {
-          name: "Editar Marreta certeira",
-          exact: true,
-        }),
-      );
+      await touchTarget(page.locator('[data-item-name="Marreta certeira"]'));
       await page
         .getByRole("button", { name: "Abrir ferramentas", exact: true })
         .tap();
@@ -160,23 +155,15 @@ test("celular: atalhos, dano, histórico e inventário funcionam com toque", asy
     .locator(".mobile-nav")
     .getByRole("button", { name: "Inventário", exact: true })
     .tap();
-  await page
-    .getByRole("button", { name: "Editar Machado de guerra", exact: true })
-    .tap();
+  await page.locator('[data-item-name="Machado de guerra"]').tap();
+  await dialogFits(page);
+  await page.getByRole("button", { name: "Editar item" }).tap();
   await dialogFits(page);
   await page.getByLabel("Quantidade", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Salvar item", exact: true }).tap();
   await expect(
-    page
-      .locator(".inventory-row")
-      .filter({
-        has: page.getByRole("button", {
-          name: "Editar Machado de guerra",
-          exact: true,
-        }),
-      })
-      .locator(".quantity"),
-  ).toHaveText("2");
+    page.locator('[data-item-name="Machado de guerra"] .inv-qty'),
+  ).toHaveText("×2");
   await page.reload();
   await expect(page.locator(".character-banner h2")).toHaveText("Budrik");
 });

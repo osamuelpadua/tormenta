@@ -247,7 +247,7 @@ test("celular, teclado, pesquisa de perícia e catálogo offline", async ({
     .locator(".mobile-nav")
     .getByRole("button", { name: "Inventário", exact: true })
     .click();
-  await expect(page.locator(".inventory-row")).toHaveCount(2);
+  await expect(page.locator("[data-item-name]")).toHaveCount(2);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -257,7 +257,8 @@ test("celular, teclado, pesquisa de perícia e catálogo offline", async ({
     path: ".cache/screenshots/inventario-mobile.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: "Editar Espada longa" }).click();
+  await page.locator('[data-item-name="Espada longa"]').click();
+  await page.getByRole("button", { name: "Editar item" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   await page.setViewportSize({ width: 1440, height: 1000 });
