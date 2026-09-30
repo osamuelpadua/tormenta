@@ -35,14 +35,28 @@ O IndexedDB continua sendo a fonte da interface. `src/sync/sync-engine.ts` troca
 
 `supabase/migrations/20260930000000_campaigns.sql` cria perfis, campanhas, participantes, fichas, eventos e notas, com RLS em todas as tabelas. Escritas em fichas, participação e convites passam por funções RPC `security definer`, que validam dono, mestre e revisão.
 
-## Ativar o Supabase (pendente)
+## Supabase
 
-1. Criar um projeto **separado** no Supabase Cloud. Não use o Supabase da VPS: ele guarda dados reais de outro projeto.
-2. Aplicar `supabase/migrations/20260930000000_campaigns.sql` (SQL Editor ou `supabase db push`).
-3. Em Authentication → Providers → Email, desativar **Confirm email** para o cadastro mais simples, ou configurar SMTP próprio. O app também trata a confirmação por e-mail.
-4. Na Vercel, definir `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` (chave pública) e publicar de novo.
-5. Configurar o keep-alive, porque o plano gratuito pausa após 7 dias sem uso.
-6. Verificar as regras com três usuários reais (mestre, jogador A e jogador B): B não altera a ficha de A, quem não participa não vê nada, as notas secretas não aparecem para jogadores, e o efeito do mestre chega ao jogador com autor.
+Projeto `pxpdekjgebueudoqgtvy` (Supabase Cloud), separado do Supabase da VPS, que guarda dados reais de outro projeto.
+
+- A migração `20260930000000_campaigns.sql` está aplicada e registrada em `supabase_migrations.schema_migrations`, então `supabase db push` reconhece o estado.
+- `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` (chave publicável) estão na Vercel em produção, preview e desenvolvimento. `vercel env pull .env.local` as traz para o `npm run dev`.
+- **Confirmação de e-mail**: em Authentication → Sign In / Providers → Email, deixe **Confirm email** desligado, ou configure um SMTP próprio. O SMTP padrão do Supabase só entrega para membros da equipe do projeto. Se a confirmação ficar ligada, ajuste o Site URL para o endereço do app.
+- **Pausa do plano gratuito**: o projeto pausa após 7 dias sem uso. Configure um keep-alive.
+
+Verificações contra o banco real (a senha do banco fica em Project Settings → Database e é lida só do ambiente):
+
+```bash
+export SUPABASE_DB_HOST=db.pxpdekjgebueudoqgtvy.supabase.co SUPABASE_DB_PASSWORD=...
+node scripts/supabase-check-rls.mjs        # 31 verificações de RLS e RPCs, com rollback no fim
+
+export TEST_USER_PASSWORD=...              # qualquer senha temporária
+node scripts/supabase-test-users.mjs create
+SB_URL=https://pxpdekjgebueudoqgtvy.supabase.co SB_KEY=<chave publicável> npx vitest run tests/supabase-live.test.ts
+node scripts/supabase-test-users.mjs remove
+```
+
+O teste real usa dois aparelhos simulados e cobre campanha, convite, efeito do mestre em tempo real, conflito offline, segundo aparelho e notas. Sem `SB_URL`, ele é ignorado em `npm test`.
 
 ## Verificar
 

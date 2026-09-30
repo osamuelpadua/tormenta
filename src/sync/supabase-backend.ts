@@ -113,10 +113,13 @@ export class SupabaseBackend implements RemoteBackend {
     } catch {
       // Offline; fall back to the cached or registered name.
     }
-    name ||=
-      localStorage.getItem(`${NAME_KEY}:${user.id}`) ??
-      user.user_metadata?.display_name ??
-      email.split("@")[0];
+    let cached: string | null = null;
+    try {
+      cached = localStorage.getItem(`${NAME_KEY}:${user.id}`);
+    } catch {
+      // Storage blocked or unavailable.
+    }
+    name ||= cached ?? user.user_metadata?.display_name ?? email.split("@")[0];
     return { userId: user.id, email, name };
   }
   async getSession() {
