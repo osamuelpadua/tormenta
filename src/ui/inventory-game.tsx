@@ -117,10 +117,27 @@ export function Inventory({
           <h2 className="inv-heading">
             <Shield size={17} />
             Equipamento
-            <span>Defesa {d.defense.total}</span>
           </h2>
           <div className="inv-doll">
             <Ornaments />
+            <div
+              className="inv-defense"
+              role="img"
+              aria-label={`Defesa ${d.defense.total}`}
+            >
+              <svg viewBox="0 0 64 72" aria-hidden="true">
+                <path
+                  d="M32 3 6 12v20c0 17 11 29 26 37 15-8 26-20 26-37V12L32 3Z"
+                  className="inv-defense-body"
+                />
+                <path
+                  d="M32 9 12 16v16c0 13 8 23 20 30 12-7 20-17 20-30V16L32 9Z"
+                  className="inv-defense-inner"
+                />
+              </svg>
+              <strong>{d.defense.total}</strong>
+              <small>Defesa</small>
+            </div>
             <div className="inv-doll-side">
               <Slot
                 kind="worn"

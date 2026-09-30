@@ -858,3 +858,84 @@
     padding: 12px 4px 6px;
   }
 }
+
+/* The glow fades out inside its own box, so no edge is ever visible. */
+.inv-figure::before {
+  inset: -4% -8% 4%;
+  background: radial-gradient(
+    closest-side at 50% 46%,
+    #e0c58e24,
+    #e0c58e10 55%,
+    transparent 100%
+  );
+}
+.inv-body {
+  background:
+    radial-gradient(closest-side at 50% 0%, #e0c58e12, transparent),
+    repeating-linear-gradient(45deg, #ffffff03 0 2px, transparent 2px 5px),
+    linear-gradient(180deg, #1d1f18, #121410);
+}
+/* Defense as a heraldic shield above the hero. */
+.inv-doll {
+  padding-top: 64px;
+}
+.inv-defense {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  width: 64px;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 4px 8px #000b);
+}
+.inv-defense svg {
+  width: 44px;
+  height: 50px;
+}
+.inv-defense-body {
+  fill: #2a2418;
+  stroke: #c6a76b;
+  stroke-width: 2;
+}
+.inv-defense-inner {
+  fill: #151410;
+  stroke: #6e5a35;
+  stroke-width: 1.2;
+}
+.inv-defense strong {
+  position: absolute;
+  top: 10px;
+  color: var(--gold-bright);
+  font: 700 19px/1 var(--serif);
+  text-shadow: 0 1px 3px #000;
+}
+.inv-defense small {
+  margin-top: 1px;
+  color: var(--gold);
+  font: 700 9px var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* Corner filigree stays inside the frame, clear of the title. */
+.inv-ornaments {
+  inset: 4px 0 0;
+}
+.inv-ornaments i:nth-child(1),
+.inv-ornaments i:nth-child(2) {
+  top: 0;
+}
+@media (max-width: 600px) {
+  .inv-doll {
+    padding-top: 60px;
+  }
+  .inv-defense svg {
+    width: 40px;
+    height: 46px;
+  }
+  .inv-defense strong {
+    top: 9px;
+    font-size: 17px;
+  }
+}
