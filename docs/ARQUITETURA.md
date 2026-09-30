@@ -24,6 +24,8 @@ Poderes e Magias compartilham `library-data.ts` com os seletores de criação e 
 
 Revisão de personagem e ID de comando previnem gravações repetidas e edições concorrentes silenciosas. IndexedDB é a fonte persistente; consultas reativas atualizam a interface após a transação. Erros de armazenamento são apresentados. Nenhum avanço do tempo decorre do relógio real. Atualização de PWA depende de ação explícita para não interromper combate.
 
-O banco está na versão 3. A versão 2 introduz comandos idempotentes e recuperação; a versão 3 converte pacotes de munição para unidades. Ambas preservam uma cópia integral anterior à migração. A versão do envelope JSON de backup permanece 1; pacotes de munição identificáveis em arquivos antigos são normalizados durante a prévia, com aviso.
+O banco está na versão 4. A versão 2 introduz comandos idempotentes e recuperação; a versão 3 converte pacotes de munição para unidades. Ambas preservam uma cópia integral anterior à migração. A versão 4 adiciona mapas, locais, imagens e tiles sem modificar as tabelas anteriores. A versão do envelope JSON de backup de personagens permanece 1; pacotes de munição identificáveis em arquivos antigos são normalizados durante a prévia, com aviso.
+
+Mapas é um módulo independente da ficha, acessível pela lateral ou pelo menu Ferramentas. Ele utiliza Leaflet com coordenadas normalizadas e tiles locais, transações Dexie e um backup ZIP versionado próprio. Aethelgard é inicializado uma única vez, inclusive em bases existentes. Consulte [Mapas](MAPAS.md) para os contratos, processamento de imagens e limites.
 
 `magicPlan`, `attackPlan` e `formPlan` produzem prévias de custos, testes e erros para uso pela interface e pelos comandos. `coverageFor` descreve o alcance parcial da automação, separadamente do catálogo oficial. `partners` calcula tipos, patamares e limites de companheiros; seus bônus usam a fonte de acúmulo `parceiro`.

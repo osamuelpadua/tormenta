@@ -48,6 +48,12 @@ Em Poderes e Magias, alterne entre o repertório do personagem e a biblioteca co
 
 No celular e em tablets de até 900 px, use as cinco áreas na barra inferior. O menu no canto superior direito reúne livro, histórico, backups e ajuda. Na Ficha, os atalhos levam diretamente a perícias, ataques, detalhes e anotações. Os botões de PV e PM mostram a ação antes de abrir a prévia.
 
+## Mapas de campanha
+
+Abra **Mapas** na navegação lateral ou em **Ferramentas → Mapas** no celular. Aethelgard já acompanha o app em 6144 × 4096 pixels, disponível offline após o cache inicial. Explore com scroll, arraste ou pinça; use **Adicionar local** para escolher ícone, categoria, nome e anotações. Os locais podem ser editados, movidos e excluídos.
+
+Importe outras imagens para criar mapas independentes. Mapas e imagens ficam neste navegador; a tela **Backups e importação** permite exportar e restaurar o atlas em ZIP. Atualizações preservam os dados existentes e não duplicam Aethelgard. Consulte [os fluxos, limites e arquitetura de Mapas](docs/MAPAS.md).
+
 ## Fontes e organização
 
 As fontes são os dois PDFs fornecidos neste projeto. Páginas citadas na interface correspondem à numeração impressa do livro; a página do PDF é seis unidades maior. O leitor abre o **PDF original** com a diagramação, tabelas e ilustrações do livro, navegação por página impressa, texto selecionável, busca e zoom. O botão de porcentagem ajusta a página à largura; no celular, use o zoom e deslize para ler as colunas. A busca abre em um painel recolhível, preserva o termo e destaca os trechos no PDF. Os controles flutuam sobre o leitor e podem ser ocultados. No celular, use dois dedos para ampliar e arraste a página; na largura padrão, um gesto horizontal troca a página. Também é possível abrir o arquivo em outra aba.

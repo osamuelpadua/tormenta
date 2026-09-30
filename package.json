@@ -12,13 +12,16 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "sources": "node scripts/extract-sources.mjs && node scripts/format-book.mjs",
-    "sources:format": "node scripts/format-book.mjs"
+    "sources:format": "node scripts/format-book.mjs",
+    "maps:prepare": "node scripts/prepare-maps.mjs"
   },
   "dependencies": {
     "@fontsource-variable/cinzel": "^5.3.0",
     "@fontsource-variable/source-sans-3": "^5.3.0",
     "dexie": "^4.2.0",
     "dexie-react-hooks": "^4.2.0",
+    "fflate": "^0.8.3",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -27,6 +30,7 @@
   "devDependencies": {
     "@napi-rs/canvas": "^0.1.80",
     "@playwright/test": "^1.58.0",
+    "@types/leaflet": "^1.9.22",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
@@ -34,6 +38,7 @@
     "fake-indexeddb": "^6.2.0",
     "pdfjs-dist": "^6.3.289",
     "prettier": "^3.9.6",
+    "sharp": "^0.35.5",
     "typescript": "~5.9.3",
     "vite": "^7.3.0",
     "vite-plugin-pwa": "^1.2.0",

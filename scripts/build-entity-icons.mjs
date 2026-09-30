@@ -54,7 +54,12 @@ for (const entry of [...catalog, ...equipment]) {
 }
 const symbols = [];
 const credits = [];
-for (const name of [...new Set(Object.values(names))].sort()) {
+const mapIcons = JSON.parse(
+  fs.readFileSync("src/data/map-categories.json", "utf8"),
+).map((category) => category.iconId);
+for (const name of [
+  ...new Set([...Object.values(names), ...mapIcons]),
+].sort()) {
   const { author, file } = files.get(name);
   let svg = fs.readFileSync(file, "utf8");
   if (/<(?:script|foreignObject|image)\b|\son\w+=/i.test(svg))

@@ -1,4 +1,5 @@
 import Dexie, { type Table } from "dexie";
+import type { AtlasMap, MapLocation, MapAsset, MapTile } from "../domain/maps";
 import { RULESET } from "../data/rules";
 import budrikBackup from "../data/budrik.json";
 import { timestamp, uid, normalizeAmmunition } from "../domain/character";
@@ -12,6 +13,10 @@ import {
 } from "./schema";
 
 export class CharacterDatabase extends Dexie {
+  atlasMaps!: Table<AtlasMap, string>;
+  mapLocations!: Table<MapLocation, string>;
+  mapAssets!: Table<MapAsset, string>;
+  mapTiles!: Table<MapTile, [string, number, number, number]>;
   characters!: Table<Character, string>;
   history!: Table<HistoryEvent, string>;
   commands!: Table<{ id: string; characterId: string; at: string }, string>;
@@ -85,6 +90,13 @@ export class CharacterDatabase extends Dexie {
             e.before?.inventory.forEach(normalizeAmmunition);
           });
       });
+    // Additive migration: existing characters, history and recovery are untouched.
+    this.version(4).stores({
+      atlasMaps: "id, name, updatedAt, assetId, &sourceKey",
+      mapLocations: "id, mapId, [mapId+categoryId]",
+      mapAssets: "id",
+      mapTiles: "[assetId+z+x+y], assetId",
+    });
   }
   async initializeExampleCharacter() {
     await this.transaction(

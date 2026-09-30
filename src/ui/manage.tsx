@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -35,6 +35,9 @@ import { db, downloadBackup } from "../storage/database";
 import { parseBackup, type Backup } from "../storage/schema";
 import { EntryPicker, SpellChoices } from "./creation";
 import { BookSubjectButton } from "./entry-readout";
+const MapBackups = lazy(() =>
+  import("./maps/backups").then((module) => ({ default: module.MapBackups })),
+);
 import {
   AsyncButton,
   Empty,
@@ -1227,6 +1230,9 @@ export function BackupModal({
         A importação preserva os personagens existentes e valida a estrutura
         antes de gravar. Backups incluem os recursos e efeitos em andamento.
       </small>
+      <Suspense fallback={<p>Preparando backups de mapas…</p>}>
+        <MapBackups />
+      </Suspense>
     </Modal>
   );
 }

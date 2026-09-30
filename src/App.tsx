@@ -1,5 +1,7 @@
 import {
   Component,
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useRef,
@@ -23,6 +25,7 @@ import {
   LayoutDashboard,
   MoreHorizontal,
   Menu,
+  Map as MapIcon,
   Pencil,
   Plus,
   ScrollText,
@@ -89,7 +92,7 @@ import {
   useAppInstall,
 } from "./ui/install";
 
-type Tab = "sheet" | "combat" | "powers" | "spells" | "inventory";
+const Maps = lazy(() => import("./ui/maps/maps"));
 type ModalState =
   | {
       kind:
@@ -279,6 +282,19 @@ export default function App() {
           onClose={close}
         >
           <div className="mobile-tools-list">
+            <button
+              onClick={() => {
+                close();
+                setTab("maps");
+              }}
+            >
+              <MapIcon size={22} />
+              <span>
+                <strong>Mapas</strong>
+                <small>Explore territórios e registre seus locais</small>
+              </span>
+              <ArrowRight size={17} />
+            </button>
             <button onClick={() => openBook(17)}>
               <BookOpen size={22} />
               <span>
@@ -301,7 +317,7 @@ export default function App() {
               <Download size={22} />
               <span>
                 <strong>Backups e importação</strong>
-                <small>Guarde ou restaure seus personagens</small>
+                <small>Guarde ou restaure personagens e mapas</small>
               </span>
               <ArrowRight size={17} />
             </button>
@@ -483,6 +499,7 @@ export default function App() {
     <div
       className="app-shell"
       data-view={tab}
+      data-map-open={(tab === "maps" && !!route.mapId) || undefined}
       data-combat-active={c?.combat.active || undefined}
     >
       <a className="skip-link" href="#main-content">
@@ -547,6 +564,14 @@ export default function App() {
               )}
             </button>
           ))}
+          <button
+            className={tab === "maps" ? "active" : ""}
+            aria-current={tab === "maps" ? "page" : undefined}
+            onClick={() => setTab("maps")}
+          >
+            <MapIcon size={19} />
+            <span>Mapas</span>
+          </button>
         </nav>
         <div className="sidebar-bottom">
           {!installation.installed && (
@@ -605,9 +630,13 @@ export default function App() {
             </button>
           </div>
           <div className="breadcrumb">
-            <span>Meus personagens</span>
+            <span>
+              {tab === "maps" ? "Atlas da campanha" : "Meus personagens"}
+            </span>
             <span>/</span>
-            <strong>{c?.name ?? "Uma nova aventura"}</strong>
+            <strong>
+              {tab === "maps" ? "Mapas" : (c?.name ?? "Uma nova aventura")}
+            </strong>
           </div>
           <div className="topbar-tools">
             <span className="local-status">
@@ -668,16 +697,27 @@ export default function App() {
             </button>
           </div>
         )}
-        <InstallRecommendation
-          installation={installation}
-          onInstall={requestInstall}
-        />
+        {!(tab === "maps" && route.mapId) && (
+          <InstallRecommendation
+            installation={installation}
+            onInstall={requestInstall}
+          />
+        )}
         <main id="main-content">
           {characters === undefined ? (
             <div className="loading-state">
               <img src="/icon.svg" alt="" />
               <p>Abrindo Tormenta Wiki…</p>
             </div>
+          ) : tab === "maps" ? (
+            <Suspense fallback={<p role="status">Abrindo seu atlas…</p>}>
+              <Maps
+                mapId={route.mapId}
+                onOpen={navigation.openMap}
+                onBack={() => setTab("maps")}
+                notify={notify}
+              />
+            </Suspense>
           ) : !c ? (
             <Welcome
               onCreate={() => setModal({ kind: "create" })}
