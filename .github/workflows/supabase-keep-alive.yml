@@ -1,0 +1,25 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Roda a cada 3 dias às 06:00 UTC para evitar pausa no plano gratuito
+    - cron: "0 6 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        # Chaves publicáveis (sb_publishable_…) não acessam a raiz /rest/v1/.
+        # Uma consulta a uma tabela chega ao banco; a RLS devolve lista vazia.
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://pxpdekjgebueudoqgtvy.supabase.co/rest/v1/campaigns?select=id&limit=1" \
+            -H "apikey: sb_publishable_ZloMKxVvtIt1RmCOoSg5sA_XHwJzdKe")
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 300 ]; then
+            echo "Ping falhou com status $STATUS"
+            exit 1
+          fi
+          echo "Ping bem-sucedido"
