@@ -1,7 +1,11 @@
 import type { Character, HistoryEvent } from "../domain/types";
 import type {
   Campaign,
+  CampaignLocation,
+  CampaignLocationInput,
+  CampaignMap,
   CampaignNote,
+  RemoteMapAsset,
   PullResult,
   RemoteBackend,
   RemoteCharacter,
@@ -48,6 +52,14 @@ interface EventRow {
   data: HistoryEvent;
   updatedAt: string;
 }
+type MapRow = Omit<CampaignMap, never>;
+interface LocationRow extends Omit<
+  CampaignLocation,
+  "createdByName" | "updatedByName"
+> {
+  createdBy: string;
+  updatedBy: string;
+}
 interface NoteRow extends Omit<CampaignNote, "authorName"> {
   authorId: string;
 }
@@ -58,6 +70,8 @@ export interface MemoryState {
   characters: CharacterRow[];
   events: EventRow[];
   notes: NoteRow[];
+  maps?: MapRow[];
+  locations?: LocationRow[];
   clock: number;
 }
 const INVITE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -71,6 +85,8 @@ const copy = <T>(value: T): T => structuredClone(value);
 // supabase/migrations so the sync engine can be tested without a network.
 export class MemoryServer {
   state: MemoryState;
+  // Uploaded map images; kept in memory only, even in the demo.
+  files = new Map<string, Blob>();
   private listeners = new Set<() => void>();
   constructor(
     state?: MemoryState,
@@ -83,6 +99,8 @@ export class MemoryServer {
       characters: [],
       events: [],
       notes: [],
+      maps: [],
+      locations: [],
       clock: Date.now(),
     };
   }
@@ -319,6 +337,8 @@ export class MemoryBackend implements RemoteBackend {
     if (members.length === 1) {
       this.state.campaigns = this.state.campaigns.filter((c) => c.id !== id);
       this.state.notes = this.state.notes.filter((n) => n.campaignId !== id);
+      this.state.maps = this.maps.filter((m) => m.campaignId !== id);
+      this.state.locations = this.places.filter((l) => l.campaignId !== id);
     }
     this.server.changed();
   }
@@ -512,6 +532,185 @@ export class MemoryBackend implements RemoteBackend {
     this.requireMaster(note.campaignId);
     this.state.notes = this.state.notes.filter((n) => n !== note);
     this.server.changed();
+  }
+  private get maps() {
+    return (this.state.maps ??= []);
+  }
+  private get places() {
+    return (this.state.locations ??= []);
+  }
+  private place(row: LocationRow): CampaignLocation {
+    const { createdBy, updatedBy, ...rest } = row;
+    return {
+      ...copy(rest),
+      createdByName: this.server.account(createdBy)?.name ?? null,
+      updatedByName: this.server.account(updatedBy)?.name ?? null,
+    };
+  }
+  private requireMember(campaignId: string) {
+    if (!this.server.member(campaignId, this.user()))
+      throw new Error("Este mapa foi removido.");
+  }
+  async listCampaignMaps() {
+    const userId = this.user();
+    const mine = this.maps.filter((m) =>
+      this.server.member(m.campaignId, userId),
+    );
+    const ids = new Set(mine.map((m) => m.id));
+    return {
+      maps: copy(mine),
+      locations: this.places
+        .filter(
+          (l) =>
+            ids.has(l.mapId) &&
+            (!l.secret || this.server.isMaster(l.campaignId, userId)),
+        )
+        .map((l) => this.place(l)),
+    };
+  }
+  async addCampaignMap(
+    campaignId: string,
+    name: string,
+    notes: string,
+    asset: RemoteMapAsset,
+    sourceKey: string | null,
+  ) {
+    if (!this.server.isMaster(campaignId, this.user()))
+      throw new Error("Apenas o mestre da campanha pode adicionar mapas.");
+    const id = crypto.randomUUID();
+    this.maps.push({
+      id,
+      campaignId,
+      name: name.trim(),
+      notes,
+      asset: copy(asset),
+      sourceKey,
+      revision: 0,
+      updatedAt: this.server.now(),
+    });
+    this.server.changed();
+    return id;
+  }
+  async updateCampaignMap(
+    id: string,
+    expectedRevision: number,
+    name: string,
+    notes: string,
+  ) {
+    const map = this.maps.find((m) => m.id === id);
+    if (!map) throw new Error("Este mapa foi removido.");
+    this.requireMember(map.campaignId);
+    if (map.revision !== expectedRevision)
+      throw new Error(
+        "Este mapa mudou enquanto você editava. Abra novamente para conferir a versão atual.",
+      );
+    Object.assign(map, {
+      name: name.trim(),
+      notes,
+      revision: map.revision + 1,
+      updatedAt: this.server.now(),
+    });
+    this.server.changed();
+  }
+  async deleteCampaignMap(id: string) {
+    const map = this.maps.find((m) => m.id === id);
+    if (!map) return;
+    if (!this.server.isMaster(map.campaignId, this.user()))
+      throw new Error("Apenas o mestre da campanha pode remover mapas.");
+    this.state.maps = this.maps.filter((m) => m !== map);
+    this.state.locations = this.places.filter((l) => l.mapId !== id);
+    this.server.changed();
+  }
+  async saveMapLocation(
+    input: CampaignLocationInput,
+    expectedRevision: number | null,
+  ) {
+    const userId = this.user();
+    const map = this.maps.find((m) => m.id === input.mapId);
+    if (!map || !this.server.member(map.campaignId, userId))
+      throw new Error("Este mapa foi removido.");
+    const master = this.server.isMaster(map.campaignId, userId);
+    if (input.secret && !master)
+      throw new Error("Apenas o mestre cria locais secretos.");
+    const current = this.places.find((l) => l.id === input.id);
+    if (current && (current.mapId !== map.id || (current.secret && !master)))
+      throw new Error("Este local foi removido.");
+    if (expectedRevision === null && current)
+      throw new Error("Este local já existe.");
+    if (expectedRevision !== null && !current)
+      throw new Error("Este local foi removido.");
+    if (current && current.revision !== expectedRevision)
+      throw new Error(
+        "Este local mudou enquanto você editava. Abra novamente para conferir a versão atual.",
+      );
+    const now = this.server.now();
+    const fields = {
+      name: input.name.trim(),
+      categoryId: input.categoryId,
+      iconId: input.iconId,
+      x: input.x,
+      y: input.y,
+      notes: input.notes,
+      secret: input.secret,
+    };
+    let row: LocationRow;
+    if (current) {
+      Object.assign(current, fields, {
+        revision: current.revision + 1,
+        updatedBy: userId,
+        updatedAt: now,
+      });
+      row = current;
+    } else {
+      row = {
+        id: input.id,
+        mapId: map.id,
+        campaignId: map.campaignId,
+        ...fields,
+        revision: 0,
+        createdBy: userId,
+        updatedBy: userId,
+        createdAt: now,
+        updatedAt: now,
+      };
+      this.places.push(row);
+    }
+    map.updatedAt = now;
+    this.server.changed();
+    return this.place(row);
+  }
+  async deleteMapLocation(id: string, expectedRevision: number) {
+    const userId = this.user();
+    const current = this.places.find((l) => l.id === id);
+    if (
+      !current ||
+      !this.server.member(current.campaignId, userId) ||
+      (current.secret && !this.server.isMaster(current.campaignId, userId))
+    )
+      return;
+    if (current.revision !== expectedRevision)
+      throw new Error(
+        "Este local mudou enquanto você editava. Abra novamente para conferir a versão atual.",
+      );
+    this.state.locations = this.places.filter((l) => l !== current);
+    this.server.changed();
+  }
+  async uploadMapFile(path: string, file: Blob) {
+    if (!this.server.isMaster(path.split("/")[0], this.user()))
+      throw new Error("Apenas o mestre envia imagens de mapas.");
+    this.server.files.set(path, file);
+  }
+  async downloadMapFile(path: string) {
+    this.requireMember(path.split("/")[0]);
+    const file = this.server.files.get(path);
+    if (!file) throw new Error("Imagem do mapa indisponível.");
+    return file;
+  }
+  async removeMapFiles(campaignId: string, assetId: string) {
+    if (!this.server.isMaster(campaignId, this.user())) return;
+    for (const path of [...this.server.files.keys()])
+      if (path.startsWith(`${campaignId}/${assetId}/`))
+        this.server.files.delete(path);
   }
   subscribe(listener: () => void) {
     return this.server.listen(listener);

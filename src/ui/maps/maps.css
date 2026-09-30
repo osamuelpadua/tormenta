@@ -853,3 +853,78 @@
     transition: none;
   }
 }
+
+/* Locais secretos de campanha: só mestres os recebem. */
+.atlas-pin.secret > span {
+  border-style: dashed;
+  border-color: #b9a4d8;
+  color: #d9cbef;
+  background: #241f30e8;
+  opacity: 0.9;
+}
+.atlas-secret-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 14px;
+  padding: 7px 10px;
+  border: 1px dashed #8f7bb0;
+  border-radius: 6px;
+  background: #241f30;
+  color: #d9cbef;
+  font-size: 13px;
+}
+.atlas-secret-toggle {
+  width: 100%;
+  justify-content: center;
+  margin: 4px 0 12px;
+}
+.atlas-secret-option {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px dashed #8f7bb0;
+  border-radius: 6px;
+  background: #241f3066;
+}
+
+.atlas-campaign-maps {
+  margin-top: 28px;
+}
+.atlas-campaign-maps h2 {
+  margin: 0 0 12px;
+  font: 600 20px var(--serif);
+}
+.atlas-campaign-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.atlas-campaign-list button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-finish);
+  color: var(--gold);
+  text-align: left;
+}
+.atlas-campaign-list button:hover {
+  border-color: var(--bronze);
+}
+.atlas-campaign-list span {
+  flex: 1;
+  min-width: 0;
+}
+.atlas-campaign-list strong,
+.atlas-campaign-list small {
+  display: block;
+}
+.atlas-campaign-list strong {
+  color: var(--ink);
+}
+.atlas-campaign-list small {
+  color: var(--muted);
+  margin-top: 3px;
+}

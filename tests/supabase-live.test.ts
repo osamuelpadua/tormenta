@@ -5,6 +5,12 @@ import { SupabaseBackend } from "../src/sync/supabase-backend";
 import { SyncEngine } from "../src/sync/sync-engine";
 import type { Command } from "../src/domain/commands";
 import { hero } from "./fixtures";
+import {
+  ensureCampaignAsset,
+  removeCampaignMap,
+  saveCampaignPlace,
+  shareMapToCampaign,
+} from "../src/sync/campaign-maps";
 
 const url = process.env.SB_URL;
 const key = process.env.SB_KEY;
@@ -108,6 +114,109 @@ describe.skipIf(!url || !key)("Supabase real", () => {
     expect(
       (await player.backend.listNotes(campaignId)).map((n) => n.title),
     ).toEqual(["Sessão 1"]);
+
+    // Campaign map: uploaded image, secret place, reveal, download, cleanup.
+    const assetId = crypto.randomUUID();
+    await master.db.mapAssets.add({
+      id: assetId,
+      kind: "local",
+      width: 300,
+      height: 200,
+      tileSize: 512,
+      maxZoom: 0,
+      thumbnail: new Blob(["thumb"], { type: "image/webp" }),
+    });
+    await master.db.mapTiles.add({
+      assetId,
+      z: 0,
+      x: 0,
+      y: 0,
+      blob: new Blob(["tile"], { type: "image/webp" }),
+    });
+    await master.db.atlasMaps.add({
+      id: "masmorra",
+      name: "Masmorra",
+      notes: "",
+      assetId,
+      revision: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    await master.db.mapLocations.add({
+      id: crypto.randomUUID(),
+      mapId: "masmorra",
+      name: "Cripta",
+      categoryId: "interest",
+      iconId: "treasure-map",
+      x: 0.4,
+      y: 0.6,
+      notes: "",
+      revision: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    const mapId = await shareMapToCampaign(
+      master.db,
+      master.backend,
+      campaignId,
+      (await master.db.atlasMaps.get("masmorra"))!,
+      { places: true, secret: true },
+    );
+    await player.engine.sync();
+    expect(await player.db.campaignLocations.count()).toBe(0);
+    const cached = (await player.db.campaignMaps.get(mapId))!;
+    await ensureCampaignAsset(player.db, player.backend, cached);
+    const tile = await player.db.mapTiles.get([assetId, 0, 0, 0]);
+    expect(await tile!.blob.text()).toBe("tile");
+    await master.engine.sync();
+    const [crypt] = await master.db.campaignLocations.toArray();
+    await saveCampaignPlace(
+      master.db,
+      master.backend,
+      master.session.userId,
+      { ...crypt, secret: false },
+      crypt,
+    );
+    const tavern = await saveCampaignPlace(
+      player.db,
+      player.backend,
+      player.session.userId,
+      {
+        mapId,
+        name: "Taverna",
+        categoryId: "interest",
+        iconId: "treasure-map",
+        x: 0.5,
+        y: 0.5,
+        notes: "",
+        secret: false,
+      },
+    );
+    await player.engine.sync();
+    expect(
+      (await player.db.campaignLocations.toArray()).map((l) => l.name).sort(),
+    ).toEqual(["Cripta", "Taverna"]);
+    await master.engine.sync();
+    expect(
+      (await master.db.campaignLocations.get(tavern.id))?.createdByName,
+    ).toBe("Jogadora de Teste");
+    await removeCampaignMap(
+      master.db,
+      master.backend,
+      (await master.db.campaignMaps.get(mapId))!,
+    );
+    // Removal is checked in storage.objects afterwards: the CDN may keep
+    // serving a deleted file for a while, so a download proves nothing.
+
+    // Experience from the master.
+    await master.engine.sync();
+    await master.engine.applyToParty(c.id, {
+      type: "xp",
+      amount: 300,
+      reason: "Teste real",
+    });
+    await player.engine.sync();
+    expect((await player.db.characters.get(c.id))!.xp).toBe(300);
 
     await player.engine.leaveCampaign(campaignId);
     await master.engine.sync();

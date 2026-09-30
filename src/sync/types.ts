@@ -1,4 +1,5 @@
 import type { Command } from "../domain/commands";
+import type { MapLocation } from "../domain/maps";
 import type { Character, HistoryEvent } from "../domain/types";
 
 export type Role = "master" | "player";
@@ -50,6 +51,51 @@ export interface CampaignNote {
   authorName: string;
   updatedAt: string;
 }
+// A map image as the campaign knows it: shipped with the app ("bundled") or
+// uploaded by the master to campaign storage as tiles.
+export interface RemoteMapAsset {
+  id: string;
+  kind: "bundled" | "storage";
+  width: number;
+  height: number;
+  tileSize: 512;
+  maxZoom: number;
+  baseUrl?: string;
+}
+export interface CampaignMap {
+  id: string;
+  campaignId: string;
+  name: string;
+  notes: string;
+  asset: RemoteMapAsset;
+  sourceKey: string | null;
+  revision: number;
+  updatedAt: string;
+}
+export interface CampaignLocation extends MapLocation {
+  campaignId: string;
+  // Visible only to masters until revealed.
+  secret: boolean;
+  createdByName: string | null;
+  updatedByName: string | null;
+}
+export type CampaignLocationInput = Pick<
+  CampaignLocation,
+  | "id"
+  | "mapId"
+  | "name"
+  | "categoryId"
+  | "iconId"
+  | "x"
+  | "y"
+  | "notes"
+  | "secret"
+>;
+export const mapFilePath = (
+  campaignId: string,
+  assetId: string,
+  file: string,
+) => `${campaignId}/${assetId}/${file}`;
 export type SaveResult =
   | { status: "ok" }
   | { status: "conflict"; character: RemoteCharacter }
@@ -109,6 +155,35 @@ export interface RemoteBackend {
   ): Promise<void>;
   deleteNote(id: string): Promise<void>;
 
+  // Maps and places of every campaign the session takes part in.
+  listCampaignMaps(): Promise<{
+    maps: CampaignMap[];
+    locations: CampaignLocation[];
+  }>;
+  addCampaignMap(
+    campaignId: string,
+    name: string,
+    notes: string,
+    asset: RemoteMapAsset,
+    sourceKey: string | null,
+  ): Promise<string>;
+  updateCampaignMap(
+    id: string,
+    expectedRevision: number,
+    name: string,
+    notes: string,
+  ): Promise<void>;
+  deleteCampaignMap(id: string): Promise<void>;
+  // expectedRevision null creates the place.
+  saveMapLocation(
+    location: CampaignLocationInput,
+    expectedRevision: number | null,
+  ): Promise<CampaignLocation>;
+  deleteMapLocation(id: string, expectedRevision: number): Promise<void>;
+  uploadMapFile(path: string, file: Blob): Promise<void>;
+  downloadMapFile(path: string): Promise<Blob>;
+  removeMapFiles(campaignId: string, assetId: string): Promise<void>;
+
   // Called whenever something the session can read may have changed.
   subscribe(listener: () => void): () => void;
 }
@@ -137,5 +212,11 @@ export interface PartyCharacter extends RemoteCharacter {
   accountId: string;
 }
 export interface CachedCampaign extends Campaign {
+  accountId: string;
+}
+export interface CachedCampaignMap extends CampaignMap {
+  accountId: string;
+}
+export interface CachedCampaignLocation extends CampaignLocation {
   accountId: string;
 }

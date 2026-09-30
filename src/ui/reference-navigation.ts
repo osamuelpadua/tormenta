@@ -4,7 +4,7 @@ import { parseBookPage } from "./book-search";
 
 export type Tab =
   "sheet" | "combat" | "powers" | "spells" | "inventory" | "maps" | "campaigns";
-export type CampaignView = "table" | "party" | "members" | "notes";
+export type CampaignView = "table" | "party" | "maps" | "members" | "notes";
 export interface ReferenceRoute {
   tab: Tab;
   entryId?: string;
@@ -15,6 +15,7 @@ export interface ReferenceRoute {
   campaignView?: CampaignView;
   // Another member's sheet opened from a campaign.
   memberCharacterId?: string;
+  campaignMapId?: string;
   invite?: string;
 }
 const tabs = [
@@ -26,7 +27,7 @@ const tabs = [
   "maps",
   "campaigns",
 ];
-const campaignViews = ["table", "party", "members", "notes"];
+const campaignViews = ["table", "party", "maps", "members", "notes"];
 const param = (params: URLSearchParams, key: string) =>
   params.get(key)?.slice(0, 200) || undefined;
 export function readRoute(hash: string): ReferenceRoute {
@@ -46,6 +47,7 @@ export function readRoute(hash: string): ReferenceRoute {
             ? (view as CampaignView)
             : undefined,
           memberCharacterId: param(params, "character"),
+          campaignMapId: param(params, "map"),
           invite: param(params, "invite")?.slice(0, 20),
         }
       : {}),
@@ -66,6 +68,7 @@ export function routeHash(route: ReferenceRoute) {
     if (route.campaignView) params.set("view", route.campaignView);
     if (route.memberCharacterId)
       params.set("character", route.memberCharacterId);
+    if (route.campaignMapId) params.set("map", route.campaignMapId);
     if (route.invite) params.set("invite", route.invite);
   }
   if (route.entryId) params.set("entry", route.entryId);
@@ -112,6 +115,7 @@ export function useReferenceNavigation() {
               campaignId: route.campaignId,
               campaignView: route.campaignView,
               memberCharacterId: route.memberCharacterId,
+              campaignMapId: route.campaignMapId,
             }
           : {};
       const next =
@@ -140,12 +144,14 @@ export function useReferenceNavigation() {
       campaignId?: string,
       campaignView?: CampaignView,
       memberCharacterId?: string,
+      campaignMapId?: string,
     ) =>
       navigate({
         tab: "campaigns",
         campaignId,
         campaignView,
         memberCharacterId,
+        campaignMapId,
       }),
     openEntry: (entryId: string) => navigate({ tab: route.tab, entryId }),
     openBook: (page: number, focus?: string) =>

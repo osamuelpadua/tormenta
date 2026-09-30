@@ -4,8 +4,16 @@ import { afterEach, describe, expect, it } from "vitest";
 import { CharacterDatabase } from "../src/storage/database";
 import { MemoryBackend, MemoryServer } from "../src/sync/memory-backend";
 import { mergeEdit, SyncEngine } from "../src/sync/sync-engine";
-import type { Command } from "../src/domain/commands";
+import { execute, type Command } from "../src/domain/commands";
 import { hero } from "./fixtures";
+import { initializeDefaultMap, saveLocation } from "../src/storage/maps";
+import {
+  deleteCampaignPlace,
+  ensureCampaignAsset,
+  removeCampaignMap,
+  saveCampaignPlace,
+  shareMapToCampaign,
+} from "../src/sync/campaign-maps";
 
 const opened: CharacterDatabase[] = [];
 afterEach(async () => {
@@ -307,5 +315,230 @@ describe("campanhas", () => {
         visibility: "all",
       }),
     ).rejects.toThrow(/mestre/);
+  });
+});
+
+describe("mapas da campanha", () => {
+  async function table() {
+    const server = new MemoryServer();
+    const master = await device(server, "mestre@mesa.dev", "Mestre");
+    const player = await device(server, "ana@mesa.dev", "Ana");
+    const campaignId = await master.engine.createCampaign("Mesa", "");
+    await player.engine.joinCampaign(server.state.campaigns[0].inviteCode);
+    await initializeDefaultMap(master.db);
+    const aethelgard = (await master.db.atlasMaps.toArray())[0];
+    await saveLocation(master.db, {
+      mapId: aethelgard.id,
+      name: "Covil do dragão",
+      categoryId: "interest",
+      iconId: "treasure-map",
+      x: 0.2,
+      y: 0.3,
+      notes: "",
+    });
+    return { server, master, player, campaignId, aethelgard };
+  }
+  const places = (d: Awaited<ReturnType<typeof device>>) =>
+    d.db.campaignLocations.toArray();
+
+  it("segredos do mestre ficam ocultos até serem revelados", async () => {
+    const { master, player, campaignId, aethelgard } = await table();
+    const mapId = await shareMapToCampaign(
+      master.db,
+      master.backend,
+      campaignId,
+      aethelgard,
+      { places: true, secret: true },
+    );
+    await master.engine.sync();
+    await player.engine.sync();
+    expect((await player.db.campaignMaps.toArray()).map((m) => m.id)).toEqual([
+      mapId,
+    ]);
+    expect(await places(player)).toHaveLength(0);
+    const [hidden] = await places(master);
+    expect(hidden.secret).toBe(true);
+
+    await saveCampaignPlace(
+      master.db,
+      master.backend,
+      master.engine.accountId!,
+      { ...hidden, secret: false },
+      hidden,
+    );
+    await player.engine.sync();
+    const [revealed] = await places(player);
+    expect(revealed.name).toBe("Covil do dragão");
+    expect(revealed.createdByName).toBe("Mestre");
+  });
+
+  it("todos marcam e editam; o jogador não cria segredos", async () => {
+    const { master, player, campaignId, aethelgard } = await table();
+    const mapId = await shareMapToCampaign(
+      master.db,
+      master.backend,
+      campaignId,
+      aethelgard,
+      { places: false, secret: false },
+    );
+    await player.engine.sync();
+    const accountId = player.engine.accountId!;
+    const input = {
+      mapId,
+      name: "Taverna",
+      categoryId: "interest",
+      iconId: "treasure-map",
+      x: 0.5,
+      y: 0.5,
+      notes: "",
+      secret: false,
+    };
+    await expect(
+      saveCampaignPlace(player.db, player.backend, accountId, {
+        ...input,
+        secret: true,
+      }),
+    ).rejects.toThrow(/mestre/);
+    const tavern = await saveCampaignPlace(
+      player.db,
+      player.backend,
+      accountId,
+      input,
+    );
+    await master.engine.sync();
+    const seen = (await places(master))[0];
+    expect(seen.createdByName).toBe("Ana");
+    await saveCampaignPlace(
+      master.db,
+      master.backend,
+      master.engine.accountId!,
+      { ...seen, name: "Taverna do Javali" },
+      seen,
+    );
+    // The player's copy is now outdated: the edit is refused, not lost.
+    await expect(
+      saveCampaignPlace(
+        player.db,
+        player.backend,
+        accountId,
+        { ...tavern, name: "x" },
+        tavern,
+      ),
+    ).rejects.toThrow(/mudou/);
+    await player.engine.sync();
+    const fresh = (await places(player))[0];
+    expect(fresh.name).toBe("Taverna do Javali");
+    await deleteCampaignPlace(player.db, player.backend, fresh);
+    await master.engine.sync();
+    expect(await places(master)).toHaveLength(0);
+  });
+
+  it("envia uma imagem própria e o jogador a baixa para uso offline", async () => {
+    const { master, player, campaignId } = await table();
+    const assetId = crypto.randomUUID();
+    await master.db.mapAssets.add({
+      id: assetId,
+      kind: "local",
+      width: 300,
+      height: 200,
+      tileSize: 512,
+      maxZoom: 0,
+      thumbnail: new Blob(["thumb"], { type: "image/webp" }),
+    });
+    await master.db.mapTiles.add({
+      assetId,
+      z: 0,
+      x: 0,
+      y: 0,
+      blob: new Blob(["tile"], { type: "image/webp" }),
+    });
+    const map = await master.db.atlasMaps.add({
+      id: "masmorra",
+      name: "Masmorra",
+      notes: "",
+      assetId,
+      revision: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    const mapId = await shareMapToCampaign(
+      master.db,
+      master.backend,
+      campaignId,
+      (await master.db.atlasMaps.get(map))!,
+      { places: false, secret: false },
+    );
+    await player.engine.sync();
+    const cached = (await player.db.campaignMaps.get(mapId))!;
+    expect(cached.asset.kind).toBe("storage");
+    const progress: number[] = [];
+    const asset = await ensureCampaignAsset(
+      player.db,
+      player.backend,
+      cached,
+      (done) => progress.push(done),
+    );
+    expect(asset.kind).toBe("local");
+    expect(
+      await player.db.mapTiles.where("assetId").equals(assetId).count(),
+    ).toBe(1);
+    expect(progress.at(-1)).toBe(1);
+
+    await removeCampaignMap(
+      master.db,
+      master.backend,
+      (await master.db.campaignMaps.get(mapId)) ?? {
+        ...cached,
+        accountId: master.engine.accountId!,
+      },
+    );
+    await player.engine.sync();
+    expect(await player.db.campaignMaps.count()).toBe(0);
+    // The downloaded image is released once no map uses it.
+    expect(await player.db.mapAssets.get(assetId)).toBeUndefined();
+    // The master still has the original map on the device.
+    expect(
+      await master.db.mapTiles.where("assetId").equals(assetId).count(),
+    ).toBe(1);
+  });
+});
+
+describe("experiência", () => {
+  it("registra XP, não deixa negativo e exige motivo", () => {
+    const c = hero();
+    const gained = execute(c, { type: "xp", amount: 1200, reason: "Ogro" });
+    expect(gained.character.xp).toBe(1200);
+    expect(gained.event.detail).toContain("+1.200 XP");
+    const fixed = execute(gained.character, {
+      type: "xp",
+      amount: -5000,
+      reason: "Correção",
+    });
+    expect(fixed.character.xp).toBe(0);
+    expect(() =>
+      execute(fixed.character, { type: "xp", amount: -10, reason: "x" }),
+    ).toThrow(/abaixo de zero/);
+    expect(() => execute(c, { type: "xp", amount: 50, reason: " " })).toThrow(
+      /motivo/,
+    );
+  });
+
+  it("o mestre concede XP e o jogador recebe com autor", async () => {
+    const server = new MemoryServer();
+    const master = await device(server, "mestre@mesa.dev", "Mestre");
+    const player = await device(server, "ana@mesa.dev", "Ana");
+    const campaignId = await master.engine.createCampaign("Mesa", "");
+    await player.engine.joinCampaign(server.state.campaigns[0].inviteCode);
+    const c = await withCharacter(player);
+    await player.engine.setCharacterCampaign(c.id, campaignId);
+    await master.engine.sync();
+    const event = await master.engine.applyToParty(c.id, {
+      type: "xp",
+      amount: 500,
+      reason: "Sessão 1",
+    });
+    await player.engine.sync();
+    expect((await player.db.characters.get(c.id))!.xp).toBe(500);
+    expect((await player.db.history.get(event.id))?.author).toBe("Mestre");
   });
 });

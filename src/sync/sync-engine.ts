@@ -2,6 +2,7 @@ import { execute, type Command } from "../domain/commands";
 import { timestamp } from "../domain/character";
 import type { Character, HistoryEvent } from "../domain/types";
 import type { CharacterDatabase } from "../storage/database";
+import { refreshCampaignMaps } from "./campaign-maps";
 import { characterSchema } from "../storage/schema";
 import type {
   OutboxEntry,
@@ -162,6 +163,7 @@ export class SyncEngine {
     try {
       await this.push(accountId);
       await this.refreshCampaigns(accountId);
+      await refreshCampaignMaps(this.db, this.backend, accountId);
       await this.pull(accountId);
       this.set({ state: "idle", lastSync: timestamp(), error: undefined });
     } catch (error) {

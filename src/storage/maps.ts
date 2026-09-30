@@ -84,8 +84,14 @@ export function validatePreparedImage(image: PreparedMapImage) {
       throw new Error("Bloco de imagem inválido.");
   }
 }
-async function removeUnusedAsset(db: CharacterDatabase, assetId: string) {
+// Campaign maps may reuse a local image (the master shared it) or keep a
+// downloaded copy; an image goes only when no map of either kind uses it.
+export async function removeUnusedAsset(
+  db: CharacterDatabase,
+  assetId: string,
+) {
   if (await db.atlasMaps.where("assetId").equals(assetId).count()) return;
+  if (await db.campaignMaps.where("asset.id").equals(assetId).count()) return;
   await db.mapTiles.where("assetId").equals(assetId).delete();
   await db.mapAssets.delete(assetId);
 }
@@ -111,6 +117,7 @@ export async function saveMap(
     db.atlasMaps,
     db.mapAssets,
     db.mapTiles,
+    db.campaignMaps,
     async () => {
       if (
         previous &&
@@ -139,6 +146,7 @@ export async function deleteMap(db: CharacterDatabase, map: AtlasMap) {
     db.mapLocations,
     db.mapAssets,
     db.mapTiles,
+    db.campaignMaps,
     async () => {
       if ((await db.atlasMaps.get(map.id))?.revision !== map.revision)
         throw conflict();

@@ -31,6 +31,7 @@ import { characterEntries } from "../domain/character";
 import { usageFor } from "../domain/effects";
 import type { CatalogEntry } from "../domain/types";
 import { AttackList, EffectsList, Resources } from "./play";
+import { ExperienceBar } from "./experience";
 import { partners, partnerLimit, familiar } from "../domain/partners";
 import { coverageFor } from "../domain/coverage";
 import {
@@ -55,7 +56,9 @@ export function Sheet({
   onCondition,
   onEdit,
   onSkill,
+  onEvolve,
 }: {
+  onEvolve?: () => void;
   onResource: (type: "damage" | "hp" | "mp" | "rest") => void;
   onAttack: (id: string) => void;
   onCondition: () => void;
@@ -87,6 +90,7 @@ export function Sheet({
   return (
     <>
       <Resources onResource={onResource} />
+      <ExperienceBar onEvolve={onEvolve} />
       <div className="attribute-grid">
         {ATTRIBUTES.map((a) => {
           return (

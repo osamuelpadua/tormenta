@@ -2,7 +2,11 @@ import type { SupabaseClient, User } from "@supabase/supabase-js";
 import type { Character, HistoryEvent } from "../domain/types";
 import type {
   Campaign,
+  CampaignLocation,
+  CampaignLocationInput,
+  CampaignMap,
   CampaignNote,
+  RemoteMapAsset,
   PullResult,
   RemoteBackend,
   RemoteCharacter,
@@ -32,6 +36,61 @@ interface EventRow {
   data: HistoryEvent;
   updated_at: string;
 }
+interface MapRow {
+  id: string;
+  campaign_id: string;
+  name: string;
+  notes: string;
+  asset: RemoteMapAsset;
+  source_key: string | null;
+  revision: number;
+  updated_at: string;
+}
+interface LocationRow {
+  id: string;
+  map_id: string;
+  campaign_id: string;
+  name: string;
+  category_id: string;
+  icon_id: string;
+  x: number;
+  y: number;
+  notes: string;
+  secret: boolean;
+  revision: number;
+  created_at: string;
+  updated_at: string;
+  creator?: { display_name: string } | null;
+  updater?: { display_name: string } | null;
+}
+const campaignMap = (row: MapRow): CampaignMap => ({
+  id: row.id,
+  campaignId: row.campaign_id,
+  name: row.name,
+  notes: row.notes,
+  asset: row.asset,
+  sourceKey: row.source_key,
+  revision: row.revision,
+  updatedAt: row.updated_at,
+});
+const place = (row: LocationRow): CampaignLocation => ({
+  id: row.id,
+  mapId: row.map_id,
+  campaignId: row.campaign_id,
+  name: row.name,
+  categoryId: row.category_id,
+  iconId: row.icon_id,
+  x: row.x,
+  y: row.y,
+  notes: row.notes,
+  secret: row.secret,
+  revision: row.revision,
+  createdAt: row.created_at,
+  updatedAt: row.updated_at,
+  createdByName: row.creator?.display_name ?? null,
+  updatedByName: row.updater?.display_name ?? null,
+});
+const MAP_BUCKET = "campaign-maps";
 const PAGE = 1000;
 const NAME_KEY = "tormenta-account-name";
 const MESSAGES: [RegExp, string][] = [
@@ -418,6 +477,116 @@ export class SupabaseBackend implements RemoteBackend {
         .error,
     );
   }
+  async listCampaignMaps() {
+    const client = await this.sb();
+    const maps = await this.all<MapRow>((from, to) =>
+      client
+        .from("campaign_maps")
+        .select(
+          "id, campaign_id, name, notes, asset, source_key, revision, updated_at",
+        )
+        .order("name")
+        .range(from, to),
+    );
+    const locations = await this.all<LocationRow>((from, to) =>
+      client
+        .from("campaign_map_locations")
+        .select(
+          "*, creator:profiles!campaign_map_locations_created_by_fkey(display_name), updater:profiles!campaign_map_locations_updated_by_fkey(display_name)",
+        )
+        .order("id")
+        .range(from, to),
+    );
+    return { maps: maps.map(campaignMap), locations: locations.map(place) };
+  }
+  addCampaignMap(
+    campaignId: string,
+    name: string,
+    notes: string,
+    asset: RemoteMapAsset,
+    sourceKey: string | null,
+  ) {
+    return this.rpc<string>("add_campaign_map", {
+      p_campaign: campaignId,
+      p_name: name,
+      p_notes: notes,
+      p_asset: asset,
+      p_source_key: sourceKey,
+    });
+  }
+  async updateCampaignMap(
+    id: string,
+    expectedRevision: number,
+    name: string,
+    notes: string,
+  ) {
+    await this.rpc("update_campaign_map", {
+      p_id: id,
+      p_expected: expectedRevision,
+      p_name: name,
+      p_notes: notes,
+    });
+  }
+  async deleteCampaignMap(id: string) {
+    const { error, count } = await (
+      await this.sb()
+    )
+      .from("campaign_maps")
+      .delete({ count: "exact" })
+      .eq("id", id);
+    fail(error);
+    if (!count)
+      throw new Error("Apenas o mestre da campanha pode remover mapas.");
+  }
+  async saveMapLocation(
+    location: CampaignLocationInput,
+    expectedRevision: number | null,
+  ) {
+    const row = await this.rpc<LocationRow>("save_map_location", {
+      p_location: location,
+      p_expected: expectedRevision,
+    });
+    return place(row);
+  }
+  async deleteMapLocation(id: string, expectedRevision: number) {
+    await this.rpc("delete_map_location", {
+      p_id: id,
+      p_expected: expectedRevision,
+    });
+  }
+  async uploadMapFile(path: string, file: Blob) {
+    const { error } = await (
+      await this.sb()
+    ).storage
+      .from(MAP_BUCKET)
+      .upload(path, file, { upsert: true, contentType: "image/webp" });
+    fail(error);
+  }
+  async downloadMapFile(path: string) {
+    const { data, error } = await (
+      await this.sb()
+    ).storage
+      .from(MAP_BUCKET)
+      .download(path);
+    fail(error);
+    return data!;
+  }
+  async removeMapFiles(campaignId: string, assetId: string) {
+    const storage = (await this.sb()).storage.from(MAP_BUCKET);
+    // Listing is per folder: the thumbnail, then every zoom/column folder.
+    const walk = async (prefix: string): Promise<string[]> => {
+      const { data, error } = await storage.list(prefix, { limit: 1000 });
+      fail(error);
+      const paths: string[] = [];
+      for (const item of data ?? [])
+        if (item.id) paths.push(`${prefix}/${item.name}`);
+        else paths.push(...(await walk(`${prefix}/${item.name}`)));
+      return paths;
+    };
+    const paths = await walk(`${campaignId}/${assetId}`);
+    for (let i = 0; i < paths.length; i += 500)
+      fail((await storage.remove(paths.slice(i, i + 500))).error);
+  }
   // Realtime applies the SELECT policies, so only readable rows notify.
   subscribe(listener: () => void) {
     let stop = () => {};
@@ -426,7 +595,13 @@ export class SupabaseBackend implements RemoteBackend {
       if (!active) return;
       // Unique name: each subscriber (sync engine, notes view) has its own.
       const channel = client.channel(`tormenta-${crypto.randomUUID()}`);
-      for (const table of ["characters", "campaign_members", "campaigns"])
+      for (const table of [
+        "characters",
+        "campaign_members",
+        "campaigns",
+        "campaign_maps",
+        "campaign_map_locations",
+      ])
         channel.on(
           "postgres_changes",
           { event: "*", schema: "public", table },

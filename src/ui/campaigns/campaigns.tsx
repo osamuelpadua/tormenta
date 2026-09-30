@@ -13,6 +13,7 @@ import {
   Heart,
   Link2,
   LogIn,
+  Map as MapGlyph,
   Minus,
   NotebookPen,
   Plus,
@@ -46,17 +47,21 @@ import {
   Toggle,
 } from "../shared";
 import { Sheet, SkillModal } from "../sheet";
+import { XpAmount } from "../experience";
+import { CampaignMapScreen, CampaignMapsView } from "./campaign-maps";
 import "./campaigns.css";
 
 interface Props {
   campaignId?: string;
   view?: CampaignView;
   memberCharacterId?: string;
+  campaignMapId?: string;
   invite?: string;
   open: (
     campaignId?: string,
     view?: CampaignView,
     characterId?: string,
+    mapId?: string,
   ) => void;
   openOwnCharacter: (id: string) => void;
   onAccount: () => void;
@@ -383,9 +388,19 @@ function CampaignPage(props: Props & { campaignId: string }) {
         ]
       : []),
     ["party", "Grupo", <Users size={16} key="i" />],
+    ["maps", "Mapas", <MapGlyph size={16} key="i" />],
     ["notes", master ? "Notas" : "Diário", <NotebookPen size={16} key="i" />],
     ["members", "Participantes", <Crown size={16} key="i" />],
   ];
+  if (props.campaignMapId)
+    return (
+      <CampaignMapScreen
+        campaign={campaign}
+        mapId={props.campaignMapId}
+        onBack={() => open(campaign.id, "maps")}
+        notify={notify}
+      />
+    );
   const memberSeat = seats?.find(
     (s) => !s.own && s.character.id === props.memberCharacterId,
   );
@@ -454,10 +469,18 @@ function CampaignPage(props: Props & { campaignId: string }) {
           seats={seats ?? []}
           onOpen={openSeat}
           onAction={setAction}
+          notify={notify}
         />
       )}
       {view === "party" && (
         <PartyView campaign={campaign} seats={seats ?? []} onOpen={openSeat} />
+      )}
+      {view === "maps" && (
+        <CampaignMapsView
+          campaign={campaign}
+          notify={notify}
+          onOpen={(mapId) => open(campaign.id, "maps", undefined, mapId)}
+        />
       )}
       {view === "notes" && <NotesView campaign={campaign} />}
       {view === "members" && (
@@ -648,7 +671,9 @@ function MasterTable({
   seats,
   onOpen,
   onAction,
+  notify,
 }: {
+  notify: (text: string) => void;
   seats: Seat[];
   onOpen: (seat: Seat) => void;
   onAction: (action: Action) => void;
@@ -663,8 +688,16 @@ function MasterTable({
       )
     : seats;
   const players = seats.filter((s) => !s.own);
+  const [granting, setGranting] = useState(false);
   return (
     <section aria-label="Mesa do mestre">
+      {granting && (
+        <GroupExperience
+          seats={players}
+          notify={notify}
+          onClose={() => setGranting(false)}
+        />
+      )}
       <div className="table-summary">
         <span>
           <Users size={15} />
@@ -680,6 +713,12 @@ function MasterTable({
           </span>
         )}
         {inCombat && <Pill tone="red">Em combate · ordem de iniciativa</Pill>}
+        {players.length > 0 && (
+          <button className="button small" onClick={() => setGranting(true)}>
+            <Sparkles size={14} />
+            Conceder XP
+          </button>
+        )}
         <button
           className="text-button"
           onClick={() => void engine!.sync().catch(() => {})}
@@ -756,6 +795,112 @@ function MasterTable({
         ))}
       </div>
     </section>
+  );
+}
+
+// The master awards the same experience to several characters at once.
+function GroupExperience({
+  seats,
+  notify,
+  onClose,
+}: {
+  seats: Seat[];
+  notify: (text: string) => void;
+  onClose: () => void;
+}) {
+  const [amount, setAmount] = useState(100);
+  const [reason, setReason] = useState("");
+  const [chosen, setChosen] = useState(() => seats.map((s) => s.character.id));
+  const [failures, setFailures] = useState<string[]>([]);
+  return (
+    <Modal
+      title="Conceder experiência"
+      subtitle="Mesa do mestre"
+      onClose={onClose}
+      footer={
+        <>
+          <button className="button" onClick={onClose}>
+            Cancelar
+          </button>
+          <AsyncButton
+            disabled={!chosen.length || !reason.trim() || !amount}
+            action={async () => {
+              const failed: string[] = [];
+              let done = 0;
+              for (const seat of seats.filter((s) =>
+                chosen.includes(s.character.id),
+              ))
+                try {
+                  await engine!.applyToParty(seat.character.id, {
+                    type: "xp",
+                    amount,
+                    reason,
+                  });
+                  done++;
+                } catch (e) {
+                  failed.push(
+                    `${seat.character.name}: ${(e as Error).message}`,
+                  );
+                }
+              setFailures(failed);
+              if (done)
+                notify(
+                  `${amount.toLocaleString("pt-BR")} XP para ${done} ${done === 1 ? "personagem" : "personagens"}.`,
+                );
+              if (!failed.length) onClose();
+              else
+                setChosen(
+                  seats
+                    .filter((s) =>
+                      failed.some((f) => f.startsWith(s.character.name)),
+                    )
+                    .map((s) => s.character.id),
+                );
+            }}
+          >
+            <Sparkles size={16} />
+            Conceder XP
+          </AsyncButton>
+        </>
+      }
+    >
+      {failures.length > 0 && (
+        <div className="notice danger" role="alert">
+          <strong>Alguns personagens não receberam</strong>
+          <ul>
+            {failures.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <XpAmount value={amount} onChange={setAmount} />
+      <Field label="Motivo">
+        <input
+          value={reason}
+          maxLength={200}
+          placeholder="Resgataram o prefeito de Valkaria"
+          onChange={(e) => setReason(e.target.value)}
+        />
+      </Field>
+      <fieldset className="xp-targets">
+        <legend>Personagens</legend>
+        {seats.map((seat) => (
+          <Toggle
+            key={seat.character.id}
+            label={`${seat.character.name} · ${seat.ownerName} · ${seat.character.xp.toLocaleString("pt-BR")} XP`}
+            checked={chosen.includes(seat.character.id)}
+            onChange={(on) =>
+              setChosen(
+                on
+                  ? [...chosen, seat.character.id]
+                  : chosen.filter((id) => id !== seat.character.id),
+              )
+            }
+          />
+        ))}
+      </fieldset>
+    </Modal>
   );
 }
 

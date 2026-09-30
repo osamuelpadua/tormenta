@@ -25,9 +25,11 @@ export interface ViewerHandle {
   focus: (point: MapPoint) => void;
   center: () => MapPoint;
 }
+// Campaign places may be secret: only masters receive them, drawn apart.
+type Place = MapLocation & { secret?: boolean };
 interface Props {
   asset: MapAsset;
-  locations: MapLocation[];
+  locations: Place[];
   selectedId?: string;
   mode: "browse" | "add" | "move";
   moving?: { location: MapLocation; point: MapPoint };
@@ -114,13 +116,13 @@ class AtlasLayer extends L.GridLayer {
   }
 }
 function icon(
-  location: Pick<MapLocation, "iconId">,
+  location: Pick<Place, "iconId" | "secret">,
   selected = false,
   moving = false,
 ) {
   // Only a catalog-owned symbol enters the SVG; user text is assigned via DOM APIs.
   return L.divIcon({
-    className: `atlas-pin${selected ? " selected" : ""}${moving ? " moving" : ""}`,
+    className: `atlas-pin${selected ? " selected" : ""}${moving ? " moving" : ""}${location.secret ? " secret" : ""}`,
     iconSize: [44, 44],
     iconAnchor: [22, 22],
     html: `<span><svg width="25" height="25" viewBox="0 0 512 512" aria-hidden="true"><use href="/art/entity-icons.svg#${mapIconId(location.iconId)}" /></svg></span>`,
@@ -231,7 +233,7 @@ export const MapViewer = forwardRef<ViewerHandle, Props>(
           const position = pointToLatLng(location, asset);
           if (!visible.contains(position)) continue;
           retained.add(location.id);
-          const signature = `${location.revision}:${location.name}:${location.iconId}:${location.x}:${location.y}:${current.selectedId === location.id}`;
+          const signature = `${location.revision}:${location.name}:${location.iconId}:${location.x}:${location.y}:${!!location.secret}:${current.selectedId === location.id}`;
           let record = markers.current.get(location.id);
           if (!record) {
             const marker = L.marker(position, {

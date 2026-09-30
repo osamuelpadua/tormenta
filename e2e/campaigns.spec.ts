@@ -87,6 +87,14 @@ test("mestre cria a campanha, o jogador entra e o mestre cura a ficha", async ({
   await expect(seat).toContainText("74/98");
   await shot(page, "03-mesa-do-mestre");
 
+  // Experience for the whole group.
+  await table.getByRole("button", { name: "Conceder XP" }).click();
+  const grant = page.getByRole("dialog", { name: "Conceder experiência" });
+  await grant.getByRole("button", { name: "500", exact: true }).click();
+  await grant.getByLabel("Motivo").fill("Resgate do prefeito");
+  await grant.getByRole("button", { name: "Conceder XP" }).click();
+  await expect(grant).toHaveCount(0);
+
   // The master opens the sheet: effects only, no editing.
   await seat.getByRole("button", { name: /Budrik/ }).click();
   await expect(
@@ -98,7 +106,7 @@ test("mestre cria a campanha, o jogador entra e o mestre cura a ficha", async ({
   await expect(
     page.getByRole("button", { name: "Receber dano" }),
   ).toBeVisible();
-  await expect(page.getByText("por Mestre Arsenal")).toBeVisible();
+  await expect(page.getByText("por Mestre Arsenal").first()).toBeVisible();
   await shot(page, "04-ficha-visao-mestre");
   await signOut(page);
 
@@ -109,6 +117,98 @@ test("mestre cria a campanha, o jogador entra e o mestre cura a ficha", async ({
   await expect(
     page.getByRole("progressbar", { name: "Pontos de vida" }),
   ).toHaveAttribute("aria-valuenow", "74");
+  await expect(page.locator(".xp-strip")).toContainText("15.650 XP");
+  await shot(page, "05-xp-na-ficha");
+});
+
+test("mapa da campanha: o grupo marca locais e o mestre revela segredos", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Budrik" })).toBeVisible();
+  await signUp(page, "Mestre", "m3@mesa.dev");
+  await page.keyboard.press("Escape");
+  await page.goto("/#campaigns");
+  await page.getByRole("button", { name: "Nova campanha" }).click();
+  await page.getByLabel("Nome da campanha").fill("Mesa do mapa");
+  await page.getByRole("button", { name: "Criar campanha" }).click();
+  const code = (await page.locator(".invite-code").innerText()).trim();
+
+  await page
+    .getByRole("navigation", { name: "Seções da campanha" })
+    .getByRole("button", { name: "Mapas" })
+    .click();
+  await page.getByRole("button", { name: "Adicionar mapa" }).click();
+  await page.getByRole("button", { name: "Adicionar à campanha" }).click();
+  await expect(page.locator(".leaflet-tile-loaded").first()).toBeVisible();
+  await page.getByRole("button", { name: "Adicionar local" }).click();
+  await page.getByRole("button", { name: "Usar centro" }).click();
+  await page.getByLabel("Nome do local").fill("Covil oculto");
+  await page.getByRole("checkbox", { name: /Local secreto/ }).check();
+  await page.getByRole("button", { name: "Salvar local" }).click();
+  await expect(page.getByText("Secreto · só mestres veem")).toBeVisible();
+  await expect(page.locator(".atlas-pin.secret")).toHaveCount(1);
+  await shot(page, "06-mapa-segredo-mestre");
+  await page.getByRole("button", { name: "Voltar aos mapas" }).click();
+  await signOut(page);
+
+  await signUp(page, "Ana", "a3@mesa.dev");
+  await page.keyboard.press("Escape");
+  await page.goto(`/#campaigns?invite=${code}`);
+  await page.getByRole("button", { name: "Entrar na campanha" }).click();
+  await page
+    .getByRole("navigation", { name: "Seções da campanha" })
+    .getByRole("button", { name: "Mapas" })
+    .click();
+  await page.getByRole("button", { name: "Abrir Aethelgard" }).click();
+  await expect(page.locator(".leaflet-tile-loaded").first()).toBeVisible();
+  await expect(page.locator(".atlas-pin")).toHaveCount(0);
+  await expect(page.locator(".atlas-bar-title")).toContainText("0 locais");
+  await page.getByRole("button", { name: "Adicionar local" }).click();
+  await page.getByRole("button", { name: "Usar centro" }).click();
+  await page.getByLabel("Nome do local").fill("Taverna do Javali");
+  await expect(
+    page.getByRole("checkbox", { name: /Local secreto/ }),
+  ).toHaveCount(0);
+  await page.getByRole("button", { name: "Salvar local" }).click();
+  await expect(page.locator(".atlas-bar-title")).toContainText("1 local");
+  await page.getByRole("button", { name: "Voltar aos mapas" }).click();
+  await signOut(page);
+
+  await signIn(page, "m3@mesa.dev");
+  await page.goto("/#campaigns");
+  await page.getByRole("button", { name: /Mesa do mapa/ }).click();
+  await page
+    .getByRole("navigation", { name: "Seções da campanha" })
+    .getByRole("button", { name: "Mapas" })
+    .click();
+  await page.getByRole("button", { name: "Abrir Aethelgard" }).click();
+  await expect(page.locator(".atlas-bar-title")).toContainText("2 locais");
+  await page.getByRole("button", { name: /^Locais/ }).click();
+  await page
+    .getByRole("complementary", { name: "Locais do mapa" })
+    .getByRole("button", { name: /Covil oculto/ })
+    .click();
+  await page.getByRole("button", { name: "Revelar ao grupo" }).click();
+  await expect(page.getByText("Secreto · só mestres veem")).toHaveCount(0);
+  await page
+    .getByRole("complementary", { name: "Locais do mapa" })
+    .getByRole("button", { name: /Taverna do Javali/ })
+    .click();
+  await expect(page.getByText("Marcado por Ana")).toBeVisible();
+  await shot(page, "07-mapa-mestre-revelou");
+  await page.getByRole("button", { name: "Voltar aos mapas" }).click();
+  await signOut(page);
+
+  await signIn(page, "a3@mesa.dev");
+  await page.goto("/#campaigns");
+  await page.getByRole("button", { name: /Mesa do mapa/ }).click();
+  await page
+    .getByRole("navigation", { name: "Seções da campanha" })
+    .getByRole("button", { name: "Mapas" })
+    .click();
+  await page.getByRole("button", { name: "Abrir Aethelgard" }).click();
+  await expect(page.locator(".atlas-bar-title")).toContainText("2 locais");
 });
 
 test("um jogador vê a ficha do grupo apenas para leitura", async ({ page }) => {

@@ -188,6 +188,8 @@ type CommandAction =
   | { type: "initiative"; initiative: number; edge: "before" | "after" }
   | { type: "sceneEnd" }
   | { type: "time"; minutes: number }
+  // Experience awarded (or corrected, when negative) by the table.
+  | { type: "xp"; amount: number; reason: string }
   | {
       type: "event";
       event: "hostile" | "attacked" | "stabilize" | "violation";
@@ -706,6 +708,20 @@ export function execute(original: Character, command: Command): CommandResult {
       title = "Cena encerrada";
       detail = "Efeitos de cena e sustentados encerrados.";
       break;
+    case "xp": {
+      demand(
+        Number.isInteger(command.amount) && command.amount !== 0,
+        "Informe a quantidade de XP.",
+      );
+      demand(command.reason.trim(), "Descreva o motivo da experiência.");
+      const next = Math.max(0, Math.min(1000000, c.xp + command.amount));
+      const change = next - c.xp;
+      demand(change !== 0, "A experiência não pode ficar abaixo de zero.");
+      c.xp = next;
+      title = change > 0 ? "Experiência recebida" : "Experiência ajustada";
+      detail = `${change > 0 ? "+" : ""}${change.toLocaleString("pt-BR")} XP · ${command.reason.trim()} · total ${next.toLocaleString("pt-BR")} XP`;
+      break;
+    }
     case "time": {
       whole(command.minutes, "Minutos", 1);
       demand(!c.combat.active, "Durante combate, avance turnos e rodadas.");

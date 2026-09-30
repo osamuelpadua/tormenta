@@ -227,19 +227,30 @@ export function MapEditor({
   );
 }
 
-export function LocationEditor({
+type EditedPlace = MapLocation & { secret?: boolean };
+type PlaceInput = Pick<
+  MapLocation,
+  "mapId" | "name" | "categoryId" | "iconId" | "x" | "y" | "notes"
+> & { secret?: boolean };
+export function LocationEditor<T extends EditedPlace>({
   mapId,
   point,
   location,
+  canSecret = false,
+  save,
   onClose,
   onSaved,
 }: {
   mapId: string;
   point: MapPoint;
-  location?: MapLocation;
+  location?: T;
+  // Only campaign masters may keep a place hidden from the group.
+  canSecret?: boolean;
+  save?: (input: PlaceInput, previous?: T) => Promise<T>;
   onClose: () => void;
-  onSaved: (location: MapLocation) => void;
+  onSaved: (location: T) => void;
 }) {
+  const [secret, setSecret] = useState(location?.secret ?? false);
   const formId = useId();
   const [name, setName] = useState(location?.name ?? "");
   const [categoryId, setCategory] = useState(
@@ -282,11 +293,18 @@ export function LocationEditor({
           setBusy(true);
           setError("");
           try {
-            const saved = await saveLocation(
-              db,
-              { mapId, ...point, name: name.trim(), categoryId, iconId, notes },
-              location,
-            );
+            const input = {
+              mapId,
+              ...point,
+              name: name.trim(),
+              categoryId,
+              iconId,
+              notes,
+              ...(canSecret ? { secret } : {}),
+            };
+            const saved = save
+              ? await save(input, location)
+              : ((await saveLocation(db, input, location)) as T);
             if (navigator.storage?.persist)
               void navigator.storage.persist().catch(() => {});
             onSaved(saved);
@@ -369,6 +387,19 @@ export function LocationEditor({
             placeholder="O que torna este lugar importante para a sua campanha?"
           />
         </Field>
+        {canSecret && (
+          <label className="check-label atlas-secret-option">
+            <input
+              type="checkbox"
+              checked={secret}
+              onChange={(event) => setSecret(event.target.checked)}
+            />
+            <span>
+              Local secreto
+              <small>Só mestres veem. Revele ao grupo quando quiser.</small>
+            </span>
+          </label>
+        )}
       </form>
     </Modal>
   );

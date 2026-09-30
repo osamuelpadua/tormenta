@@ -244,6 +244,118 @@ try {
   );
   check("jogador não cria notas", !!aNote.error);
 
+  // Campaign maps: everyone edits visible places; secrets belong to masters.
+  const asset = {
+    id: crypto.randomUUID(),
+    kind: "bundled",
+    width: 100,
+    height: 100,
+    tileSize: 512,
+    maxZoom: 0,
+    baseUrl: "/maps/x",
+  };
+  const aMap = await as(
+    "A",
+    "select public.add_campaign_map($1, 'Mapa', '', $2)",
+    [campaign, asset],
+  );
+  check("jogador não adiciona mapas", /Apenas o mestre/.test(aMap.error ?? ""), aMap.error);
+  const mMap = await as(
+    "M",
+    "select public.add_campaign_map($1, 'Aethelgard', '', $2) as id",
+    [campaign, asset],
+  );
+  const mapId = mMap.rows?.[0]?.id;
+  check("mestre adiciona mapa", !!mapId, mMap.error);
+  const place = (id, extra = {}) => ({
+    id,
+    mapId,
+    name: "Valdris",
+    categoryId: "city",
+    iconId: "castle",
+    x: 0.5,
+    y: 0.5,
+    notes: "",
+    ...extra,
+  });
+  const visibleId = crypto.randomUUID();
+  const aPlace = await as("A", "select * from public.save_map_location($1, null)", [
+    place(visibleId),
+  ]);
+  check("jogador marca um local", aPlace.rows?.[0]?.created_by === ids.A, aPlace.error);
+  const aSecret = await as("A", "select public.save_map_location($1, null)", [
+    place(crypto.randomUUID(), { secret: true }),
+  ]);
+  check("jogador não cria local secreto", /Apenas o mestre/.test(aSecret.error ?? ""), aSecret.error);
+  const mEdit = await as("M", "select * from public.save_map_location($1, 0)", [
+    place(visibleId, { name: "Valdris, a capital" }),
+  ]);
+  check(
+    "mestre edita o local do jogador",
+    mEdit.rows?.[0]?.revision === 1 && mEdit.rows[0].updated_by === ids.M,
+    mEdit.error,
+  );
+  const stalePlace = await as("A", "select public.save_map_location($1, 0)", [
+    place(visibleId, { name: "x" }),
+  ]);
+  check("edição sobre revisão antiga é recusada", /mudou/.test(stalePlace.error ?? ""), stalePlace.error);
+  const secretId = crypto.randomUUID();
+  await as("M", "select public.save_map_location($1, null)", [
+    place(secretId, { name: "Covil oculto", secret: true }),
+  ]);
+  const aSees = await as("A", "select name from public.campaign_map_locations order by name");
+  check(
+    "jogador não vê o local secreto",
+    aSees.rows?.length === 1 && aSees.rows[0].name === "Valdris, a capital",
+  );
+  const aHijack = await as("A", "select public.save_map_location($1, 0)", [
+    place(secretId, { name: "descoberto" }),
+  ]);
+  check("jogador não altera local secreto", /removido/.test(aHijack.error ?? ""), aHijack.error);
+  await as("A", "select public.delete_map_location($1, 0)", [secretId]);
+  const stillThere = await c.query(
+    "select count(*) n from public.campaign_map_locations where id = $1",
+    [secretId],
+  );
+  check("jogador não exclui local secreto", stillThere.rows[0].n === "1");
+  const reveal = await as("M", "select public.save_map_location($1, 0)", [
+    place(secretId, { name: "Covil oculto", secret: false }),
+  ]);
+  const aAfter = await as("A", "select count(*) n from public.campaign_map_locations");
+  check("mestre revela e o grupo passa a ver", !reveal.error && aAfter.rows[0].n === "2", reveal.error);
+  const aDelete = await as("A", "select public.delete_map_location($1, 1)", [secretId]);
+  const gone = await c.query(
+    "select count(*) n from public.campaign_map_locations where id = $1",
+    [secretId],
+  );
+  check("jogador exclui local visível", !aDelete.error && gone.rows[0].n === "0", aDelete.error);
+  const aNotesMap = await as("A", "select public.update_campaign_map($1, 0, 'Aethelgard', 'anotação do grupo')", [mapId]);
+  check("jogador edita as anotações do mapa", !aNotesMap.error, aNotesMap.error);
+  const zMaps = await as(
+    "Z",
+    "select (select count(*) from public.campaign_maps) m, (select count(*) from public.campaign_map_locations) l",
+  );
+  check("quem está fora não vê mapas nem locais", zMaps.rows[0].m === "0" && zMaps.rows[0].l === "0");
+  await as("A", "delete from public.campaign_maps where id = $1", [mapId]);
+  const mapLeft = await c.query("select count(*) n from public.campaign_maps where id = $1", [mapId]);
+  check("jogador não remove o mapa", mapLeft.rows[0].n === "1");
+  const path = `${campaign}/${asset.id}/thumbnail.webp`;
+  const aUpload = await as(
+    "A",
+    "insert into storage.objects (bucket_id, name) values ('campaign-maps', $1)",
+    [path],
+  );
+  check("jogador não envia imagens", !!aUpload.error);
+  const mUpload = await as(
+    "M",
+    "insert into storage.objects (bucket_id, name) values ('campaign-maps', $1)",
+    [path],
+  );
+  check("mestre envia imagens", !mUpload.error, mUpload.error);
+  const aRead = await as("A", "select count(*) n from storage.objects where bucket_id = 'campaign-maps'");
+  const zRead = await as("Z", "select count(*) n from storage.objects where bucket_id = 'campaign-maps'");
+  check("grupo baixa as imagens; quem está fora não", aRead.rows?.[0]?.n === "1" && zRead.rows?.[0]?.n === "0", aRead.error ?? zRead.error);
+
   const zProfile = await as(
     "Z",
     "select count(*) n from public.profiles where id = $1",

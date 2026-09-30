@@ -542,7 +542,11 @@ export default function App() {
     <div
       className="app-shell"
       data-view={tab}
-      data-map-open={(tab === "maps" && !!route.mapId) || undefined}
+      data-map-open={
+        (tab === "maps" && !!route.mapId) ||
+        (tab === "campaigns" && !!route.campaignMapId) ||
+        undefined
+      }
       data-combat-active={c?.combat.active || undefined}
     >
       <a className="skip-link" href="#main-content">
@@ -794,7 +798,7 @@ export default function App() {
             </button>
           </div>
         )}
-        {!(tab === "maps" && route.mapId) && (
+        {!(tab === "maps" && route.mapId) && !route.campaignMapId && (
           <InstallRecommendation
             installation={installation}
             onInstall={requestInstall}
@@ -811,6 +815,7 @@ export default function App() {
               campaignId={route.campaignId}
               view={route.campaignView}
               memberCharacterId={route.memberCharacterId}
+              campaignMapId={route.campaignMapId}
               invite={route.invite}
               open={navigation.openCampaign}
               openOwnCharacter={(id) => {
@@ -826,6 +831,10 @@ export default function App() {
               <Maps
                 mapId={route.mapId}
                 onOpen={navigation.openMap}
+                accountId={accountId}
+                onOpenCampaignMap={(campaignId, mapId) =>
+                  navigation.openCampaign(campaignId, "maps", undefined, mapId)
+                }
                 onBack={() => setTab("maps")}
                 notify={notify}
               />
@@ -930,6 +939,7 @@ export default function App() {
                   onCondition={onCondition}
                   onEdit={onEdit}
                   onSkill={(id) => setModal({ kind: "skill", id })}
+                  onEvolve={() => setModal({ kind: "evolve" })}
                 />
               )}{" "}
               {tab === "combat" && (

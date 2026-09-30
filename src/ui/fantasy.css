@@ -2034,3 +2034,102 @@ input[type="radio"] {
     scroll-behavior: auto !important;
   }
 }
+
+/* Experiência: faixa sob os recursos da ficha. */
+.xp-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: -6px 0 22px;
+  padding: 12px 16px;
+  border: 1px solid #8a724555;
+  border-radius: 9px;
+  background: var(--panel-finish);
+  box-shadow: var(--edge-light);
+}
+.xp-strip-level {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border: 1px solid var(--bronze);
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+  font-family: var(--serif);
+}
+.xp-strip-level svg {
+  position: absolute;
+  top: -7px;
+  color: var(--gold);
+  fill: currentColor;
+}
+.xp-strip-level strong {
+  font-size: 18px;
+}
+.xp-strip-body {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.xp-strip-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 12px;
+  font-variant-numeric: tabular-nums;
+}
+.xp-strip-text strong {
+  color: var(--gold-bright);
+  font-size: 15px;
+}
+.xp-strip-text span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.xp-track {
+  height: 8px;
+  margin-top: 7px;
+  padding: 1px;
+  border: 1px solid #6b5a36;
+  border-radius: 2px;
+  background: #0b0f0c;
+}
+.xp-track > div {
+  height: 100%;
+  background: linear-gradient(180deg, #f0d99a, #c6a76b 45%, #8a6d36);
+  box-shadow: 0 0 8px #e0c58e55;
+  transition: width 0.35s ease-out;
+}
+.xp-track[data-ready] > div {
+  animation: xp-glow 1.8s ease-in-out infinite alternate;
+}
+@keyframes xp-glow {
+  to {
+    box-shadow: 0 0 14px #f0d99acc;
+  }
+}
+.xp-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -6px 0 14px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .xp-track[data-ready] > div {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .xp-strip {
+    margin-top: -8px;
+    padding: 10px 12px;
+  }
+  .xp-strip > .button {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

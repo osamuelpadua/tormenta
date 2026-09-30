@@ -7,6 +7,8 @@ import { execute, type Command } from "../domain/commands";
 import type { Character, HistoryEvent } from "../domain/types";
 import type {
   CachedCampaign,
+  CachedCampaignLocation,
+  CachedCampaignMap,
   CharacterSync,
   OutboxEntry,
   PartyCharacter,
@@ -31,6 +33,8 @@ export class CharacterDatabase extends Dexie {
   outbox!: Table<OutboxEntry, number>;
   campaigns!: Table<CachedCampaign, string>;
   party!: Table<PartyCharacter, string>;
+  campaignMaps!: Table<CachedCampaignMap, string>;
+  campaignLocations!: Table<CachedCampaignLocation, string>;
   recovery!: Table<
     {
       id: string;
@@ -114,6 +118,11 @@ export class CharacterDatabase extends Dexie {
       outbox: "++seq, characterId",
       campaigns: "id, accountId",
       party: "id, accountId, campaignId",
+    });
+    // Additive: cached campaign maps and places; images share mapAssets/mapTiles.
+    this.version(6).stores({
+      campaignMaps: "id, accountId, campaignId, asset.id",
+      campaignLocations: "id, mapId, accountId",
     });
   }
   // Queues a change of an account-linked character for upload.

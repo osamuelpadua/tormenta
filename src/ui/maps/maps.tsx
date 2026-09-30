@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import {
   ArrowLeft,
@@ -17,6 +17,8 @@ import {
   ZoomOut,
   List,
   Search,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { db } from "../../storage/database";
 import { deleteLocation, deleteMap, saveLocation } from "../../storage/maps";
@@ -35,11 +37,15 @@ import "./maps.css";
 export default function Maps({
   mapId,
   onOpen,
+  onOpenCampaignMap,
+  accountId,
   onBack,
   notify,
 }: {
   mapId?: string;
   onOpen: (id: string) => void;
+  onOpenCampaignMap?: (campaignId: string, mapId: string) => void;
+  accountId?: string | null;
   onBack: () => void;
   notify: (text: string) => void;
 }) {
@@ -64,7 +70,7 @@ export default function Maps({
     );
   if (mapId && active?.map && active.asset)
     return (
-      <MapWorkspace
+      <LocalMapWorkspace
         key={mapId}
         map={active.map}
         asset={active.asset}
@@ -131,6 +137,9 @@ export default function Maps({
           </button>
         </div>
       )}
+      {accountId && onOpenCampaignMap && (
+        <CampaignMapsSection accountId={accountId} onOpen={onOpenCampaignMap} />
+      )}
       <p className="atlas-local-note">
         Seu atlas fica salvo neste dispositivo. Use Backups para guardar uma
         cópia ou levar os mapas para outra mesa.
@@ -145,6 +154,48 @@ export default function Maps({
           }}
         />
       )}
+    </section>
+  );
+}
+// Maps shared in the user's campaigns, next to the maps of this device.
+function CampaignMapsSection({
+  accountId,
+  onOpen,
+}: {
+  accountId: string;
+  onOpen: (campaignId: string, mapId: string) => void;
+}) {
+  const shared = useLiveQuery(async () => {
+    const maps = await db.campaignMaps
+      .where("accountId")
+      .equals(accountId)
+      .sortBy("name");
+    const campaigns = new Map(
+      (await db.campaigns.where("accountId").equals(accountId).toArray()).map(
+        (c) => [c.id, c.name],
+      ),
+    );
+    return maps.map((map) => ({
+      map,
+      campaign: campaigns.get(map.campaignId) ?? "Campanha",
+    }));
+  }, [accountId]);
+  if (!shared?.length) return null;
+  return (
+    <section className="atlas-campaign-maps" aria-label="Mapas das campanhas">
+      <h2>Mapas das campanhas</h2>
+      <div className="atlas-campaign-list">
+        {shared.map(({ map, campaign }) => (
+          <button key={map.id} onClick={() => onOpen(map.campaignId, map.id)}>
+            <MapGlyph size={20} />
+            <span>
+              <strong>{map.name}</strong>
+              <small>{campaign} · compartilhado com o grupo</small>
+            </span>
+            <Compass size={17} />
+          </button>
+        ))}
+      </div>
     </section>
   );
 }
@@ -286,7 +337,29 @@ function useCompact() {
   }, []);
   return compact;
 }
-function MapWorkspace({
+// A place on screen: local maps use plain locations; campaign places also
+// carry secrecy and authorship.
+export type Place = MapLocation & {
+  secret?: boolean;
+  createdByName?: string | null;
+  updatedByName?: string | null;
+};
+export type PlaceInput = Pick<
+  Place,
+  "mapId" | "name" | "categoryId" | "iconId" | "x" | "y" | "notes"
+> & { secret?: boolean };
+// Where the map data lives: this device, or a campaign on the server.
+export interface MapBinding {
+  map: { id: string; name: string; notes: string };
+  asset: MapAsset;
+  locations: Place[] | undefined;
+  canSecret: boolean;
+  savedMessage: string;
+  save: (input: PlaceInput, previous?: Place) => Promise<Place>;
+  remove: (place: Place) => Promise<void>;
+  editMap: (close: () => void) => ReactNode;
+}
+function LocalMapWorkspace({
   map,
   asset,
   onBack,
@@ -301,6 +374,43 @@ function MapWorkspace({
     () => db.mapLocations.where("mapId").equals(map.id).toArray(),
     [map.id],
   );
+  return (
+    <MapWorkspace
+      binding={{
+        map,
+        asset,
+        locations,
+        canSecret: false,
+        savedMessage: "Local salvo neste dispositivo.",
+        save: (input, previous) => saveLocation(db, input, previous),
+        remove: (place) => deleteLocation(db, place),
+        editMap: (close) => (
+          <MapEditor
+            map={map}
+            asset={asset}
+            onClose={close}
+            onSaved={() => {
+              close();
+              notify("Mapa atualizado.");
+            }}
+          />
+        ),
+      }}
+      onBack={onBack}
+      notify={notify}
+    />
+  );
+}
+export function MapWorkspace({
+  binding,
+  onBack,
+  notify,
+}: {
+  binding: MapBinding;
+  onBack: () => void;
+  notify: (text: string) => void;
+}) {
+  const { map, asset, locations } = binding;
   const viewer = useRef<ViewerHandle>(null);
   const compact = useCompact();
   const [mode, setMode] = useState<"browse" | "add" | "move">("browse");
@@ -309,16 +419,16 @@ function MapWorkspace({
   const [editingMap, setEditingMap] = useState(false);
   const [form, setForm] = useState<{
     point: MapPoint;
-    location?: MapLocation;
+    location?: Place;
   }>();
   const [moving, setMoving] = useState<{
-    location: MapLocation;
+    location: Place;
     point: MapPoint;
   }>();
   const [showList, setShowList] = useState(false);
   const [query, setQuery] = useState("");
   const [showNotes, setShowNotes] = useState(false);
-  const [deleting, setDeleting] = useState<MapLocation>();
+  const [deleting, setDeleting] = useState<Place>();
   const [moveError, setMoveError] = useState("");
   // A short gesture hint on opening, then the map is left uncluttered.
   const [hint, setHint] = useState(true);
@@ -347,7 +457,7 @@ function MapWorkspace({
     return () => window.removeEventListener("keydown", key);
   }, []);
   // On wide screens the list stays open beside the map while browsing.
-  const openLocation = (location: MapLocation) => {
+  const openLocation = (location: Place) => {
     setSelected(location.id);
     if (compact) setShowList(false);
   };
@@ -417,6 +527,19 @@ function MapWorkspace({
   const details = selected && (
     <LocationDetails
       location={selected}
+      canSecret={binding.canSecret}
+      onSecret={async (secret) => {
+        try {
+          await binding.save({ ...selected, secret }, selected);
+          notify(
+            secret
+              ? "Local oculto: só mestres veem."
+              : "Local revelado ao grupo.",
+          );
+        } catch (err) {
+          notify(mapError(err));
+        }
+      }}
       onEdit={() => setForm({ location: selected, point: selected })}
       onMove={() => {
         setMoving({
@@ -561,8 +684,7 @@ function MapWorkspace({
                 action={async () => {
                   if (!moving) return;
                   try {
-                    const saved = await saveLocation(
-                      db,
+                    const saved = await binding.save(
                       { ...moving.location, ...moving.point },
                       moving.location,
                     );
@@ -636,26 +758,18 @@ function MapWorkspace({
           mapId={map.id}
           point={form.point}
           location={form.location}
+          canSecret={binding.canSecret}
+          save={binding.save}
           onClose={() => setForm(undefined)}
           onSaved={(location) => {
             setForm(undefined);
             setMode("browse");
             setSelected(location.id);
-            notify("Local salvo neste dispositivo.");
+            notify(binding.savedMessage);
           }}
         />
       )}
-      {editingMap && (
-        <MapEditor
-          map={map}
-          asset={asset}
-          onClose={() => setEditingMap(false)}
-          onSaved={() => {
-            setEditingMap(false);
-            notify("Mapa atualizado.");
-          }}
-        />
-      )}
+      {editingMap && binding.editMap(() => setEditingMap(false))}
       {deleting && (
         <Modal
           title={`Excluir ${deleting.name}?`}
@@ -667,7 +781,7 @@ function MapWorkspace({
               </button>
               <AsyncButton
                 action={async () => {
-                  await deleteLocation(db, deleting);
+                  await binding.remove(deleting);
                   setDeleting(undefined);
                   setSelected(undefined);
                   notify("Local excluído.");
@@ -720,17 +834,27 @@ function MapWorkspace({
 }
 function LocationDetails({
   location,
+  canSecret,
+  onSecret,
   onEdit,
   onMove,
   onDelete,
 }: {
-  location: MapLocation;
+  location: Place;
+  canSecret: boolean;
+  onSecret: (secret: boolean) => Promise<void>;
   onEdit: () => void;
   onMove: () => void;
   onDelete: () => void;
 }) {
   return (
     <div className="atlas-location-details">
+      {location.secret && (
+        <p className="atlas-secret-badge">
+          <EyeOff size={15} />
+          Secreto · só mestres veem
+        </p>
+      )}
       <div className="atlas-location-identity">
         <span className="atlas-location-symbol">
           <MapIcon id={location.iconId} size={36} />
@@ -756,8 +880,24 @@ function LocationDetails({
           Excluir
         </button>
       </div>
+      {canSecret && (
+        <AsyncButton
+          className={`button atlas-secret-toggle${location.secret ? " primary" : ""}`}
+          action={() => onSecret(!location.secret)}
+        >
+          {location.secret ? <Eye size={16} /> : <EyeOff size={16} />}
+          {location.secret ? "Revelar ao grupo" : "Tornar secreto"}
+        </AsyncButton>
+      )}
       <small className="muted">
+        {location.createdByName
+          ? `Marcado por ${location.createdByName} · `
+          : ""}
         Atualizado em {new Date(location.updatedAt).toLocaleDateString("pt-BR")}
+        {location.updatedByName &&
+        location.updatedByName !== location.createdByName
+          ? ` por ${location.updatedByName}`
+          : ""}
       </small>
     </div>
   );
