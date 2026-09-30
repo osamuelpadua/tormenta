@@ -5,9 +5,10 @@ O atlas é independente dos personagens. Abra **Mapas** na lateral do desktop ou
 ## Usar na mesa
 
 - Abra Aethelgard ou use **Novo mapa** para importar uma imagem JPEG, PNG ou WebP. Dê um nome e, opcionalmente, registre anotações gerais.
-- Arraste para explorar. Use a roda do mouse ou dois dedos para ampliar. Os controles também oferecem zoom e **Ajustar mapa à tela**.
-- Escolha **Adicionar local**, depois toque/clique no mapa. **Usar centro** permite posicionar pelo teclado ou sem apontar um ponto preciso. Escolha categoria, ícone, nome e anotações, e salve.
-- Clique/toque em um símbolo para consultar o local. **Locais** também oferece uma lista acessível. No desktop os detalhes aparecem ao lado do mapa; no celular, em uma janela adaptada.
+- O mapa aberto ocupa a tela inteira, como o livro de referência: uma barra fina no topo (voltar, nome, **Locais**, **Anotações**, editar) e os controles flutuando sobre a imagem. Uma dica breve de gestos aparece ao abrir.
+- Arraste para explorar. Use a roda do mouse ou dois dedos para ampliar. Os botões no canto inferior direito oferecem zoom e **Ajustar mapa à tela**.
+- Use o botão flutuante **Adicionar local**, depois toque/clique no mapa. A faixa de instruções no topo oferece **Usar centro**, que permite posicionar pelo teclado ou sem apontar um ponto preciso, e **Cancelar**. Escolha categoria, ícone, nome e anotações, e salve.
+- Clique/toque em um símbolo para consultar o local. **Locais** abre uma lista com busca: no desktop, um painel lateral que continua aberto enquanto você navega; no celular, uma folha que sobe da parte inferior. Os detalhes aparecem num cartão flutuante à direita no desktop e numa folha inferior no celular, mantendo o mapa à vista.
 - **Mover** habilita arraste do marcador ou escolha de outro ponto. **Confirmar posição** grava; **Cancelar** preserva a posição anterior. Arrastar normalmente o mapa nunca move locais.
 - **Editar mapa** permite renomear, editar anotações e substituir a imagem. Ao substituir, as marcações mantêm suas posições relativas; uma mudança no território pode exigir reposicionamento.
 - Excluir um mapa remove seus locais e imagens exclusivas. Aethelgard também pode ser excluído e não reaparece automaticamente.

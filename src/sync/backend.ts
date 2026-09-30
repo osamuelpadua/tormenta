@@ -47,12 +47,14 @@ function demoBackend() {
 function createBackend(): RemoteBackend | null {
   const { VITE_SUPABASE_URL: url, VITE_SUPABASE_ANON_KEY: key } = import.meta
     .env;
-  if (url && key) return new SupabaseBackend(url, key);
+  // An explicit demo request wins over a configured Supabase project, so
+  // tests and previews never touch real accounts.
   if (
     import.meta.env.VITE_BACKEND === "demo" ||
     import.meta.env.MODE === "demo"
   )
     return demoBackend();
+  if (url && key) return new SupabaseBackend(url, key);
   return null;
 }
 

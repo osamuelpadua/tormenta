@@ -16,6 +16,7 @@ import {
   ZoomIn,
   ZoomOut,
   List,
+  Search,
 } from "lucide-react";
 import { db } from "../../storage/database";
 import { deleteLocation, deleteMap, saveLocation } from "../../storage/maps";
@@ -315,9 +316,16 @@ function MapWorkspace({
     point: MapPoint;
   }>();
   const [showList, setShowList] = useState(false);
+  const [query, setQuery] = useState("");
   const [showNotes, setShowNotes] = useState(false);
   const [deleting, setDeleting] = useState<MapLocation>();
   const [moveError, setMoveError] = useState("");
+  // A short gesture hint on opening, then the map is left uncluttered.
+  const [hint, setHint] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setHint(false), 4500);
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     setMode("browse");
     setMoving(undefined);
@@ -338,10 +346,74 @@ function MapWorkspace({
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, []);
+  // On wide screens the list stays open beside the map while browsing.
   const openLocation = (location: MapLocation) => {
     setSelected(location.id);
-    setShowList(false);
+    if (compact) setShowList(false);
   };
+  const filtered = (locations ?? [])
+    .filter((location) =>
+      `${location.name} ${categoryName(location.categoryId)}`
+        .toLocaleLowerCase("pt-BR")
+        .includes(query.trim().toLocaleLowerCase("pt-BR")),
+    )
+    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+  const toggleAdd = () => {
+    setMoving(undefined);
+    setSelected(undefined);
+    setMoveError("");
+    setMode(mode === "add" ? "browse" : "add");
+  };
+  const locationList = locations?.length ? (
+    <>
+      <label className="atlas-search">
+        <Search size={16} />
+        <input
+          type="search"
+          value={query}
+          placeholder="Buscar local…"
+          aria-label="Buscar local"
+          onChange={(event) => setQuery(event.target.value)}
+        />
+      </label>
+      <div className="atlas-location-list">
+        {filtered.map((location) => (
+          <button
+            key={location.id}
+            aria-current={location.id === selectedId || undefined}
+            onClick={() => {
+              viewer.current?.focus(location);
+              openLocation(location);
+            }}
+          >
+            <MapIcon id={location.iconId} />
+            <span>
+              <strong>{location.name}</strong>
+              <small>{categoryName(location.categoryId)}</small>
+            </span>
+            <Compass size={17} />
+          </button>
+        ))}
+        {!filtered.length && (
+          <p className="muted atlas-list-empty">Nenhum local encontrado.</p>
+        )}
+      </div>
+    </>
+  ) : (
+    <div className="atlas-empty">
+      <MapPin size={36} />
+      <p>Seu mapa ainda não tem locais.</p>
+      <button
+        className="button"
+        onClick={() => {
+          setShowList(false);
+          setMode("add");
+        }}
+      >
+        Adicionar primeiro local
+      </button>
+    </div>
+  );
   const details = selected && (
     <LocationDetails
       location={selected}
@@ -357,84 +429,114 @@ function MapWorkspace({
       onDelete={() => setDeleting(selected)}
     />
   );
+  const listOpen = showList && !compact;
   return (
-    <section className="atlas-workspace">
-      <header className="atlas-workspace-heading">
+    <section
+      className="atlas-workspace"
+      aria-label={`Mapa: ${map.name}`}
+      data-list={listOpen || undefined}
+      data-details={(selected && !compact) || undefined}
+    >
+      <header className="atlas-bar">
         <button
-          className="icon-button"
+          className="atlas-bar-back"
           aria-label="Voltar aos mapas"
           onClick={onBack}
         >
-          <ArrowLeft size={22} />
+          <ArrowLeft size={19} />
+          <span>Mapas</span>
         </button>
-        <div>
-          <span className="eyebrow">ATLAS DA CAMPANHA</span>
+        <div className="atlas-bar-title">
           <h1>{map.name}</h1>
+          <small>
+            {locations?.length ?? 0}{" "}
+            {locations?.length === 1 ? "local" : "locais"}
+          </small>
         </div>
         <button
-          className="icon-button"
-          aria-label="Editar mapa"
-          onClick={() => setEditingMap(true)}
-        >
-          <Pencil size={19} />
-        </button>
-      </header>
-      <div className="atlas-toolbar">
-        <button
-          className={`button ${mode === "add" ? "primary" : ""}`}
-          aria-pressed={mode === "add"}
-          onClick={() => {
-            setMoving(undefined);
-            setSelected(undefined);
-            setMode(mode === "add" ? "browse" : "add");
-          }}
-        >
-          <Plus size={18} />
-          Adicionar local
-        </button>
-        <button
-          className="button"
+          className={`atlas-bar-button${showList ? " active" : ""}`}
+          aria-pressed={showList}
+          aria-label={`Locais (${locations?.length ?? 0})`}
+          title="Locais"
           onClick={() => {
             cancelMode();
-            setSelected(undefined);
-            setShowList(true);
+            if (compact) setSelected(undefined);
+            setShowList(!showList);
           }}
         >
-          <List size={18} />
-          Locais <span className="atlas-count">{locations?.length ?? 0}</span>
+          <List size={19} />
+          <span>Locais</span>
         </button>
         <button
-          className="button atlas-notes-button"
+          className="atlas-bar-button"
+          aria-label="Anotações do mapa"
+          title="Anotações do mapa"
           onClick={() => setShowNotes(true)}
         >
-          <BookOpen size={18} />
+          <BookOpen size={19} />
           <span>Anotações</span>
         </button>
-        <span className="atlas-toolbar-spacer" />
-        <div className="atlas-zoom-controls">
-          <button
-            className="icon-button"
-            aria-label="Diminuir zoom"
-            onClick={() => viewer.current?.zoom(-0.5)}
-          >
-            <ZoomOut size={20} />
-          </button>
-          <button
-            className="icon-button"
-            aria-label="Aumentar zoom"
-            onClick={() => viewer.current?.zoom(0.5)}
-          >
-            <ZoomIn size={20} />
-          </button>
-          <button
-            className="icon-button"
-            aria-label="Ajustar mapa à tela"
-            onClick={() => viewer.current?.fit()}
-          >
-            <Expand size={20} />
-          </button>
-        </div>
+        <button
+          className="atlas-bar-button"
+          aria-label="Editar mapa"
+          title="Editar mapa"
+          onClick={() => setEditingMap(true)}
+        >
+          <Pencil size={18} />
+        </button>
+      </header>
+      <div className="atlas-zoom-controls" role="group" aria-label="Zoom">
+        <button
+          aria-label="Aumentar zoom"
+          title="Aumentar zoom"
+          onClick={() => viewer.current?.zoom(0.5)}
+        >
+          <ZoomIn size={20} />
+        </button>
+        <button
+          aria-label="Diminuir zoom"
+          title="Diminuir zoom"
+          onClick={() => viewer.current?.zoom(-0.5)}
+        >
+          <ZoomOut size={20} />
+        </button>
+        <button
+          aria-label="Ajustar mapa à tela"
+          title="Ajustar mapa à tela"
+          onClick={() => viewer.current?.fit()}
+        >
+          <Expand size={19} />
+        </button>
       </div>
+      {mode === "browse" && (
+        <button className="atlas-add" aria-pressed={false} onClick={toggleAdd}>
+          <Plus size={19} />
+          Adicionar local
+        </button>
+      )}
+      {hint && mode === "browse" && !selected && (
+        <p className="atlas-hint" aria-hidden="true">
+          <Compass size={15} />
+          {compact
+            ? "Arraste para explorar · dois dedos para ampliar"
+            : "Arraste para explorar · role para ampliar"}
+        </p>
+      )}
+      {listOpen && (
+        <aside className="atlas-list-panel" aria-label="Locais do mapa">
+          <header>
+            <h2>Locais</h2>
+            <button
+              className="icon-button"
+              aria-label="Fechar lista de locais"
+              onClick={() => setShowList(false)}
+            >
+              <X size={18} />
+            </button>
+          </header>
+          {locationList}
+        </aside>
+      )}
       {mode !== "browse" && (
         <div className="atlas-mode-banner" role="status">
           <span>
@@ -484,9 +586,7 @@ function MapWorkspace({
           {moveError && <p role="alert">{moveError}</p>}
         </div>
       )}
-      <div
-        className={`atlas-map-area${selected && !compact ? " has-details" : ""}`}
-      >
+      <div className="atlas-map-area">
         <MapViewer
           ref={viewer}
           asset={asset}
@@ -521,15 +621,6 @@ function MapWorkspace({
           </aside>
         )}
       </div>
-      <footer className="atlas-workspace-footer">
-        <span>
-          <Compass size={15} />
-          {compact
-            ? "Arraste para explorar · use dois dedos para ampliar"
-            : "Arraste para explorar · role para ampliar · Esc para cancelar"}
-        </span>
-        <span>{locations?.length ?? 0} locais</span>
-      </footer>
       {selected && compact && (
         <Modal
           title={selected.name}
@@ -614,47 +705,14 @@ function MapWorkspace({
           </p>
         </Modal>
       )}
-      {showList && (
+      {showList && compact && (
         <Modal
           title="Locais do mapa"
           subtitle={map.name}
           onClose={() => setShowList(false)}
           className="atlas-locations-dialog"
         >
-          {locations?.length ? (
-            <div className="atlas-location-list">
-              {locations.map((location) => (
-                <button
-                  key={location.id}
-                  onClick={() => {
-                    viewer.current?.focus(location);
-                    openLocation(location);
-                  }}
-                >
-                  <MapIcon id={location.iconId} />
-                  <span>
-                    <strong>{location.name}</strong>
-                    <small>{categoryName(location.categoryId)}</small>
-                  </span>
-                  <Compass size={17} />
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="atlas-empty">
-              <MapPin size={36} />
-              <p>Seu mapa ainda não tem locais.</p>
-              <button
-                className="button"
-                onClick={() => {
-                  setShowList(false);
-                  setMode("add");
-                }}
-              >
-                Adicionar primeiro local
-              </button>
-            </div>
-          )}
+          {locationList}
         </Modal>
       )}
     </section>

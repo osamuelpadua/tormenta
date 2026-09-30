@@ -307,6 +307,8 @@ test("atlas: imagem personalizada, backup ZIP, restauração e exclusão persist
   ).toBeVisible();
   await expect(page.locator(".leaflet-tile-loaded").first()).toBeVisible();
   await addLocation(page, "Entrada da cripta");
+  // An open map covers the app, like the book reader; leave it first.
+  await page.getByRole("button", { name: "Voltar aos mapas" }).click();
   await page
     .getByRole("button", { name: "Backups e importação", exact: true })
     .click();
@@ -335,7 +337,6 @@ test("atlas: imagem personalizada, backup ZIP, restauração e exclusão persist
     .getByRole("button", { name: "Fechar", exact: true })
     .first()
     .click();
-  await page.getByRole("button", { name: "Voltar aos mapas" }).click();
   await expect(
     page.getByRole("button", {
       name: "Abrir Masmorra de Elden (cópia)",
